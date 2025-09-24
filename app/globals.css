@@ -1,0 +1,382 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Premium light theme with refined colors and gradients */
+  --background: #fdf6ee;
+  --foreground: #6b3f1d;
+  --card: #f8f1e7;
+  --card-foreground: #6b3f1d;
+  --popover: #f8f1e7;
+  --popover-foreground: #6b3f1d;
+  --primary: #a47551;
+  --primary-foreground: #fff7ed;
+  --secondary: #e9dbc7;
+  --secondary-foreground: #6b3f1d;
+  --muted: #f3e7d7;
+  --muted-foreground: #a47551;
+  --accent: #c7a07b;
+  --accent-foreground: #6b3f1d;
+  --destructive: #b85c38;
+  --destructive-foreground: #fff7ed;
+  --border: #e9dbc7;
+  --input: #e9dbc7;
+  --ring: #a47551;
+  --chart-1: #a47551;
+  --chart-2: #c7a07b;
+  --chart-3: #6b3f1d;
+  --chart-4: #e9dbc7;
+  --chart-5: #b85c38;
+  --radius: 1rem;
+  --sidebar: #f8f1e7;
+  --sidebar-foreground: #6b3f1d;
+  --sidebar-primary: #a47551;
+  --sidebar-primary-foreground: #fff7ed;
+  --sidebar-accent: #e9dbc7;
+  --sidebar-accent-foreground: #6b3f1d;
+  --sidebar-border: #e9dbc7;
+  --sidebar-ring: #a47551;
+
+  /* Brown gradients and glows for Claude.ai style */
+  --gradient-primary: linear-gradient(135deg, #a47551 0%, #c7a07b 100%);
+  --gradient-secondary: linear-gradient(135deg, #e9dbc7 0%, #f3e7d7 100%);
+  --gradient-accent: linear-gradient(135deg, #c7a07b 0%, #a47551 100%);
+  --glow-primary: 0 0 30px #a47551cc;
+  --glow-accent: 0 0 25px #c7a07bcc;
+  --background-pattern-light: radial-gradient(
+      circle at 25% 25%,
+      rgba(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  --background-pattern-dark: radial-gradient(
+      circle at 25% 25%,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    );
+  --background-pattern-size: 40px 40px;
+  --github-btn-gradient-light: linear-gradient(90deg, #a47551 0%, #c7a07b 100%);
+  --github-btn-gradient-dark: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
+}
+
+.dark {
+  /* Premium dark theme with deep charcoal gradients instead of pure black */
+  --background: linear-gradient(
+    135deg,
+    oklch(0.05 0.01 240) 0%,
+    oklch(0.08 0.015 220) 100%
+  );
+  --foreground: oklch(0.82 0.008 240);
+  --card: linear-gradient(
+    135deg,
+    oklch(0.08 0.015 240) 0%,
+    oklch(0.1 0.02 220) 100%
+  );
+  --card-foreground: oklch(0.85 0.01 240);
+  --popover: oklch(0.09 0.02 240);
+  --popover-foreground: oklch(0.85 0.01 240);
+  --primary: oklch(0.7 0.3 250);
+  --primary-foreground: oklch(0.05 0.01 240);
+  --secondary: oklch(0.15 0.025 240);
+  --secondary-foreground: oklch(0.85 0.01 240);
+  --muted: oklch(0.12 0.02 240);
+  --muted-foreground: oklch(0.65 0.015 240);
+  --accent: oklch(0.75 0.35 200);
+  --accent-foreground: oklch(0.05 0.01 240);
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.95 0.01 240);
+  --border: oklch(0.18 0.025 240);
+  --input: oklch(0.15 0.025 240);
+  --ring: oklch(0.75 0.35 200);
+  --chart-1: oklch(0.75 0.35 200);
+  --chart-2: oklch(0.8 0.3 180);
+  --chart-3: oklch(0.85 0.25 280);
+  --chart-4: oklch(0.9 0.3 320);
+  --chart-5: oklch(0.95 0.25 60);
+  --sidebar: oklch(0.05 0.01 240);
+  --sidebar-foreground: oklch(0.82 0.008 240);
+  --sidebar-primary: oklch(0.7 0.3 250);
+  --sidebar-primary-foreground: oklch(0.05 0.01 240);
+  --sidebar-accent: oklch(0.15 0.025 240);
+  --sidebar-accent-foreground: oklch(0.85 0.01 240);
+  --sidebar-border: oklch(0.18 0.025 240);
+  --sidebar-ring: oklch(0.75 0.35 200);
+
+  /* Enhanced dark mode gradients and glows */
+  --gradient-primary: linear-gradient(
+    135deg,
+    oklch(0.7 0.3 250) 0%,
+    oklch(0.8 0.35 200) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    oklch(0.85 0.25 280) 0%,
+    oklch(0.75 0.3 320) 100%
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    oklch(0.75 0.35 200) 0%,
+    oklch(0.85 0.3 180) 100%
+  );
+  --glow-primary: 0 0 40px oklch(0.7 0.3 250 / 0.4);
+  --glow-accent: 0 0 35px oklch(0.75 0.35 200 / 0.5);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply text-foreground;
+    background: var(--background);
+    /* Added smooth font rendering for premium feel */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.pattern-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--background-pattern-light);
+  background-size: var(--background-pattern-size);
+  opacity: 1;
+  transition: background-image 0.3s;
+}
+.dark .pattern-bg {
+  background-image: var(--background-pattern-dark);
+}
+
+/* Enhanced animations with Apple-style smoothness */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.text-smooth {
+  transition: color 0.3s, opacity 0.3s;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: var(--glow-primary);
+  }
+  50% {
+    box-shadow: var(--glow-accent);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Premium glassmorphism effects */
+.glass {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Premium button styles with gradients and glows */
+.btn-premium {
+  background: var(--gradient-primary);
+  box-shadow: var(--glow-primary);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-accent);
+}
+
+/* Enhanced card styles with depth */
+.card-premium {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-premium:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dark .card-premium {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark .card-premium:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.font-orbitron {
+  font-family: "Orbitron", sans-serif;
+}
+
+.github-bright-btn {
+  background: #a47551 !important;
+  color: #fff !important;
+  padding: 0.35rem 1rem !important;
+  border-radius: 0.5rem !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 90px;
+  min-height: 38px;
+}
+.dark .github-bright-btn {
+  background: #0066cc !important;
+}
+.github-bright-btn:hover,
+.github-bright-btn:focus {
+  background: #8a5c37 !important;
+  color: #fff !important;
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.dark .github-bright-btn:hover,
+.dark .github-bright-btn:focus {
+  background: #0052a3 !important;
+}
+.github-bright-btn .external-link-icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin-left: 0.5em;
+  vertical-align: middle;
+}
