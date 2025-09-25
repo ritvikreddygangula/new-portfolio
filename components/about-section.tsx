@@ -79,7 +79,7 @@ export function AboutSection() {
                   <br />
                   Fall 2023, Spring 2024, Fall 2024, Spring 2025
                   <br />
-                  Academic Excellence
+                  NAMU scholar
                 </p>
               </Card>
             </div>
