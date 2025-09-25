@@ -133,12 +133,12 @@ export function ContactSection() {
                   <div>
                     <p className="font-semibold">GitHub</p>
                     <a
-                      href="https://github.com/gritvik"
+                      href="https://github.com/ritvikreddygangula"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-accent transition-colors"
                     >
-                      github.com/gritvik
+                      github.com/ritvikreddygangula
                     </a>
                   </div>
                 </div>
