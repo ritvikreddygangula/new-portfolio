@@ -97,7 +97,7 @@ export function HeroSection() {
               className="glass hover:bg-primary/10 transition-all duration-300 hover:scale-110 bg-transparent"
             >
               <a
-                href="https://github.com/gritvik"
+                href="https://github.com/ritvikreddygangula"
                 target="_blank"
                 rel="noopener noreferrer"
               >
