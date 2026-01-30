@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import { Card } from "@/components/ui/card"
-import { GraduationCap, Award } from "lucide-react"
-import { motion } from "framer-motion"
+import { Card } from "@/components/ui/card";
+import { GraduationCap, Award } from "lucide-react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function AboutSection() {
   return (
@@ -25,12 +26,18 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="flex justify-center lg:justify-start"
           >
-            <div className="relative">
-              <div className="w-80 h-80 mx-auto bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl flex items-center justify-center">
-                <div className="w-64 h-64 bg-muted rounded-xl flex items-center justify-center">
-                  <span className="text-6xl">👨‍💻</span>
-                </div>
+            <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-primary/20 p-1.5 shadow-lg">
+              <div className="relative w-full h-full rounded-xl overflow-hidden bg-muted">
+                <Image
+                  src="/ocean-image.jpg"
+                  alt="Ocean"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 28rem"
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
           </motion.div>
@@ -43,15 +50,15 @@ export function AboutSection() {
             className="space-y-6"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a passionate Computer Science student at Arizona State University with a perfect 4.0 GPA, specializing
-              in AI, machine learning, and full-stack development. I love building intelligent applications that solve
-              real-world problems and create meaningful user experiences.
+              I’m a Computer Science student at Arizona State University with a
+              4.0 GPA, focused on full-stack development, backend engineering,
+              and applied AI. I build production-ready systems that solve real
+              problems, scale reliably, and emphasize clean architecture and
+              system reliability.{" "}
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              My expertise spans across modern web technologies, AI/ML frameworks, and cloud platforms. I'm particularly
-              interested in the intersection of artificial intelligence and web development, creating scalable agentic and autonomous solutions
-              that leverage the power of both domains.
+            Outside of code, I’m drawn to the sea for its balance of calm and power, a perspective that shapes how I design software. I’m especially interested in the intersection of AI and web development, where thoughtful engineering and intelligent automation come together to create resilient, scalable systems.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mt-8">
@@ -75,11 +82,11 @@ export function AboutSection() {
                   <h3 className="font-semibold">Recognition</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Dean's List
+                  Dean's List (5x)
                   <br />
                   Fall 2023, Spring 2024, Fall 2024, Spring 2025
                   <br />
-                  NAMU scholar
+                  NAMU Scholar ($108,000)
                 </p>
               </Card>
             </div>
@@ -87,5 +94,5 @@ export function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

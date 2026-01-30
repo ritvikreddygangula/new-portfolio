@@ -12,14 +12,19 @@ const experiences = [
     location: "Philadelphia, PA",
     period: "June – July 2025",
     description:
-      "Automated data enrichment and anomaly detection with Python & GPT, saving 25+ hrs/week.",
+      "Automated data enrichment and quality validation pipelines using Python and GPT, improving dataset reliability and saving 25+ hours per week across analytics workflows.",
     achievements: [
-      "Improved dataset accuracy by 40%",
-      "Streamlined Google Sheets workflows",
-      "Implemented automated anomaly detection",
-      "Reduced manual data processing time significantly",
+      "Improved dataset accuracy by ~40% through automated validation and consistency checks",
+      "Reduced manual data processing by 35%+ by streamlining Google Sheets–based workflows",
+      "Implemented anomaly detection to identify data inconsistencies across production datasets",
+      "Strengthened downstream ML and analytics reliability with preventative data checks",
     ],
-    technologies: ["Python Automation", "OpenAI API", "Google Sheets API", "Data Analysis"],
+    technologies: [
+      "Python Automation",
+      "OpenAI API",
+      "Google Sheets API",
+      "Data Analysis",
+    ],
   },
   {
     title: "Software Development Intern",
@@ -27,12 +32,12 @@ const experiences = [
     location: "Telangana, India",
     period: "May – August 2024",
     description:
-      "Built a React + Tailwind dashboard for municipal officers and automated workflows.",
+      "Worked on a full-stack civic platform serving 15,000+ users, contributing to frontend development, backend validation, and workflow automation to improve reliability and operational efficiency.",
     achievements: [
-      "Reduced paperwork by 60% through automation",
-      "Built responsive dashboard with React & Tailwind",
-      "Integrated real-time status updates via email/SMS",
-      "Streamlined municipal workflows with n8n automation",
+      "Reduced production issues by ~35% through comprehensive functional and API-level testing",
+      "Lowered post-release defects by ~30% with Python-based backend validation across 15+ endpoints",
+      "Cut manual paperwork by ~60% by building a React + Tailwind dashboard and automating workflows",
+      "Enabled real-time status updates via email and SMS for municipal officers",
     ],
     technologies: ["React", "Tailwind CSS", "n8n", "Python", "Flask", "MySQL"],
   },

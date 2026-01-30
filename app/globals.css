@@ -380,3 +380,22 @@
   margin-left: 0.5em;
   vertical-align: middle;
 }
+
+/* 3D Skills sphere (hero) – theme colors and hover */
+.skills-sphere-wrapper .skills-sphere-tagcloud {
+  background: transparent !important;
+}
+.skills-sphere-wrapper .skills-sphere-tagcloud-item {
+  color: var(--foreground) !important;
+  opacity: 0.88;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.skills-sphere-wrapper .skills-sphere-tagcloud-item:hover {
+  opacity: 1;
+  color: var(--primary) !important;
+  background: color-mix(in srgb, var(--primary) 14%, transparent) !important;
+  border-radius: 9999px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 40%, transparent);
+}

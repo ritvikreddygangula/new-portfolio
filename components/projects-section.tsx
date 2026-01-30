@@ -8,25 +8,29 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "Trading Simulation",
-    date: "July 2025",
+    title: "Chatify",
+    date: "December 2024",
     description:
-      "Distributed AI agents system for automated trading with advanced decision-making capabilities.",
+      "Real-time chat application with rooms, presence indicators, and multi-device conversation sync.",
     longDescription:
-      "Built a sophisticated multi-agent trading system using CrewAI framework with Docker containerization. Integrated OpenAI APIs for intelligent decision-making, resulting in 35% faster trade execution compared to traditional methods.",
+      "Built a real-time messaging platform using Node.js, Express, and Socket.IO with rooms, presence indicators, and message delivery acknowledgements, backed by MongoDB for reliable multi-device conversations. Implemented JWT authentication, REST APIs, and server-side rate limiting (express-rate-limit / Redis) to mitigate spam and ensure availability, with a React + Socket.IO client and Dockerized backend services for repeatable deployments.",
     technologies: [
-      "CrewAI",
+      "Node.js",
+      "Express",
+      "Socket.IO",
+      "React",
+      "MongoDB",
       "Docker",
-      "OpenAI API",
-      "Python",
-      "Distributed Systems",
+      "JWT",
+      "Redis",
     ],
     achievements: [
-      "35% faster trades",
-      "Multi-agent coordination",
-      "Real-time decision making",
+      "Real-time rooms & presence indicators",
+      "MongoDB persistence & multi-device sync",
+      "JWT auth & Redis-backed rate limiting",
+      "Dockerized full-stack deployment",
     ],
-    github: "https://github.com/ritvikreddygangula/trading-simulation",
+    github: "#",
     demo: "#",
   },
   {
@@ -42,7 +46,7 @@ const projects = [
       "Interactive UI",
       "Complex workflow management",
     ],
-    github: "https://github.com/ritvikreddygangula/multi-agent-research-team",
+    github: "https://github.com/ritvikreddygangula/multi-agent-research-",
     demo: "#",
   },
   {

@@ -4,6 +4,32 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
+import { SkillsSphere } from "@/components/SkillsSphere";
+
+// Skills for the 3D sphere (add/remove entries to change the tag cloud)
+const HERO_SKILLS = [
+  "Python",
+  "Java",
+  "JavaScript",
+  "React.js",
+  "C/C++",
+  "Data Structures",
+  "OOP",
+  "REST APIs",
+  "Node.js",
+  "Express.js",
+  "Flask",
+  "DynamoDB",
+  "MongoDB",
+  "EC2",
+  "Kubernetes",
+  "AWS Lambda",
+  "AWS S3",
+  "Docker",
+  "Linux/Unix",
+  "JUnit",
+  "Debugging",
+];
 
 export function HeroSection() {
   const scrollToProjects = () => {
@@ -19,119 +45,132 @@ export function HeroSection() {
         style={{ animationDelay: "2s" }}
       />
 
-      <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
-        <div className="profile-image-container mb-6 flex justify-center">
-          <img
-            src="/r1.jpg"
-            alt="Profile Picture"
-            className="profile-image"
-            style={{
-              width: "200px",
-              height: "200px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              marginBottom: "1rem",
-              boxShadow: "0 4px 32px rgba(107,63,29,0.10)",
-              border: "4px solid #fff7ed",
-              maxWidth: "90vw",
-              transition: "transform 0.3s",
-            }}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.transform = "scale(1.04)")
-            }
-            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-          />
-        </div>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance animate-shimmer font-orbitron">
-            Ritvik Reddy
-          </h1>
-          <div className="text-xl md:text-2xl font-semibold mb-4 text-muted-foreground">
-            Hi, I am
-            <span className="ml-2 text-primary">
-              <Typewriter
-                words={[
-                  "an AI agentic developer",
-                  "a Dean's list student",
-                  "a Data Analyst",
-                  "a Software Developer",
-                ]}
-                loop={0}
-                cursor
-                cursorStyle="|"
-                typeSpeed={60}
-                deleteSpeed={90}
-                delaySpeed={1200}
-              />
-            </span>
+      <div className="max-w-6xl mx-auto relative z-10 w-full flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+        {/* Intro content: left on desktop, full width on mobile; sphere right on desktop, below on mobile */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left flex-1 min-w-0">
+          <div className="profile-image-container mb-6 flex justify-center lg:justify-start">
+            <img
+              src="/r1.jpg"
+              alt="Profile Picture"
+              className="profile-image"
+              style={{
+                width: "200px",
+                height: "200px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                marginBottom: "1rem",
+                boxShadow: "0 4px 32px rgba(107,63,29,0.10)",
+                border: "4px solid #fff7ed",
+                maxWidth: "90vw",
+                transition: "transform 0.3s",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.transform = "scale(1.04)")
+              }
+              onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            />
           </div>
-          <p className="text-lg text-muted-foreground/80 mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
-            Building intelligent apps and automation tools with AI, Cloud, and
-            modern web technologies.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-        >
-          <Button
-            onClick={scrollToProjects}
-            size="lg"
-            className="btn-premium text-primary-foreground font-semibold px-8 py-3 text-lg"
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            View My Work
-            <ArrowDown className="ml-2 h-5 w-5" />
-          </Button>
-          <div className="flex gap-4">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance animate-shimmer font-orbitron">
+              Ritvik Reddy
+            </h1>
+            <div className="text-xl md:text-2xl font-semibold mb-4 text-muted-foreground">
+              Hi, I am
+              <span className="ml-2 text-primary">
+                <Typewriter
+                  words={[
+                    "an AWS certified developer",
+                    "a 5x Dean's list student",
+                    "a Software Developer",
+                    "a Data Analyst",
+                  ]}
+                  loop={0}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={60}
+                  deleteSpeed={90}
+                  delaySpeed={1200}
+                />
+              </span>
+            </div>
+            <p className="text-lg text-muted-foreground/80 mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
+              Building intelligent apps and automation tools with AI, Cloud, and
+              modern web technologies.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12"
+          >
             <Button
-              variant="outline"
-              size="icon"
-              asChild
-              className="glass hover:bg-primary/10 transition-all duration-300 hover:scale-110 bg-transparent"
+              onClick={scrollToProjects}
+              size="lg"
+              className="btn-premium text-primary-foreground font-semibold px-8 py-3 text-lg"
             >
-              <a
-                href="https://github.com/ritvikreddygangula"
-                target="_blank"
-                rel="noopener noreferrer"
+              View My Work
+              <ArrowDown className="ml-2 h-5 w-5" />
+            </Button>
+            <div className="flex gap-4">
+              <Button
+                variant="outline"
+                size="icon"
+                asChild
+                className="glass hover:bg-primary/10 transition-all duration-300 hover:scale-110 bg-transparent"
               >
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              asChild
-              className="glass hover:bg-primary/10 transition-all duration-300 hover:scale-110 bg-transparent"
-            >
-              <a
-                href="https://linkedin.com/in/gritvik"
-                target="_blank"
-                rel="noopener noreferrer"
+                <a
+                  href="https://github.com/ritvikreddygangula"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-5 w-5" />
+                  <span className="sr-only">GitHub</span>
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                asChild
+                className="glass hover:bg-primary/10 transition-all duration-300 hover:scale-110 bg-transparent"
               >
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              asChild
-              className="glass hover:bg-primary/10 transition-all duration-300 hover:scale-110 bg-transparent"
-            >
-              <a href="mailto:ritvikreddygangula@gmail.com">
-                <Mail className="h-5 w-5" />
-                <span className="sr-only">Email</span>
-              </a>
-            </Button>
-          </div>
+                <a
+                  href="https://linkedin.com/in/gritvik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  <span className="sr-only">LinkedIn</span>
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                asChild
+                className="glass hover:bg-primary/10 transition-all duration-300 hover:scale-110 bg-transparent"
+              >
+                <a href="mailto:ritvikreddygangula@gmail.com">
+                  <Mail className="h-5 w-5" />
+                  <span className="sr-only">Email</span>
+                </a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* 3D skills sphere: right on desktop, below intro on mobile */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="flex-shrink-0 w-full lg:w-auto flex justify-center lg:justify-end mt-10 lg:mt-0"
+        >
+          <SkillsSphere skills={HERO_SKILLS} />
         </motion.div>
       </div>
 
