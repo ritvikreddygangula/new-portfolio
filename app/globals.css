@@ -63,7 +63,7 @@
     );
   --background-pattern-size: 40px 40px;
   --github-btn-gradient-light: linear-gradient(90deg, #a47551 0%, #c7a07b 100%);
-  --github-btn-gradient-dark: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
+  --github-btn-gradient-dark: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%);
 }
 
 .dark {
@@ -82,51 +82,51 @@
   --card-foreground: oklch(0.85 0.01 240);
   --popover: oklch(0.09 0.02 240);
   --popover-foreground: oklch(0.85 0.01 240);
-  --primary: oklch(0.7 0.3 250);
+  --primary: oklch(0.72 0.22 280);
   --primary-foreground: oklch(0.05 0.01 240);
   --secondary: oklch(0.15 0.025 240);
   --secondary-foreground: oklch(0.85 0.01 240);
   --muted: oklch(0.12 0.02 240);
   --muted-foreground: oklch(0.65 0.015 240);
-  --accent: oklch(0.75 0.35 200);
+  --accent: oklch(0.78 0.2 280);
   --accent-foreground: oklch(0.05 0.01 240);
   --destructive: oklch(0.65 0.25 25);
   --destructive-foreground: oklch(0.95 0.01 240);
   --border: oklch(0.18 0.025 240);
   --input: oklch(0.15 0.025 240);
-  --ring: oklch(0.75 0.35 200);
-  --chart-1: oklch(0.75 0.35 200);
-  --chart-2: oklch(0.8 0.3 180);
-  --chart-3: oklch(0.85 0.25 280);
-  --chart-4: oklch(0.9 0.3 320);
-  --chart-5: oklch(0.95 0.25 60);
+  --ring: oklch(0.78 0.2 280);
+  --chart-1: oklch(0.72 0.22 280);
+  --chart-2: oklch(0.78 0.2 280);
+  --chart-3: oklch(0.85 0.18 280);
+  --chart-4: oklch(0.9 0.15 290);
+  --chart-5: oklch(0.95 0.12 280);
   --sidebar: oklch(0.05 0.01 240);
   --sidebar-foreground: oklch(0.82 0.008 240);
-  --sidebar-primary: oklch(0.7 0.3 250);
+  --sidebar-primary: oklch(0.72 0.22 280);
   --sidebar-primary-foreground: oklch(0.05 0.01 240);
   --sidebar-accent: oklch(0.15 0.025 240);
   --sidebar-accent-foreground: oklch(0.85 0.01 240);
   --sidebar-border: oklch(0.18 0.025 240);
-  --sidebar-ring: oklch(0.75 0.35 200);
+  --sidebar-ring: oklch(0.78 0.2 280);
 
-  /* Enhanced dark mode gradients and glows */
+  /* Enhanced dark mode gradients and glows – purple theme */
   --gradient-primary: linear-gradient(
     135deg,
-    oklch(0.7 0.3 250) 0%,
-    oklch(0.8 0.35 200) 100%
+    oklch(0.72 0.22 280) 0%,
+    oklch(0.8 0.2 290) 100%
   );
   --gradient-secondary: linear-gradient(
     135deg,
-    oklch(0.85 0.25 280) 0%,
-    oklch(0.75 0.3 320) 100%
+    oklch(0.85 0.18 280) 0%,
+    oklch(0.75 0.2 290) 100%
   );
   --gradient-accent: linear-gradient(
     135deg,
-    oklch(0.75 0.35 200) 0%,
-    oklch(0.85 0.3 180) 100%
+    oklch(0.78 0.2 280) 0%,
+    oklch(0.85 0.18 290) 100%
   );
-  --glow-primary: 0 0 40px oklch(0.7 0.3 250 / 0.4);
-  --glow-accent: 0 0 35px oklch(0.75 0.35 200 / 0.5);
+  --glow-primary: 0 0 40px oklch(0.72 0.22 280 / 0.45);
+  --glow-accent: 0 0 35px oklch(0.78 0.2 280 / 0.5);
 }
 
 @theme inline {
@@ -360,7 +360,7 @@
   min-height: 38px;
 }
 .dark .github-bright-btn {
-  background: #0066cc !important;
+  background: #8b5cf6 !important;
 }
 .github-bright-btn:hover,
 .github-bright-btn:focus {
@@ -371,7 +371,7 @@
 }
 .dark .github-bright-btn:hover,
 .dark .github-bright-btn:focus {
-  background: #0052a3 !important;
+  background: #7c3aed !important;
 }
 .github-bright-btn .external-link-icon {
   display: inline-block;
@@ -387,7 +387,7 @@
 }
 .skills-sphere-wrapper .skills-sphere-tagcloud-item {
   color: var(--foreground) !important;
-  opacity: 0.88;
+  opacity: 0.9;
   transition: opacity 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 .skills-sphere-wrapper .skills-sphere-tagcloud-item:hover {
@@ -399,3 +399,96 @@
   padding-right: 0.5rem;
   box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 40%, transparent);
 }
+/* Dark mode: light text and cyan accent for black background */
+html.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item,
+.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item {
+  color: #e8e6e3 !important;
+}
+html.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item:hover,
+.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item:hover {
+  color: #c4b5fd !important;
+  background: rgba(196, 181, 253, 0.2) !important;
+  box-shadow: 0 0 24px rgba(196, 181, 253, 0.4);
+}
+
+/* Terminal skills section – theme-matched */
+.terminal-body {
+  background: #1e1b17;
+}
+.terminal-prompt-user {
+  color: #c7a07b;
+}
+.terminal-prompt-path {
+  color: #d4a574;
+}
+.terminal-prompt-symbol {
+  color: rgba(232, 220, 200, 0.9);
+}
+.terminal-command {
+  color: #e8dcc8;
+}
+.terminal-category {
+  color: #d4a574;
+}
+.terminal-skill {
+  color: #e8dcc8;
+}
+.terminal-skill:hover {
+  color: #c7a07b;
+}
+.terminal-cursor {
+  display: inline-block;
+  width: 0.5rem;
+  height: 1rem;
+  background: #c7a07b;
+}
+.terminal-dot-red { background: #b85c38; }
+.terminal-dot-yellow { background: #d4a574; }
+.terminal-dot-green { background: #8a9b6e; }
+.terminal-header { background: rgba(30, 27, 23, 0.8); }
+
+/* Dark mode terminal – purple theme */
+.dark .terminal-body,
+html.dark .terminal-body {
+  background: #0f0d14;
+}
+.dark .terminal-prompt-user,
+html.dark .terminal-prompt-user {
+  color: #a78bfa;
+}
+.dark .terminal-prompt-path,
+html.dark .terminal-prompt-path {
+  color: #c4b5fd;
+}
+.dark .terminal-prompt-symbol,
+html.dark .terminal-prompt-symbol {
+  color: rgba(226, 232, 240, 0.9);
+}
+.dark .terminal-command,
+html.dark .terminal-command {
+  color: #cbd5e1;
+}
+.dark .terminal-category,
+html.dark .terminal-category {
+  color: #c4b5fd;
+}
+.dark .terminal-skill,
+html.dark .terminal-skill {
+  color: #cbd5e1;
+}
+.dark .terminal-skill:hover,
+html.dark .terminal-skill:hover {
+  color: #a78bfa;
+}
+.dark .terminal-cursor,
+html.dark .terminal-cursor {
+  background: #a78bfa;
+}
+.dark .terminal-dot-red,
+html.dark .terminal-dot-red { background: #b85c38; }
+.dark .terminal-dot-yellow,
+html.dark .terminal-dot-yellow { background: #c4b5fd; }
+.dark .terminal-dot-green,
+html.dark .terminal-dot-green { background: #34d399; }
+.dark .terminal-header,
+html.dark .terminal-header { background: rgba(15, 13, 20, 0.9); }

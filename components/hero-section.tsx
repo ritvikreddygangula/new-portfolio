@@ -163,12 +163,12 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* 3D skills sphere: right on desktop, below intro on mobile */}
+        {/* 3D skills sphere: right on desktop (shifted left), below intro on mobile */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="flex-shrink-0 w-full lg:w-auto flex justify-center lg:justify-end mt-10 lg:mt-0"
+          className="flex-shrink-0 w-full lg:w-auto flex justify-center lg:justify-center lg:translate-x-[-12%] mt-10 lg:mt-0"
         >
           <SkillsSphere skills={HERO_SKILLS} />
         </motion.div>
