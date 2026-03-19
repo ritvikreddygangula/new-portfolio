@@ -23,6 +23,10 @@ export type SkillsSphereProps = {
   /** Whether to keep rotating after mouse leaves. */
   keep?: boolean;
   className?: string;
+  /** Height of the container div in px. Defaults to 340. */
+  containerHeight?: number;
+  /** Max width of the container div in px. Defaults to 360. */
+  containerMaxWidth?: number;
 };
 
 export function SkillsSphere({
@@ -32,6 +36,8 @@ export function SkillsSphere({
   initSpeed = "slow",
   keep = true,
   className = "",
+  containerHeight = 340,
+  containerMaxWidth = 360,
 }: SkillsSphereProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const instanceRef = useRef<{ destroy: () => void; update: (texts: string[]) => void } | null>(null);
@@ -85,10 +91,11 @@ export function SkillsSphere({
 
   return (
     <div
-      className={`skills-sphere-wrapper relative flex items-center justify-center min-h-[340px] w-full max-w-[360px] mx-auto lg:mx-0 ${className}`}
+      className={`skills-sphere-wrapper relative flex items-center justify-center w-full mx-auto lg:mx-0 ${className}`}
+      style={{ minHeight: containerHeight, maxWidth: containerMaxWidth }}
       aria-hidden
     >
-      <div ref={containerRef} className="skills-sphere-container w-full h-[340px]" />
+      <div ref={containerRef} className="skills-sphere-container w-full" style={{ height: containerHeight }} />
     </div>
   );
 }

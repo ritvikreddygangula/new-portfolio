@@ -84,9 +84,9 @@ export function AboutSection() {
                 <p className="text-sm text-muted-foreground">
                   Dean's List (5x)
                   <br />
-                  Fall 2023, Spring 2024, Fall 2024, Spring 2025
+                  Fall 2023, Spring 2024, Fall 2024, Spring 2025, Fall 2025
                   <br />
-                  NAMU Scholar ($108,000)
+                  NAMU Scholar
                 </p>
               </Card>
             </div>

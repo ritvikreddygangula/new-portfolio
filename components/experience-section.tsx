@@ -10,7 +10,7 @@ const experiences = [
     title: "Jr. Data Analyst",
     company: "Food Forest AI",
     location: "Philadelphia, PA",
-    period: "June – July 2025",
+    period: "June – May 2025",
     description:
       "Automated data enrichment and quality validation pipelines using Python and GPT, improving dataset reliability and saving 25+ hours per week across analytics workflows.",
     achievements: [

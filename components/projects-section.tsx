@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Calendar } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 
 const projects = [
@@ -151,11 +151,6 @@ export function ProjectsSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="flex flex-col h-full relative z-10">
-                  <div className="flex items-center gap-2 mb-4 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4 text-accent" />
-                    {project.date}
-                  </div>
-
                   <h3 className="text-2xl font-bold mb-4 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                     {project.title}
                   </h3>
