@@ -45,23 +45,17 @@ export function HeroSection() {
         style={{ animationDelay: "2s" }}
       />
 
-      <div className="max-w-6xl mx-auto relative z-10 w-full flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+      <div className="max-w-6xl mx-auto relative z-10 w-full flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-16">
         {/* Intro content: left on desktop, full width on mobile; sphere right on desktop, below on mobile */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left flex-1 min-w-0">
           <div className="profile-image-container mb-6 flex justify-center lg:justify-start">
             <img
               src="/r1.jpg"
               alt="Profile Picture"
-              className="profile-image"
+              className="profile-image w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full object-cover mb-4"
               style={{
-                width: "200px",
-                height: "200px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                marginBottom: "1rem",
                 boxShadow: "0 4px 32px rgba(107,63,29,0.10)",
                 border: "4px solid #fff7ed",
-                maxWidth: "90vw",
                 transition: "transform 0.3s",
               }}
               onMouseOver={(e) =>
@@ -168,7 +162,7 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="flex-shrink-0 w-full lg:w-auto flex justify-center lg:justify-center lg:translate-x-[-12%] mt-10 lg:mt-0"
+          className="flex-shrink-0 w-full lg:w-auto flex justify-center mt-10 lg:mt-0"
         >
           <SkillsSphere skills={HERO_SKILLS} />
         </motion.div>

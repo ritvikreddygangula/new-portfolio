@@ -45,7 +45,7 @@ export function CertificationsSection() {
         </motion.div>
 
         <TooltipProvider>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 justify-center">
+          <div className="flex flex-wrap justify-center gap-8">
             {certifications.map((cert, index) => (
               <motion.div
                 key={cert.name}
@@ -53,6 +53,7 @@ export function CertificationsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="w-full max-w-sm"
               >
                 <Tooltip>
                   <TooltipTrigger asChild>

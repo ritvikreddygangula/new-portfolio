@@ -7,6 +7,32 @@ import { ExternalLink, Github, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 
 const projects = [
+    {
+    title: "Meeting Intelligence Platform",
+    date: "March 2026",
+    description:
+      "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
+    longDescription:
+      "Built a full-stack meeting intelligence platform with a FastAPI backend and Next.js frontend. Implements a multi-stage NLP pipeline using BERT-based semantic chunking (512-token chunks with 50-token overlap), extractive TextRank summarization, and pattern-based action item extraction with confidence scoring. Features JWT authentication, per-user transcript isolation, full CRUD with re-analysis on edit, and a real-time multi-step progress indicator.",
+    technologies: [
+      "FastAPI",
+      "Next.js",
+      "Python",
+      "SQLAlchemy",
+      "BERT",
+      "Hugging Face",
+      "JWT",
+      "TypeScript",
+    ],
+    achievements: [
+      "BERT-based semantic chunking with overlap for context preservation",
+      "Hierarchical extractive summarization (chunk → overall)",
+      "Pattern-based action item extraction with assignee & deadline detection",
+      "Secure JWT auth with bcrypt and per-user data isolation",
+    ],
+    github: "https://github.com/ritvikreddygangula/meeting-intelligence",
+    demo: "#",
+  },
   {
     title: "Chatify",
     date: "December 2024",
@@ -30,8 +56,8 @@ const projects = [
       "JWT auth & Redis-backed rate limiting",
       "Dockerized full-stack deployment",
     ],
-    github: "#",
-    demo: "#",
+    github: "https://github.com/ritvikreddygangula/chatify",
+    demo: "https://chatify-0eq1n.sevalla.app/login",
   },
   {
     title: "Multi Agent Research Team",
@@ -134,30 +160,21 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
 
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                  <p className="text-muted-foreground mb-5 leading-relaxed text-sm">
                     {project.description}
                   </p>
 
-                  <p className="text-sm text-muted-foreground/80 mb-6 leading-relaxed">
-                    {project.longDescription}
-                  </p>
-
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-3 text-sm text-accent">
-                      Key Achievements:
-                    </h4>
-                    <ul className="space-y-1">
-                      {project.achievements.map((achievement, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-sm text-muted-foreground"
-                        >
-                          <span className="w-1.5 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mt-2 flex-shrink-0"></span>
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul className="space-y-1.5 mb-5">
+                    {project.achievements.map((achievement, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
+                        <span className="w-1.5 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mt-1.5 flex-shrink-0"></span>
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
 
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.technologies.map((tech, i) => (
@@ -171,20 +188,32 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
-                  <div className="flex gap-3 mt-auto">
-                    <Button
-                      asChild
-                      className="btn-premium text-primary-foreground font-semibold px-8 py-3 text-lg"
-                    >
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                  <div className="flex flex-wrap gap-3 mt-auto">
+                    {project.github !== "#" && (
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="border-primary/50 text-primary bg-primary/10 hover:bg-primary/20 hover:border-primary transition-all duration-200"
                       >
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </a>
-                    </Button>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </a>
+                      </Button>
+                    )}
+                    {project.demo !== "#" && (
+                      <Button
+                        asChild
+                        size="sm"
+                        className="btn-premium text-primary-foreground font-semibold"
+                      >
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Try Now
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </Card>

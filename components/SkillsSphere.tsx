@@ -27,7 +27,7 @@ export type SkillsSphereProps = {
 
 export function SkillsSphere({
   skills,
-  radius = 260,
+  radius = 290,
   maxSpeed = "normal",
   initSpeed = "slow",
   keep = true,
@@ -85,10 +85,10 @@ export function SkillsSphere({
 
   return (
     <div
-      className={`skills-sphere-wrapper relative flex items-center justify-center min-h-[280px] w-full max-w-[320px] mx-auto lg:mx-0 ${className}`}
+      className={`skills-sphere-wrapper relative flex items-center justify-center min-h-[340px] w-full max-w-[360px] mx-auto lg:mx-0 ${className}`}
       aria-hidden
     >
-      <div ref={containerRef} className="skills-sphere-container w-full h-[280px]" />
+      <div ref={containerRef} className="skills-sphere-container w-full h-[340px]" />
     </div>
   );
 }
