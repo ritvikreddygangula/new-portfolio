@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 px-6">
+    <section id="about" className="py-20 px-6 lg:pl-48">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -26,28 +26,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="flex justify-center lg:justify-start"
-          >
-            <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-primary/20 p-1.5 shadow-lg">
-              <div className="relative w-full h-full rounded-xl overflow-hidden bg-muted">
-                <Image
-                  src="/ocean-image.jpg"
-                  alt="Ocean"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 28rem"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-6 order-2 lg:order-1"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
               I’m a Computer Science student at Arizona State University with a
@@ -89,6 +68,27 @@ export function AboutSection() {
                   NAMU Scholar
                 </p>
               </Card>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex justify-center lg:justify-end order-1 lg:order-2"
+          >
+            <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-primary/20 p-1.5 shadow-lg">
+              <div className="relative w-full h-full rounded-xl overflow-hidden bg-muted">
+                <Image
+                  src="/ocean-image.jpg"
+                  alt="Ocean"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 28rem"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
           </motion.div>
         </div>

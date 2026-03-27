@@ -177,7 +177,6 @@
   body {
     @apply text-foreground;
     background: var(--background);
-    /* Added smooth font rendering for premium feel */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
