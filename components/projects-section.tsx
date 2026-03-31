@@ -8,30 +8,20 @@ import { motion } from "framer-motion";
 
 const projects = [
     {
-    title: "Meeting Intelligence Platform",
-    date: "March 2026",
+    title: "Multi Agent Research Team",
+    date: "June 2025",
     description:
-      "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
+      "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",
     longDescription:
-      "Built a full-stack meeting intelligence platform with a FastAPI backend and Next.js frontend. Implements a multi-stage NLP pipeline using BERT-based semantic chunking (512-token chunks with 50-token overlap), extractive TextRank summarization, and pattern-based action item extraction with confidence scoring. Features JWT authentication, per-user transcript isolation, full CRUD with re-analysis on edit, and a real-time multi-step progress indicator.",
-    technologies: [
-      "FastAPI",
-      "Next.js",
-      "Python",
-      "SQLAlchemy",
-      "BERT",
-      "Hugging Face",
-      "JWT",
-      "TypeScript",
-    ],
+      "Developed a collaborative AI research platform using Gradio for the frontend and CrewAI for agent orchestration. Implemented LangGraph for complex workflow management, enabling researchers to conduct deep analysis with AI assistance.",
+    technologies: ["Gradio", "CrewAI", "LangGraph", "Python", "AI Agents"],
     achievements: [
-      "BERT-based semantic chunking with overlap for context preservation",
-      "Hierarchical extractive summarization (chunk → overall)",
-      "Pattern-based action item extraction with assignee & deadline detection",
-      "Secure JWT auth with bcrypt and per-user data isolation",
+      "Orchestrates planner, researcher, aggregator, critic, and synthesizer agents using LangGraph with parallel execution",
+      "Streams real-time node-level updates to a React UI with live agent graph visualization",
+      "Uses Pinecone vector memory to retrieve past context and improve future research quality",
     ],
-    github: "https://github.com/ritvikreddygangula/meeting-intelligence",
-    demo: "#",
+    github: "https://github.com/ritvikreddygangula/multi-agent-research-",
+    demo: "https://multi-agent-research-v773.onrender.com/",
   },
   {
     title: "Chatify",
@@ -59,20 +49,30 @@ const projects = [
     github: "https://github.com/ritvikreddygangula/chatify",
     demo: "https://chatify-0eq1n.sevalla.app/login",
   },
-  {
-    title: "Multi Agent Research Team",
-    date: "June 2025",
+    {
+    title: "Meeting Intelligence Platform",
+    date: "March 2026",
     description:
-      "Multi-agent research system with intuitive UI for comprehensive data analysis and insights.",
+      "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
     longDescription:
-      "Developed a collaborative AI research platform using Gradio for the frontend and CrewAI for agent orchestration. Implemented LangGraph for complex workflow management, enabling researchers to conduct deep analysis with AI assistance.",
-    technologies: ["Gradio", "CrewAI", "LangGraph", "Python", "AI Agents"],
-    achievements: [
-      "Multi-agent collaboration",
-      "Interactive UI",
-      "Complex workflow management",
+      "Built a full-stack meeting intelligence platform with a FastAPI backend and Next.js frontend. Implements a multi-stage NLP pipeline using BERT-based semantic chunking (512-token chunks with 50-token overlap), extractive TextRank summarization, and pattern-based action item extraction with confidence scoring. Features JWT authentication, per-user transcript isolation, full CRUD with re-analysis on edit, and a real-time multi-step progress indicator.",
+    technologies: [
+      "FastAPI",
+      "Next.js",
+      "Python",
+      "SQLAlchemy",
+      "BERT",
+      "Hugging Face",
+      "JWT",
+      "TypeScript",
     ],
-    github: "https://github.com/ritvikreddygangula/multi-agent-research-",
+    achievements: [
+      "BERT-based semantic chunking with overlap for context preservation",
+      "Hierarchical extractive summarization (chunk → overall)",
+      "Pattern-based action item extraction with assignee & deadline detection",
+      "Secure JWT auth with bcrypt and per-user data isolation",
+    ],
+    github: "https://github.com/ritvikreddygangula/meeting-intelligence",
     demo: "#",
   },
   {
