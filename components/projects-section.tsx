@@ -5,6 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const AgentWorkflowAnimation = dynamic(
+  () => import("@/components/AgentWorkflowAnimation"),
+  { ssr: false }
+);
 
 const projects = [
     {
@@ -22,6 +28,7 @@ const projects = [
     ],
     github: "https://github.com/ritvikreddygangula/multi-agent-research-",
     demo: "https://multi-agent-research-v773.onrender.com/",
+    showWorkflow: true,
   },
   {
     title: "Chatify",
@@ -146,70 +153,83 @@ export function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className={project.showWorkflow ? "md:col-span-2" : ""}
             >
               <Card className="card-premium p-8 h-full group relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="flex flex-col h-full relative z-10">
-                  <h3 className="text-2xl font-bold mb-4 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-                    {project.title}
-                  </h3>
+                <div className={`flex ${project.showWorkflow ? 'flex-col lg:flex-row gap-6' : 'flex-col'} h-full relative z-10`}>
+                  {/* Left side - Project Details */}
+                  <div className={`flex flex-col ${project.showWorkflow ? 'lg:w-[45%]' : 'w-full'}`}>
+                    <h3 className="text-2xl font-bold mb-4 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                      {project.title}
+                    </h3>
 
-                  <p className="text-muted-foreground mb-5 leading-relaxed text-sm">
-                    {project.description}
-                  </p>
+                    <p className="text-muted-foreground mb-5 leading-relaxed text-sm">
+                      {project.description}
+                    </p>
 
-                  <ul className="space-y-1.5 mb-5">
-                    {project.achievements.map((achievement, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-sm text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mt-1.5 flex-shrink-0"></span>
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="space-y-1.5 mb-5">
+                      {project.achievements.map((achievement, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 text-sm text-muted-foreground"
+                        >
+                          <span className="w-1.5 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mt-1.5 flex-shrink-0"></span>
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech, i) => (
-                      <Badge
-                        key={i}
-                        variant="secondary"
-                        className="glass bg-primary/10 text-primary border-primary/20 text-xs hover:bg-primary/20 transition-colors duration-200"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies.map((tech, i) => (
+                        <Badge
+                          key={i}
+                          variant="secondary"
+                          className="glass bg-primary/10 text-primary border-primary/20 text-xs hover:bg-primary/20 transition-colors duration-200"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 mt-auto">
+                      {project.github !== "#" && (
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="sm"
+                          className="border-primary/50 text-primary bg-primary/10 hover:bg-primary/20 hover:border-primary transition-all duration-200"
+                        >
+                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                      )}
+                      {project.demo !== "#" && (
+                        <Button
+                          asChild
+                          size="sm"
+                          className="btn-premium text-primary-foreground font-semibold"
+                        >
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Try Now
+                          </a>
+                        </Button>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 mt-auto">
-                    {project.github !== "#" && (
-                      <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="border-primary/50 text-primary bg-primary/10 hover:bg-primary/20 hover:border-primary transition-all duration-200"
-                      >
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" />
-                          Code
-                        </a>
-                      </Button>
-                    )}
-                    {project.demo !== "#" && (
-                      <Button
-                        asChild
-                        size="sm"
-                        className="btn-premium text-primary-foreground font-semibold"
-                      >
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Try Now
-                        </a>
-                      </Button>
-                    )}
-                  </div>
+                  {/* Right side - Workflow Animation */}
+                  {project.showWorkflow && (
+                    <div className="lg:w-[55%] flex items-center justify-end">
+                      <div className="w-full h-full">
+                        <AgentWorkflowAnimation autoPlay={true} />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </Card>
             </motion.div>
