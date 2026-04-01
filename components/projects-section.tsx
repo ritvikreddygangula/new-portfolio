@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { RippleButton } from "@/components/RippleButton";
 
 const AgentWorkflowAnimation = dynamic(
   () => import("@/components/AgentWorkflowAnimation"),
@@ -156,6 +157,16 @@ export function ProjectsSection() {
               className={project.showWorkflow ? "md:col-span-2" : ""}
             >
               <Card className="card-premium p-8 h-full group relative overflow-hidden">
+                {/* Animated gradient border */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient-border"
+                       style={{
+                         padding: '2px',
+                         WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                         WebkitMaskComposite: 'xor',
+                         maskComposite: 'exclude'
+                       }} />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className={`flex ${project.showWorkflow ? 'flex-col lg:flex-row gap-6' : 'flex-col'} h-full relative z-10`}>
@@ -183,19 +194,28 @@ export function ProjectsSection() {
 
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.technologies.map((tech, i) => (
-                        <Badge
+                        <motion.div
                           key={i}
-                          variant="secondary"
-                          className="glass bg-primary/10 text-primary border-primary/20 text-xs hover:bg-primary/20 transition-colors duration-200"
+                          initial={{ opacity: 1, y: 0 }}
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          {tech}
-                        </Badge>
+                          <Badge
+                            variant="secondary"
+                            className="glass bg-primary/10 text-primary border-primary/20 text-xs hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 cursor-default"
+                            style={{
+                              animationDelay: `${i * 50}ms`,
+                            }}
+                          >
+                            {tech}
+                          </Badge>
+                        </motion.div>
                       ))}
                     </div>
 
                     <div className="flex flex-wrap gap-3 mt-auto">
                       {project.github !== "#" && (
-                        <Button
+                        <RippleButton
                           asChild
                           variant="outline"
                           size="sm"
@@ -205,10 +225,10 @@ export function ProjectsSection() {
                             <Github className="h-4 w-4 mr-2" />
                             Code
                           </a>
-                        </Button>
+                        </RippleButton>
                       )}
                       {project.demo !== "#" && (
-                        <Button
+                        <RippleButton
                           asChild
                           size="sm"
                           className="btn-premium text-primary-foreground font-semibold"
@@ -217,7 +237,7 @@ export function ProjectsSection() {
                             <ExternalLink className="h-4 w-4 mr-2" />
                             Try Now
                           </a>
-                        </Button>
+                        </RippleButton>
                       )}
                     </div>
                   </div>
