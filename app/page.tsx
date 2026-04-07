@@ -1,12 +1,12 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Navigation } from "@/components/navigation";
-import { HeroSection } from "@/components/hero-section";
-import { AboutSection } from "@/components/about-section";
-import { ExperienceSection } from "@/components/experience-section";
-import { ProjectsSection } from "@/components/projects-section";
-import { SkillsSection } from "@/components/skills-section";
-import { CertificationsSection } from "@/components/certifications-section";
-import { ContactSection } from "@/components/contact-section";
+import { HeroSection } from "@/components/sections/hero-section";
+import { AboutSection } from "@/components/sections/about-section";
+import { ExperienceSection } from "@/components/sections/experience-section";
+import { ProjectsSection } from "@/components/sections/projects-section";
+import { SkillsSection } from "@/components/sections/skills-section";
+import { CertificationsSection } from "@/components/sections/certifications-section";
+import { ContactSection } from "@/components/sections/contact-section";
 
 export default function Home() {
   return (

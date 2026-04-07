@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 import { RippleButton } from "@/components/RippleButton";
 
 const AgentWorkflowAnimation = dynamic(
-  () => import("@/components/AgentWorkflowAnimation"),
+  () => import("@/components/animations/AgentWorkflowAnimation"),
   { ssr: false }
 );
 
