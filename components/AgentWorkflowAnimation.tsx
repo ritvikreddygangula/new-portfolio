@@ -41,18 +41,18 @@ function AgentNode({ data }: { data: any }) {
 
 const NODE_TYPES = { agentNode: AgentNode };
 
-// Layout constants
+// Layout constants — branches centered at x=300, spacing 130px
 const NODE_DEFS = [
-  { id: 'planner', label: 'Planner', x: 340, y: 0 },
-  { id: 'rag_retrieval', label: 'RAG Memory', x: 340, y: 100 },
-  { id: 'branch_0', label: 'Branch 1', x: 0, y: 220 },
+  { id: 'planner', label: 'Planner', x: 300, y: 0 },
+  { id: 'rag_retrieval', label: 'RAG Memory', x: 300, y: 100 },
+  { id: 'branch_0', label: 'Branch 1', x: 40, y: 220 },
   { id: 'branch_1', label: 'Branch 2', x: 170, y: 220 },
-  { id: 'branch_2', label: 'Branch 3', x: 340, y: 220 },
-  { id: 'branch_3', label: 'Branch 4', x: 510, y: 220 },
-  { id: 'branch_4', label: 'Branch 5', x: 680, y: 220 },
-  { id: 'aggregator', label: 'Aggregator', x: 340, y: 340 },
-  { id: 'critic', label: 'Critic', x: 340, y: 440 },
-  { id: 'synthesizer', label: 'Synthesizer', x: 340, y: 540 },
+  { id: 'branch_2', label: 'Branch 3', x: 300, y: 220 },
+  { id: 'branch_3', label: 'Branch 4', x: 430, y: 220 },
+  { id: 'branch_4', label: 'Branch 5', x: 560, y: 220 },
+  { id: 'aggregator', label: 'Aggregator', x: 300, y: 340 },
+  { id: 'critic', label: 'Critic', x: 300, y: 440 },
+  { id: 'synthesizer', label: 'Synthesizer', x: 300, y: 540 },
 ];
 
 const EDGES = [

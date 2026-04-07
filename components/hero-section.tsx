@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
@@ -89,6 +89,21 @@ export function HeroSection() {
           >
             View My Work
             <ArrowDown className="ml-2 h-5 w-5" />
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            asChild
+            className="border-primary/50 text-primary bg-primary/10 hover:bg-primary/20 hover:border-primary font-semibold px-8 py-3 text-lg transition-all duration-200"
+          >
+            <a
+              href="https://drive.google.com/file/d/1ljn3LtcAytQhGw48tADiptlbSmsuOvc5/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Resume
+            </a>
           </Button>
           <div className="flex gap-4">
             <Button
