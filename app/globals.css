@@ -39,12 +39,12 @@
   --sidebar-border: #e9dbc7;
   --sidebar-ring: #a47551;
 
-  /* Brown gradients and glows for Claude.ai style */
-  --gradient-primary: linear-gradient(135deg, #a47551 0%, #c7a07b 100%);
+  /* Brown-to-terracotta gradient with tighter glows */
+  --gradient-primary: linear-gradient(135deg, #8b5e35 0%, #c0622a 100%);
   --gradient-secondary: linear-gradient(135deg, #e9dbc7 0%, #f3e7d7 100%);
-  --gradient-accent: linear-gradient(135deg, #c7a07b 0%, #a47551 100%);
-  --glow-primary: 0 0 30px #a47551cc;
-  --glow-accent: 0 0 25px #c7a07bcc;
+  --gradient-accent: linear-gradient(135deg, #c0622a 0%, #8b5e35 100%);
+  --glow-primary: 0 0 20px #a4755155;
+  --glow-accent: 0 0 16px #c7a07b55;
   --background-pattern-light: radial-gradient(
       circle at 25% 25%,
       rgba(0, 0, 0, 0.05) 1px,
@@ -82,51 +82,43 @@
   --card-foreground: oklch(0.85 0.01 240);
   --popover: oklch(0.09 0.02 240);
   --popover-foreground: oklch(0.85 0.01 240);
-  --primary: oklch(0.72 0.22 280);
-  --primary-foreground: oklch(0.05 0.01 240);
+  --primary: #d4a55a;
+  --primary-foreground: #1a0e00;
   --secondary: oklch(0.15 0.025 240);
   --secondary-foreground: oklch(0.85 0.01 240);
   --muted: oklch(0.12 0.02 240);
   --muted-foreground: oklch(0.65 0.015 240);
-  --accent: oklch(0.78 0.2 280);
-  --accent-foreground: oklch(0.05 0.01 240);
+  --accent: #c4833a;
+  --accent-foreground: #1a0e00;
   --destructive: oklch(0.65 0.25 25);
   --destructive-foreground: oklch(0.95 0.01 240);
   --border: oklch(0.18 0.025 240);
   --input: oklch(0.15 0.025 240);
-  --ring: oklch(0.78 0.2 280);
-  --chart-1: oklch(0.72 0.22 280);
-  --chart-2: oklch(0.78 0.2 280);
+  --ring: #d4a55a;
+  --chart-1: #d4a55a;
+  --chart-2: #c4833a;
   --chart-3: oklch(0.85 0.18 280);
   --chart-4: oklch(0.9 0.15 290);
   --chart-5: oklch(0.95 0.12 280);
   --sidebar: oklch(0.05 0.01 240);
   --sidebar-foreground: oklch(0.82 0.008 240);
-  --sidebar-primary: oklch(0.72 0.22 280);
-  --sidebar-primary-foreground: oklch(0.05 0.01 240);
+  --sidebar-primary: #d4a55a;
+  --sidebar-primary-foreground: #1a0e00;
   --sidebar-accent: oklch(0.15 0.025 240);
   --sidebar-accent-foreground: oklch(0.85 0.01 240);
   --sidebar-border: oklch(0.18 0.025 240);
-  --sidebar-ring: oklch(0.78 0.2 280);
+  --sidebar-ring: #d4a55a;
 
-  /* Enhanced dark mode gradients and glows – purple theme */
-  --gradient-primary: linear-gradient(
-    135deg,
-    oklch(0.72 0.22 280) 0%,
-    oklch(0.8 0.2 290) 100%
-  );
+  /* Warm amber-gold dark mode gradients */
+  --gradient-primary: linear-gradient(135deg, #c4833a 0%, #d4a55a 100%);
   --gradient-secondary: linear-gradient(
     135deg,
-    oklch(0.85 0.18 280) 0%,
-    oklch(0.75 0.2 290) 100%
+    oklch(0.15 0.025 240) 0%,
+    oklch(0.2 0.03 240) 100%
   );
-  --gradient-accent: linear-gradient(
-    135deg,
-    oklch(0.78 0.2 280) 0%,
-    oklch(0.85 0.18 290) 100%
-  );
-  --glow-primary: 0 0 40px oklch(0.72 0.22 280 / 0.45);
-  --glow-accent: 0 0 35px oklch(0.78 0.2 280 / 0.5);
+  --gradient-accent: linear-gradient(135deg, #d4a55a 0%, #c4833a 100%);
+  --glow-primary: 0 0 28px rgba(212, 165, 90, 0.35);
+  --glow-accent: 0 0 22px rgba(196, 131, 58, 0.4);
 }
 
 @theme inline {
@@ -445,7 +437,7 @@ html.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item:hover,
 
 /* Terminal skills section – theme-matched */
 .terminal-body {
-  background: #1e1b17;
+  background: #2a1a0e;
 }
 .terminal-prompt-user {
   color: #c7a07b;
@@ -477,50 +469,50 @@ html.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item:hover,
 .terminal-dot-red { background: #b85c38; }
 .terminal-dot-yellow { background: #d4a574; }
 .terminal-dot-green { background: #8a9b6e; }
-.terminal-header { background: rgba(30, 27, 23, 0.8); }
+.terminal-header { background: rgba(20, 10, 4, 0.88); }
 
-/* Dark mode terminal – purple theme */
+/* Dark mode terminal – warm amber theme */
 .dark .terminal-body,
 html.dark .terminal-body {
-  background: #0f0d14;
+  background: #1a0e04;
 }
 .dark .terminal-prompt-user,
 html.dark .terminal-prompt-user {
-  color: #a78bfa;
+  color: #d4a55a;
 }
 .dark .terminal-prompt-path,
 html.dark .terminal-prompt-path {
-  color: #c4b5fd;
+  color: #e8c484;
 }
 .dark .terminal-prompt-symbol,
 html.dark .terminal-prompt-symbol {
-  color: rgba(226, 232, 240, 0.9);
+  color: rgba(240, 220, 180, 0.9);
 }
 .dark .terminal-command,
 html.dark .terminal-command {
-  color: #cbd5e1;
+  color: #f0dcb0;
 }
 .dark .terminal-category,
 html.dark .terminal-category {
-  color: #c4b5fd;
+  color: #e8c484;
 }
 .dark .terminal-skill,
 html.dark .terminal-skill {
-  color: #cbd5e1;
+  color: #d4c4a0;
 }
 .dark .terminal-skill:hover,
 html.dark .terminal-skill:hover {
-  color: #a78bfa;
+  color: #d4a55a;
 }
 .dark .terminal-cursor,
 html.dark .terminal-cursor {
-  background: #a78bfa;
+  background: #d4a55a;
 }
 .dark .terminal-dot-red,
-html.dark .terminal-dot-red { background: #b85c38; }
+html.dark .terminal-dot-red { background: #c0622a; }
 .dark .terminal-dot-yellow,
-html.dark .terminal-dot-yellow { background: #c4b5fd; }
+html.dark .terminal-dot-yellow { background: #d4a55a; }
 .dark .terminal-dot-green,
-html.dark .terminal-dot-green { background: #34d399; }
+html.dark .terminal-dot-green { background: #6db87a; }
 .dark .terminal-header,
-html.dark .terminal-header { background: rgba(15, 13, 20, 0.9); }
+html.dark .terminal-header { background: rgba(10, 5, 0, 0.92); }

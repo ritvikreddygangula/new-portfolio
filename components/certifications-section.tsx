@@ -97,7 +97,7 @@ export function CertificationsSection() {
 
                           <Badge
                             variant="secondary"
-                            className="mb-3 bg-accent/15 text-accent border-accent/25 text-xs"
+                            className="mb-3 bg-accent/25 text-accent border-accent/45 text-xs"
                           >
                             {cert.level}
                           </Badge>

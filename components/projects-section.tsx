@@ -202,7 +202,7 @@ export function ProjectsSection() {
                         >
                           <Badge
                             variant="secondary"
-                            className="glass bg-primary/10 text-primary border-primary/20 text-xs hover:bg-primary/20 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 cursor-default"
+                            className="bg-primary/20 text-primary border-primary/40 text-xs hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 cursor-default"
                             style={{
                               animationDelay: `${i * 50}ms`,
                             }}
