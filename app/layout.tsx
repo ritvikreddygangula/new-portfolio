@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -57,6 +58,25 @@ export default function RootLayout({
       >
         <div className="pattern-bg" aria-hidden="true"></div>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: "var(--card)",
+              color: "var(--foreground)",
+              border: "1px solid var(--border)",
+              borderRadius: "0.75rem",
+              fontSize: "0.875rem",
+            },
+            success: {
+              iconTheme: { primary: "var(--accent)", secondary: "var(--card)" },
+            },
+            error: {
+              iconTheme: { primary: "#c0622a", secondary: "var(--card)" },
+            },
+          }}
+        />
         <Analytics />
       </body>
     </html>

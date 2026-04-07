@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, Linkedin, Github, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -21,23 +22,40 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.name.trim()) {
+      toast.error("Please enter your name.");
+      return;
+    }
+    if (!formData.email.trim()) {
+      toast.error("Please enter your email.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    if (!formData.message.trim()) {
+      toast.error("Please enter a message.");
+      return;
+    }
+
     setIsSubmitting(true);
 
-    const endpoint = "https://formspree.io/f/mvgrqndk";
-
-    const response = await fetch(endpoint, {
+    const response = await fetch("https://formspree.io/f/mvgrqndk", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
     setIsSubmitting(false);
-    setFormData({ name: "", email: "", message: "" });
 
     if (response.ok) {
-      alert("Thank you for your message! I'll get back to you soon.");
+      toast.success("Message sent! I'll get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
     } else {
-      alert("There was an error sending your message. Please try again later.");
+      toast.error("Failed to send message. Please try again.");
     }
   };
 
@@ -163,7 +181,6 @@ export function ContactSection() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    required
                     className="mt-2"
                     placeholder="Your name"
                   />
@@ -177,7 +194,6 @@ export function ContactSection() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    required
                     className="mt-2"
                     placeholder="your.email@example.com"
                   />
@@ -190,7 +206,6 @@ export function ContactSection() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    required
                     className="mt-2 min-h-[120px]"
                     placeholder="Tell me about your project or just say hello!"
                   />
