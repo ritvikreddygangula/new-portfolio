@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { RippleButton } from "@/components/RippleButton";
 
 const AgentWorkflowAnimation = dynamic(
   () => import("@/components/animations/AgentWorkflowAnimation"),
@@ -215,20 +214,20 @@ export function ProjectsSection() {
 
                     <div className="flex flex-wrap gap-3 mt-auto">
                       {project.github !== "#" && (
-                        <RippleButton
+                        <Button
                           asChild
                           variant="outline"
                           size="sm"
-                          className="border-primary/50 text-primary bg-primary/10 hover:bg-primary/20 hover:border-primary transition-all duration-200"
+                          className="border-primary/50 text-primary bg-primary/20 hover:bg-primary/30 hover:border-primary transition-all duration-200"
                         >
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
                             <Github className="h-4 w-4 mr-2" />
                             Code
                           </a>
-                        </RippleButton>
+                        </Button>
                       )}
                       {project.demo !== "#" && (
-                        <RippleButton
+                        <Button
                           asChild
                           size="sm"
                           className="btn-premium text-primary-foreground font-semibold"
@@ -237,7 +236,7 @@ export function ProjectsSection() {
                             <ExternalLink className="h-4 w-4 mr-2" />
                             Try Now
                           </a>
-                        </RippleButton>
+                        </Button>
                       )}
                     </div>
                   </div>
