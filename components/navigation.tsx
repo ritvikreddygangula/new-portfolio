@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
@@ -21,7 +21,6 @@ export function Navigation() {
     const handleScroll = () => {
       const sections = navItems.map((item) => item.href.slice(1))
       const scrollPosition = window.scrollY + 100
-
       for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
@@ -33,7 +32,6 @@ export function Navigation() {
         }
       }
     }
-
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -46,52 +44,62 @@ export function Navigation() {
 
   return (
     <>
-      {/* Desktop sidebar nav */}
-      <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
-        <div className="flex flex-col gap-2">
-          {navItems.map((item) => (
-            <Button
-              key={item.name}
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection(item.href)}
-              className={`justify-start text-sm transition-all duration-200 ${
-                activeSection === item.href.slice(1)
-                  ? "text-accent border-l-2 border-accent bg-accent/10"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {item.name}
-            </Button>
-          ))}
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-fit px-4">
+        <div
+          className="flex items-center h-12 px-4 rounded-full backdrop-blur-2xl bg-foreground/8 border border-foreground/12 shadow-xl shadow-black/20 ring-1 ring-white/5"
+        >
+          {/* Nav links — left/center */}
+          <div className="hidden md:flex items-center gap-1 flex-1">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.href)}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  activeSection === item.href.slice(1)
+                    ? "bg-accent/15 text-accent"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile burger — left on mobile */}
+          <button
+            className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-all duration-200 flex-1 flex items-center"
+            onClick={() => setMobileMenuOpen((v) => !v)}
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+
+          {/* Divider + theme toggle */}
+          <div className="h-5 w-px bg-border/60 mx-2 hidden md:block" />
+          <ThemeToggle />
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile hamburger button */}
-      <button
-        className="fixed top-6 left-6 z-50 lg:hidden glass p-2 rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm"
-        onClick={() => setMobileMenuOpen((v) => !v)}
-        aria-label="Toggle navigation menu"
-      >
-        {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-      </button>
-
-      {/* Mobile full-screen menu overlay */}
+      {/* Mobile dropdown */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden bg-background/95 backdrop-blur-md flex flex-col items-center justify-center gap-4">
-          {navItems.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => scrollToSection(item.href)}
-              className={`text-2xl font-semibold transition-colors duration-200 px-8 py-3 rounded-lg ${
-                activeSection === item.href.slice(1)
-                  ? "text-accent bg-accent/10"
-                  : "text-foreground hover:text-accent"
-              }`}
-            >
-              {item.name}
-            </button>
-          ))}
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 w-fit px-4 z-40 md:hidden">
+          <div className="backdrop-blur-xl bg-background/90 border border-border/50 rounded-2xl shadow-lg overflow-hidden">
+            <div className="flex flex-col px-4 py-3 gap-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    activeSection === item.href.slice(1)
+                      ? "text-accent bg-accent/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </>
