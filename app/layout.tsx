@@ -10,30 +10,32 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Ritvik Reddy",
   description:
-    "Computer Science Student at Arizona State University specializing in AI, Machine Learning, and Full-Stack Development. Building intelligent apps and automation tools.",
+    "Software Engineer and Computer Science student at Arizona State University, building AI-powered products and backend systems. Currently a Software Engineering Intern at GCM Grosvenor.",
   keywords: [
+    "Software Engineer",
     "AI Developer",
     "Full-Stack Developer",
     "Computer Science",
     "Machine Learning",
     "React",
     "Python",
+    ".NET",
     "Arizona State University",
   ],
   authors: [{ name: "Ritvik Reddy Gangula" }],
   creator: "Ritvik Reddy Gangula",
   openGraph: {
-    title: "Ritvik Reddy Gangula - AI & Full-Stack Developer",
+    title: "Ritvik Reddy Gangula - Software Engineer",
     description:
-      "Computer Science Student specializing in AI, Machine Learning, and Full-Stack Development",
+      "Software Engineer and Computer Science student building AI-powered products and backend systems.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ritvik Reddy Gangula - AI & Full-Stack Developer",
+    title: "Ritvik Reddy Gangula - Software Engineer",
     description:
-      "Computer Science Student specializing in AI, Machine Learning, and Full-Stack Development",
+      "Software Engineer and Computer Science student building AI-powered products and backend systems.",
   },
   robots: {
     index: true,
@@ -48,9 +50,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
-        <link href="https://fonts.cdnfonts.com/css/orbitron" rel="stylesheet" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body

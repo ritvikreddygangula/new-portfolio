@@ -4,121 +4,48 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Premium light theme with refined colors and gradients */
-  --background: #fdf6ee;
-  --foreground: #6b3f1d;
-  --card: #f8f1e7;
-  --card-foreground: #6b3f1d;
-  --popover: #f8f1e7;
-  --popover-foreground: #6b3f1d;
-  --primary: #a47551;
-  --primary-foreground: #fff7ed;
-  --secondary: #e9dbc7;
-  --secondary-foreground: #6b3f1d;
-  --muted: #f3e7d7;
-  --muted-foreground: #8a5c37;
-  --accent: #c7a07b;
-  --accent-foreground: #6b3f1d;
-  --destructive: #b85c38;
-  --destructive-foreground: #fff7ed;
-  --border: #e9dbc7;
-  --input: #e9dbc7;
-  --ring: #a47551;
-  --chart-1: #a47551;
-  --chart-2: #c7a07b;
-  --chart-3: #6b3f1d;
-  --chart-4: #e9dbc7;
-  --chart-5: #b85c38;
-  --radius: 1rem;
-  --sidebar: #f8f1e7;
-  --sidebar-foreground: #6b3f1d;
-  --sidebar-primary: #a47551;
-  --sidebar-primary-foreground: #fff7ed;
-  --sidebar-accent: #e9dbc7;
-  --sidebar-accent-foreground: #6b3f1d;
-  --sidebar-border: #e9dbc7;
-  --sidebar-ring: #a47551;
+  /* Dark, editor-inspired palette — single source of truth (site is dark-only) */
+  --background: #0a0d12;
+  --foreground: #dfe4ea;
+  --card: #10151c;
+  --card-foreground: #dfe4ea;
+  --popover: #10151c;
+  --popover-foreground: #dfe4ea;
+  --primary: #d9a25a;
+  --primary-foreground: #0a0d12;
+  --secondary: #161c25;
+  --secondary-foreground: #dfe4ea;
+  --muted: #131820;
+  --muted-foreground: #8892a0;
+  --accent: #5fc4d0;
+  --accent-foreground: #0a0d12;
+  --destructive: #e2685f;
+  --destructive-foreground: #0a0d12;
+  --border: #1f2733;
+  --input: #1f2733;
+  --ring: #d9a25a;
+  --chart-1: #d9a25a;
+  --chart-2: #5fc4d0;
+  --chart-3: #8892a0;
+  --chart-4: #e2685f;
+  --chart-5: #7c9a5f;
+  --radius: 0.625rem;
+  --sidebar: #10151c;
+  --sidebar-foreground: #dfe4ea;
+  --sidebar-primary: #d9a25a;
+  --sidebar-primary-foreground: #0a0d12;
+  --sidebar-accent: #161c25;
+  --sidebar-accent-foreground: #dfe4ea;
+  --sidebar-border: #1f2733;
+  --sidebar-ring: #d9a25a;
 
-  /* Brown-to-terracotta gradient with tighter glows */
-  --gradient-primary: linear-gradient(135deg, #8b5e35 0%, #c0622a 100%);
-  --gradient-secondary: linear-gradient(135deg, #e9dbc7 0%, #f3e7d7 100%);
-  --gradient-accent: linear-gradient(135deg, #c0622a 0%, #8b5e35 100%);
-  --glow-primary: 0 0 20px #a4755155;
-  --glow-accent: 0 0 16px #c7a07b55;
-  --background-pattern-light: radial-gradient(
-      circle at 25% 25%,
-      rgba(0, 0, 0, 0.05) 1px,
+  --background-pattern: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.035) 1px,
       transparent 1px
     ),
-    radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  --background-pattern-dark: radial-gradient(
-      circle at 25% 25%,
-      rgba(255, 255, 255, 0.07) 1px,
-      transparent 1px
-    ),
-    radial-gradient(
-      circle at 75% 75%,
-      rgba(255, 255, 255, 0.04) 1px,
-      transparent 1px
-    );
-  --background-pattern-size: 40px 40px;
-  --github-btn-gradient-light: linear-gradient(90deg, #a47551 0%, #c7a07b 100%);
-  --github-btn-gradient-dark: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%);
-}
-
-.dark {
-  /* Premium dark theme with deep charcoal gradients instead of pure black */
-  --background: linear-gradient(
-    135deg,
-    oklch(0.05 0.01 240) 0%,
-    oklch(0.08 0.015 220) 100%
-  );
-  --foreground: oklch(0.82 0.008 240);
-  --card: linear-gradient(
-    135deg,
-    oklch(0.08 0.015 240) 0%,
-    oklch(0.1 0.02 220) 100%
-  );
-  --card-foreground: oklch(0.85 0.01 240);
-  --popover: oklch(0.09 0.02 240);
-  --popover-foreground: oklch(0.85 0.01 240);
-  --primary: #d4a55a;
-  --primary-foreground: #1a0e00;
-  --secondary: oklch(0.15 0.025 240);
-  --secondary-foreground: oklch(0.85 0.01 240);
-  --muted: oklch(0.12 0.02 240);
-  --muted-foreground: oklch(0.65 0.015 240);
-  --accent: #c4833a;
-  --accent-foreground: #1a0e00;
-  --destructive: oklch(0.65 0.25 25);
-  --destructive-foreground: oklch(0.95 0.01 240);
-  --border: oklch(0.18 0.025 240);
-  --input: oklch(0.15 0.025 240);
-  --ring: #d4a55a;
-  --chart-1: #d4a55a;
-  --chart-2: #c4833a;
-  --chart-3: oklch(0.85 0.18 280);
-  --chart-4: oklch(0.9 0.15 290);
-  --chart-5: oklch(0.95 0.12 280);
-  --sidebar: oklch(0.05 0.01 240);
-  --sidebar-foreground: oklch(0.82 0.008 240);
-  --sidebar-primary: #d4a55a;
-  --sidebar-primary-foreground: #1a0e00;
-  --sidebar-accent: oklch(0.15 0.025 240);
-  --sidebar-accent-foreground: oklch(0.85 0.01 240);
-  --sidebar-border: oklch(0.18 0.025 240);
-  --sidebar-ring: #d4a55a;
-
-  /* Warm amber-gold dark mode gradients */
-  --gradient-primary: linear-gradient(135deg, #c4833a 0%, #d4a55a 100%);
-  --gradient-secondary: linear-gradient(
-    135deg,
-    oklch(0.15 0.025 240) 0%,
-    oklch(0.2 0.03 240) 100%
-  );
-  --gradient-accent: linear-gradient(135deg, #d4a55a 0%, #c4833a 100%);
-  --glow-primary: 0 0 28px rgba(212, 165, 90, 0.35);
-  --glow-accent: 0 0 22px rgba(196, 131, 58, 0.4);
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  --background-pattern-size: 48px 48px;
 }
 
 @theme inline {
@@ -185,334 +112,57 @@
   pointer-events: none;
   width: 100vw;
   height: 100vh;
-  background-image: var(--background-pattern-light);
+  background-image: var(--background-pattern);
   background-size: var(--background-pattern-size);
-  opacity: 1;
-  transition: background-image 0.3s;
-}
-.dark .pattern-bg {
-  background-image: var(--background-pattern-dark);
 }
 
-/* Enhanced animations with Apple-style smoothness */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Eyebrow / section label — "// 01 — about" style markers */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
-.fade-in-up {
-  opacity: 0;
-  animation: fadeInUp 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.text-smooth {
-  transition: color 0.3s, opacity 0.3s;
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow: var(--glow-primary);
-  }
-  50% {
-    box-shadow: var(--glow-accent);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-@keyframes gradient-border {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0.5;
-  }
-  100% {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.animate-glow {
-  animation: glow 3s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-.animate-gradient-border {
-  animation: gradient-border 3s ease infinite;
-}
-
-.animate-ripple {
-  animation: ripple 0.6s ease-out;
-}
-
-/* Premium glassmorphism effects */
-.glass {
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dark .glass {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Premium button styles with gradients and glows */
-.btn-premium {
-  background: var(--gradient-primary);
-  box-shadow: var(--glow-primary);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.btn-premium:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--glow-accent);
-}
-
-/* Enhanced card styles with depth */
-.card-premium {
+/* Editor-pane card: the base surface for every panel in the new design */
+.panel {
   background: var(--card);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid var(--border);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
-.card-premium:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+.panel:hover {
+  border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+  box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
 }
 
-.dark .card-premium {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.dark .card-premium:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.font-orbitron {
-  font-family: "Orbitron", sans-serif;
-}
-
-.github-bright-btn {
-  background: #a47551 !important;
-  color: #fff !important;
-  padding: 0.35rem 1rem !important;
-  border-radius: 0.5rem !important;
-  text-decoration: none !important;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
-  border: none;
+/* Editor window chrome — the traffic-light dots bar, reused by Hero + Skills */
+.editor-chrome {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  min-width: 90px;
-  min-height: 38px;
-}
-.dark .github-bright-btn {
-  background: #8b5cf6 !important;
-}
-.github-bright-btn:hover,
-.github-bright-btn:focus {
-  background: #8a5c37 !important;
-  color: #fff !important;
-  transform: translateY(-1px) scale(1.03);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-.dark .github-bright-btn:hover,
-.dark .github-bright-btn:focus {
-  background: #7c3aed !important;
-}
-.github-bright-btn .external-link-icon {
-  display: inline-block;
-  width: 1.25em;
-  height: 1.25em;
-  margin-left: 0.5em;
-  vertical-align: middle;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 92%, black 8%);
 }
 
-/* 3D Skills sphere (hero) – theme colors and hover */
-.skills-sphere-wrapper .skills-sphere-tagcloud {
-  background: transparent !important;
-}
-.skills-sphere-wrapper .skills-sphere-tagcloud-item {
-  color: var(--foreground) !important;
-  opacity: 0.9;
-  transition: opacity 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-.skills-sphere-wrapper .skills-sphere-tagcloud-item:hover {
-  opacity: 1;
-  color: var(--primary) !important;
-  background: color-mix(in srgb, var(--primary) 14%, transparent) !important;
+.editor-dot {
+  width: 0.6rem;
+  height: 0.6rem;
   border-radius: 9999px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 40%, transparent);
-}
-/* Dark mode: light text and cyan accent for black background */
-html.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item,
-.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item {
-  color: #e8e6e3 !important;
-}
-html.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item:hover,
-.dark .skills-sphere-wrapper .skills-sphere-tagcloud-item:hover {
-  color: #c4b5fd !important;
-  background: rgba(196, 181, 253, 0.2) !important;
-  box-shadow: 0 0 24px rgba(196, 181, 253, 0.4);
+  flex-shrink: 0;
 }
 
-/* Terminal skills section – theme-matched */
-.terminal-body {
-  background: #2a1a0e;
+.editor-dot-red {
+  background: #e2685f;
 }
-.terminal-prompt-user {
-  color: #c7a07b;
-}
-.terminal-prompt-path {
-  color: #d4a574;
-}
-.terminal-prompt-symbol {
-  color: rgba(232, 220, 200, 0.9);
-}
-.terminal-command {
-  color: #e8dcc8;
-}
-.terminal-category {
-  color: #d4a574;
-}
-.terminal-skill {
-  color: #e8dcc8;
-}
-.terminal-skill:hover {
-  color: #c7a07b;
-}
-.terminal-cursor {
-  display: inline-block;
-  width: 0.5rem;
-  height: 1rem;
-  background: #c7a07b;
-}
-.terminal-dot-red { background: #b85c38; }
-.terminal-dot-yellow { background: #d4a574; }
-.terminal-dot-green { background: #8a9b6e; }
-.terminal-header { background: rgba(20, 10, 4, 0.88); }
 
-/* Dark mode terminal – warm amber theme */
-.dark .terminal-body,
-html.dark .terminal-body {
-  background: #1a0e04;
+.editor-dot-yellow {
+  background: #d9a25a;
 }
-.dark .terminal-prompt-user,
-html.dark .terminal-prompt-user {
-  color: #d4a55a;
+
+.editor-dot-green {
+  background: #7c9a5f;
 }
-.dark .terminal-prompt-path,
-html.dark .terminal-prompt-path {
-  color: #e8c484;
-}
-.dark .terminal-prompt-symbol,
-html.dark .terminal-prompt-symbol {
-  color: rgba(240, 220, 180, 0.9);
-}
-.dark .terminal-command,
-html.dark .terminal-command {
-  color: #f0dcb0;
-}
-.dark .terminal-category,
-html.dark .terminal-category {
-  color: #e8c484;
-}
-.dark .terminal-skill,
-html.dark .terminal-skill {
-  color: #d4c4a0;
-}
-.dark .terminal-skill:hover,
-html.dark .terminal-skill:hover {
-  color: #d4a55a;
-}
-.dark .terminal-cursor,
-html.dark .terminal-cursor {
-  background: #d4a55a;
-}
-.dark .terminal-dot-red,
-html.dark .terminal-dot-red { background: #c0622a; }
-.dark .terminal-dot-yellow,
-html.dark .terminal-dot-yellow { background: #d4a55a; }
-.dark .terminal-dot-green,
-html.dark .terminal-dot-green { background: #6db87a; }
-.dark .terminal-header,
-html.dark .terminal-header { background: rgba(10, 5, 0, 0.92); }

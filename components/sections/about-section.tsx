@@ -13,17 +13,17 @@ const tile = (delay: number) => ({
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 px-6">
+    <section id="about" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-accent mx-auto" />
+          <p className="eyebrow mb-3">// 01 — about</p>
+          <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
         </motion.div>
 
         {/*
@@ -37,7 +37,7 @@ export function AboutSection() {
           {/* Ocean photo — col 1-2, row 1-2 */}
           <motion.div
             {...tile(0)}
-            className="col-span-2 md:row-span-2 relative rounded-2xl overflow-hidden min-h-[260px] md:min-h-[280px] group border border-border/30 hover:border-accent/30 transition-colors duration-300"
+            className="col-span-2 md:row-span-2 relative rounded-xl overflow-hidden min-h-[260px] md:min-h-[280px] group border border-border hover:border-primary/40 transition-colors duration-300"
           >
             <Image
               src="/ocean-image.jpg"
@@ -47,9 +47,9 @@ export function AboutSection() {
               sizes="(max-width: 768px) 100vw, 50vw"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4">
-              <p className="text-white/90 text-sm italic leading-snug">
+              <p className="text-white/90 text-sm italic leading-snug font-mono">
                 "The sea teaches patience and power — the same principles I bring to software."
               </p>
             </div>
@@ -58,62 +58,54 @@ export function AboutSection() {
           {/* GPA — col 3, row 1 */}
           <motion.div
             {...tile(0.07)}
-            className="col-span-1 rounded-2xl p-5 flex flex-col justify-between min-h-[130px] border border-border/30 hover:border-accent/40 transition-colors duration-300 cursor-default"
-            style={{ background: "var(--secondary)" }}
+            className="panel col-span-1 rounded-xl p-5 flex flex-col justify-between min-h-[130px] cursor-default"
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">GPA</p>
+            <p className="eyebrow">gpa</p>
             <div>
               <p className="text-6xl font-bold text-primary leading-none">4.0</p>
-              <p className="text-xs text-muted-foreground mt-1">Arizona State Univ.</p>
+              <p className="text-xs text-muted-foreground mt-1 font-mono">Arizona State Univ.</p>
             </div>
           </motion.div>
 
           {/* Dean's List — col 4, row 1 */}
           <motion.div
             {...tile(0.14)}
-            className="col-span-1 rounded-2xl p-5 flex flex-col justify-between min-h-[130px] border border-border/30 hover:border-accent/40 transition-colors duration-300 cursor-default"
-            style={{ background: "var(--muted)" }}
+            className="panel col-span-1 rounded-xl p-5 flex flex-col justify-between min-h-[130px] cursor-default"
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Recognition</p>
+            <p className="eyebrow">recognition</p>
             <div>
-              <p className="text-6xl font-bold text-primary leading-none">5×</p>
-              <p className="text-xs text-muted-foreground mt-1">Dean's List · NAMU</p>
+              <p className="text-6xl font-bold text-primary leading-none">6×</p>
+              <p className="text-xs text-muted-foreground mt-1 font-mono">Dean's List · NAMU</p>
             </div>
           </motion.div>
 
           {/* Currently — col 3-4, row 2 */}
           <motion.div
             {...tile(0.21)}
-            className="col-span-2 rounded-2xl p-5 flex items-center gap-4 border border-border/30 hover:border-accent/40 transition-colors duration-300"
-            style={{ background: "color-mix(in srgb, var(--accent) 10%, var(--card))" }}
+            className="panel col-span-2 rounded-xl p-5 flex items-center gap-4"
           >
-            <div className="relative flex-shrink-0">
-              <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                <Briefcase className="h-5 w-5 text-accent" />
-              </div>
-              <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
-              </span>
+            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+              <Briefcase className="h-5 w-5 text-accent" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-0.5">Currently</p>
-              <p className="text-sm font-medium text-foreground">Building AI tools & seeking Summer 2026 SWE internships</p>
+              <p className="eyebrow mb-0.5">latest</p>
+              <p className="text-sm font-medium text-foreground font-mono">
+                Back at ASU · SWE Intern @ GCM Grosvenor this past summer
+              </p>
             </div>
           </motion.div>
 
           {/* Education — col 1, row 3 */}
           <motion.div
             {...tile(0.28)}
-            className="col-span-1 rounded-2xl p-5 flex flex-col justify-between min-h-[110px] border border-border/30 hover:border-accent/40 transition-colors duration-300 cursor-default"
-            style={{ background: "var(--card)" }}
+            className="panel col-span-1 rounded-xl p-5 flex flex-col justify-between min-h-[110px] cursor-default"
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Education</p>
+            <p className="eyebrow">education</p>
             <div>
               <p className="text-sm font-bold text-foreground leading-snug">B.S. Computer Science</p>
               <div className="flex items-center gap-1 mt-1">
                 <MapPin className="h-3 w-3 text-accent" />
-                <p className="text-xs text-muted-foreground">Tempe, Arizona</p>
+                <p className="text-xs text-muted-foreground font-mono">Tempe, Arizona</p>
               </div>
             </div>
           </motion.div>
@@ -121,10 +113,9 @@ export function AboutSection() {
           {/* Fun fact — col 2, row 3 */}
           <motion.div
             {...tile(0.35)}
-            className="col-span-1 rounded-2xl p-5 flex flex-col justify-between min-h-[110px] border border-border/30 hover:border-accent/40 transition-colors duration-300 cursor-default"
-            style={{ background: "color-mix(in srgb, var(--primary) 10%, var(--card))" }}
+            className="panel col-span-1 rounded-xl p-5 flex flex-col justify-between min-h-[110px] cursor-default"
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Fun fact</p>
+            <p className="eyebrow">fun fact</p>
             <p className="text-sm font-medium text-foreground leading-snug">
               I debug best with ocean waves in the background.
             </p>
@@ -133,8 +124,7 @@ export function AboutSection() {
           {/* AWS — col 3-4, row 3 */}
           <motion.div
             {...tile(0.42)}
-            className="col-span-2 rounded-2xl p-5 flex items-center gap-4 border border-border/30 hover:border-accent/40 transition-colors duration-300"
-            style={{ background: "var(--secondary)" }}
+            className="panel col-span-2 rounded-xl p-5 flex items-center gap-4"
           >
             <Image
               src="/certifications/aws-ccp-badge.png"
@@ -145,7 +135,7 @@ export function AboutSection() {
               unoptimized
             />
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-0.5">Certified</p>
+              <p className="eyebrow mb-0.5">certified</p>
               <p className="text-sm font-bold text-foreground">AWS Cloud Practitioner</p>
             </div>
           </motion.div>

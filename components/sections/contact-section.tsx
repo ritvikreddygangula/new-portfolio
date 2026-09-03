@@ -2,7 +2,6 @@
 
 import type React from "react";
 
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -69,43 +68,43 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6">
+    <section id="contact" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-accent mx-auto mb-6"></div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="eyebrow mb-3">// 05 — contact</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">Get In Touch</h2>
+          <p className="text-muted-foreground max-w-xl">
             I'm always open to discussing new opportunities, interesting
             projects, or just having a chat about technology.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-6">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Card className="p-8 border-accent/20">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <div className="panel rounded-xl p-8 h-full">
+              <h3 className="text-lg font-bold mb-6">Contact Information</h3>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                    <Mail className="h-6 w-6 text-accent" />
+                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-semibold">Email</p>
+                    <p className="font-semibold text-sm">Email</p>
                     <a
                       href="mailto:ritvikreddygangula@gmail.com"
-                      className="text-muted-foreground hover:text-accent transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors text-sm font-mono"
                     >
                       ritvikreddygangula@gmail.com
                     </a>
@@ -113,14 +112,14 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                    <Phone className="h-6 w-6 text-accent" />
+                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-semibold">Phone</p>
+                    <p className="font-semibold text-sm">Phone</p>
                     <a
                       href="tel:+16234990719"
-                      className="text-muted-foreground hover:text-accent transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors text-sm font-mono"
                     >
                       +1 (623) 499-0719
                     </a>
@@ -128,16 +127,16 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                    <Linkedin className="h-6 w-6 text-accent" />
+                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Linkedin className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-semibold">LinkedIn</p>
+                    <p className="font-semibold text-sm">LinkedIn</p>
                     <a
                       href="https://linkedin.com/in/gritvik"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-accent transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors text-sm font-mono"
                     >
                       linkedin.com/in/gritvik
                     </a>
@@ -145,33 +144,33 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                    <Github className="h-6 w-6 text-accent" />
+                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Github className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-semibold">GitHub</p>
+                    <p className="font-semibold text-sm">GitHub</p>
                     <a
                       href="https://github.com/ritvikreddygangula"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-accent transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors text-sm font-mono"
                     >
                       github.com/ritvikreddygangula
                     </a>
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Card className="p-8 border-accent/20">
-              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+            <div className="panel rounded-xl p-8">
+              <h3 className="text-lg font-bold mb-6">Send a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -213,7 +212,7 @@ export function ContactSection() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-accent hover:bg-accent/90"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -226,7 +225,7 @@ export function ContactSection() {
                   )}
                 </Button>
               </form>
-            </Card>
+            </div>
           </motion.div>
         </div>
       </div>

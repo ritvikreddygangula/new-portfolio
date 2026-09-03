@@ -1,14 +1,15 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const experiences = [
   {
     title: "Software Engineering Intern",
     company: "GCM Grosvenor",
+    logo: "/GCM-LOGO.jpg",
     location: "Chicago, IL",
     period: "May – August 2026",
     description:
@@ -23,6 +24,7 @@ const experiences = [
   {
     title: "Jr. Data Analyst",
     company: "Food Forest AI",
+    logo: "/foodforest_logo.jpeg",
     location: "Philadelphia, PA",
     period: "June – May 2025",
     description:
@@ -43,6 +45,7 @@ const experiences = [
   {
     title: "Software Development Intern",
     company: "Tandur Municipality",
+    logo: undefined as string | undefined,
     location: "Telangana, India",
     period: "May – August 2024",
     description:
@@ -59,87 +62,96 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-20 px-6 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="py-24 px-6 bg-muted/20">
+      <div className="max-w-3xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
-          <div className="w-20 h-1 bg-accent mx-auto"></div>
+          <p className="eyebrow mb-3">// 02 — experience</p>
+          <h2 className="text-3xl md:text-4xl font-bold">Experience</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
+              className={`relative pl-8 ml-1.5 ${
+                index === experiences.length - 1
+                  ? "pb-0"
+                  : "pb-12 border-l border-border"
+              }`}
             >
-              <Card className="p-8 hover:shadow-lg transition-all duration-300 border-accent/20 hover:border-accent/40 h-full">
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
-                      <h3
-                        className="text-2xl font-bold"
-                        style={{ color: "var(--foreground)" }}
-                      >
-                        {exp.title}
-                      </h3>
-                      <span className="text-xl text-muted-foreground">
-                        at {exp.company}
-                      </span>
-                    </div>
+              <span
+                className={`absolute -left-[7px] top-1 w-3 h-3 rounded-full border-2 bg-background ${
+                  index === 0 ? "border-primary" : "border-accent"
+                }`}
+              />
 
-                    <div className="flex flex-col sm:flex-row gap-4 mb-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        {exp.period}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4" />
-                        {exp.location}
-                      </div>
-                    </div>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-1">
+                <h3 className="text-xl font-bold text-foreground">{exp.title}</h3>
+                <span className="flex items-center gap-2 text-muted-foreground">
+                  @ {exp.company}
+                  {exp.logo && (
+                    <span className="inline-flex items-center justify-center h-6 rounded-md bg-white px-1.5 py-1">
+                      <Image
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        width={80}
+                        height={24}
+                        className="h-4 w-auto object-contain"
+                        unoptimized
+                      />
+                    </span>
+                  )}
+                </span>
+              </div>
 
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {exp.description}
-                    </p>
-
-                    <div className="mb-6">
-                      <h4 className="font-semibold mb-3">Key Achievements:</h4>
-                      <ul className="space-y-2">
-                        {exp.achievements.map((achievement, i) => (
-                          <li
-                            key={i}
-                            className="flex items-start gap-2 text-sm text-muted-foreground"
-                          >
-                            <span className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></span>
-                            {achievement}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, i) => (
-                        <Badge
-                          key={i}
-                          variant="secondary"
-                          className="bg-accent/10 text-accent border-accent/20"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
+              <div className="flex flex-wrap gap-4 mb-4 text-xs font-mono text-muted-foreground">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5" />
+                  {exp.period}
                 </div>
-              </Card>
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5" />
+                  {exp.location}
+                </div>
+              </div>
+
+              <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                {exp.description}
+              </p>
+
+              <ul className="space-y-2 mb-4">
+                {exp.achievements.map((achievement, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-sm text-muted-foreground"
+                  >
+                    <span className="w-1 h-1 bg-accent rounded-full mt-2 flex-shrink-0" />
+                    {achievement}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-2">
+                {exp.technologies.map((tech, i) => (
+                  <Badge
+                    key={i}
+                    variant="secondary"
+                    className="bg-secondary text-muted-foreground border border-border font-mono text-xs font-normal"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
