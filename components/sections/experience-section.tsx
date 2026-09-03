@@ -7,6 +7,20 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
+    title: "Software Engineering Intern",
+    company: "GCM Grosvenor",
+    location: "Chicago, IL",
+    period: "May – August 2026",
+    description:
+      "Software engineering intern at a $96B AUM investment firm, building LLM-powered portfolio analytics and core backend infrastructure for enterprise-scale client-facing platforms.",
+    achievements: [
+      "Developed an LLM-powered portfolio insights feature in C#/.NET that synthesized live investment portfolio data into client-facing performance reports, enabling automated portfolio analysis within the enterprise client portal",
+      "Built core backend infrastructure in C#/.NET and SQL for an in-house enterprise client document portal replacing a third-party platform, implementing document categorization, REST APIs, and workflows for search, access control, and notifications",
+      "Rolled out Datadog APM instrumentation across 6+ .NET web applications and Azure Functions, standardizing application observability through end-to-end distributed tracing across production services",
+    ],
+    technologies: ["C#/.NET", "SQL", "REST APIs", "Azure Functions", "Datadog APM", "LLMs"],
+  },
+  {
     title: "Jr. Data Analyst",
     company: "Food Forest AI",
     location: "Philadelphia, PA",
