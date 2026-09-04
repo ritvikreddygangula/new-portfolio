@@ -116,6 +116,10 @@
   background-size: var(--background-pattern-size);
 }
 
+.font-display {
+  font-family: var(--font-display);
+}
+
 /* Eyebrow / section label — "// 01 — about" style markers */
 .eyebrow {
   font-family: var(--font-mono);

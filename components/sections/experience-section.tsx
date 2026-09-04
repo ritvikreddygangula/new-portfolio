@@ -10,6 +10,7 @@ const experiences = [
     title: "Software Engineering Intern",
     company: "GCM Grosvenor",
     logo: "/GCM-LOGO.jpg",
+    url: "https://gcmgrosvenor.com/",
     location: "Chicago, IL",
     period: "May – August 2026",
     description:
@@ -25,6 +26,7 @@ const experiences = [
     title: "Jr. Data Analyst",
     company: "Food Forest AI",
     logo: "/foodforest_logo.jpeg",
+    url: "https://www.foodforest.ai/",
     location: "Philadelphia, PA",
     period: "June – May 2025",
     description:
@@ -46,6 +48,7 @@ const experiences = [
     title: "Software Development Intern",
     company: "Tandur Municipality",
     logo: undefined as string | undefined,
+    url: undefined as string | undefined,
     location: "Telangana, India",
     period: "May – August 2024",
     description:
@@ -83,35 +86,38 @@ export function ExperienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className={`relative pl-8 ml-1.5 ${
+              className={`relative pl-12 ml-1.5 ${
                 index === experiences.length - 1
                   ? "pb-0"
                   : "pb-12 border-l border-border"
               }`}
             >
-              <span
-                className={`absolute -left-[7px] top-1 w-3 h-3 rounded-full border-2 bg-background ${
-                  index === 0 ? "border-primary" : "border-accent"
-                }`}
-              />
+              {exp.logo ? (
+                <a
+                  href={exp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Visit ${exp.company}`}
+                  className="absolute -left-4 top-0 w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center overflow-hidden transition-opacity hover:opacity-80"
+                >
+                  <Image
+                    src={exp.logo}
+                    alt={`${exp.company} logo`}
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-cover object-left"
+                    unoptimized
+                  />
+                </a>
+              ) : (
+                <span className="absolute -left-4 top-0 w-8 h-8 rounded-lg flex items-center justify-center">
+                  <span className="w-3 h-3 rounded-full border-2 bg-background border-accent" />
+                </span>
+              )}
 
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-1">
                 <h3 className="text-xl font-bold text-foreground">{exp.title}</h3>
-                <span className="flex items-center gap-2 text-muted-foreground">
-                  @ {exp.company}
-                  {exp.logo && (
-                    <span className="inline-flex items-center justify-center h-6 rounded-md bg-white px-1.5 py-1">
-                      <Image
-                        src={exp.logo}
-                        alt={`${exp.company} logo`}
-                        width={80}
-                        height={24}
-                        className="h-4 w-auto object-contain"
-                        unoptimized
-                      />
-                    </span>
-                  )}
-                </span>
+                <span className="text-muted-foreground">@ {exp.company}</span>
               </div>
 
               <div className="flex flex-wrap gap-4 mb-4 text-xs font-mono text-muted-foreground">

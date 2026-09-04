@@ -2,10 +2,18 @@ import type React from "react";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Ritvik Reddy",
@@ -55,7 +63,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
+        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <div className="pattern-bg" aria-hidden="true"></div>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
