@@ -1,6 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
@@ -14,7 +13,7 @@ const AgentWorkflowAnimation = dynamic(
 
 const projects = [
     {
-    title: "Multi Agent Research Team",
+    title: "Deep Research Multi-Agent Systems",
     date: "June 2025",
     description:
       "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",
@@ -125,57 +124,43 @@ const projects = [
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 px-6 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="projects" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
-            style={{ color: "var(--foreground)" }}
-          >
-            Featured Projects
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+          <p className="eyebrow mb-3">// 03 — projects</p>
+          <h2 className="text-3xl md:text-4xl font-bold">Featured Projects</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
               className={project.showWorkflow ? "md:col-span-2" : ""}
             >
-              <Card className="card-premium p-8 h-full group relative overflow-hidden">
-                {/* Animated gradient border */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient-border"
-                       style={{
-                         padding: '2px',
-                         WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                         WebkitMaskComposite: 'xor',
-                         maskComposite: 'exclude'
-                       }} />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                <div className={`flex ${project.showWorkflow ? 'flex-col lg:flex-row gap-6' : 'flex-col'} h-full relative z-10`}>
+              <div className="panel rounded-xl p-6 md:p-8 h-full">
+                <div className={`flex ${project.showWorkflow ? 'flex-col lg:flex-row gap-6' : 'flex-col'} h-full`}>
                   {/* Left side - Project Details */}
                   <div className={`flex flex-col ${project.showWorkflow ? 'lg:w-[45%]' : 'w-full'}`}>
-                    <h3 className="text-2xl font-bold mb-4 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-                      {project.title}
-                    </h3>
+                    <div className="flex items-baseline justify-between gap-3 mb-3">
+                      <h3 className="text-xl font-bold text-foreground">
+                        {project.title}
+                      </h3>
+                      <span className="text-xs font-mono text-muted-foreground flex-shrink-0">
+                        {project.date}
+                      </span>
+                    </div>
 
-                    <p className="text-muted-foreground mb-5 leading-relaxed text-sm">
+                    <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
                       {project.description}
                     </p>
 
@@ -185,7 +170,7 @@ export function ProjectsSection() {
                           key={i}
                           className="flex items-start gap-2 text-sm text-muted-foreground"
                         >
-                          <span className="w-1.5 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mt-1.5 flex-shrink-0"></span>
+                          <span className="w-1 h-1 bg-accent rounded-full mt-2 flex-shrink-0" />
                           {achievement}
                         </li>
                       ))}
@@ -193,22 +178,13 @@ export function ProjectsSection() {
 
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.technologies.map((tech, i) => (
-                        <motion.div
+                        <Badge
                           key={i}
-                          initial={{ opacity: 1, y: 0 }}
-                          whileHover={{ scale: 1.05, y: -2 }}
-                          transition={{ duration: 0.2 }}
+                          variant="secondary"
+                          className="bg-secondary text-muted-foreground border border-border font-mono text-xs font-normal"
                         >
-                          <Badge
-                            variant="secondary"
-                            className="bg-primary/20 text-primary border-primary/40 text-xs hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 cursor-default"
-                            style={{
-                              animationDelay: `${i * 50}ms`,
-                            }}
-                          >
-                            {tech}
-                          </Badge>
-                        </motion.div>
+                          {tech}
+                        </Badge>
                       ))}
                     </div>
 
@@ -218,7 +194,7 @@ export function ProjectsSection() {
                           asChild
                           variant="outline"
                           size="sm"
-                          className="border-primary/50 text-primary bg-primary/20 hover:bg-primary/30 hover:border-primary transition-all duration-200"
+                          className="border-border text-foreground hover:border-primary/50 hover:bg-primary/5"
                         >
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
                             <Github className="h-4 w-4 mr-2" />
@@ -230,7 +206,7 @@ export function ProjectsSection() {
                         <Button
                           asChild
                           size="sm"
-                          className="btn-premium text-primary-foreground font-semibold"
+                          className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                         >
                           <a href={project.demo} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="h-4 w-4 mr-2" />
@@ -250,7 +226,7 @@ export function ProjectsSection() {
                     </div>
                   )}
                 </div>
-              </Card>
+              </div>
             </motion.div>
           ))}
         </div>

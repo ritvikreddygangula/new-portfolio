@@ -1,16 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Contact", href: "#contact" },
+  { name: "about", href: "#about" },
+  { name: "experience", href: "#experience" },
+  { name: "projects", href: "#projects" },
+  { name: "skills", href: "#skills" },
+  { name: "contact", href: "#contact" },
 ]
 
 export function Navigation() {
@@ -45,56 +43,52 @@ export function Navigation() {
   return (
     <>
       <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-fit px-4">
-        <div
-          className="flex items-center h-12 px-4 rounded-full backdrop-blur-2xl bg-foreground/8 border border-foreground/12 shadow-xl shadow-black/20 ring-1 ring-white/5"
-        >
-          {/* Nav links — left/center */}
-          <div className="hidden md:flex items-center gap-1 flex-1">
+        <div className="flex items-center h-11 px-1.5 rounded-lg backdrop-blur-xl bg-card/80 border border-border shadow-xl shadow-black/40">
+          {/* Nav links — desktop */}
+          <div className="hidden md:flex items-center gap-0.5 font-mono text-xs">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-md transition-colors duration-150 ${
                   activeSection === item.href.slice(1)
-                    ? "bg-accent/15 text-accent"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
+                    ? "text-accent bg-accent/10"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
+                {activeSection === item.href.slice(1) ? "> " : ""}
                 {item.name}
               </button>
             ))}
           </div>
 
-          {/* Mobile burger — left on mobile */}
+          {/* Mobile burger */}
           <button
-            className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-all duration-200 flex-1 flex items-center"
+            className="md:hidden p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors duration-150"
             onClick={() => setMobileMenuOpen((v) => !v)}
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-
-          {/* Divider + theme toggle */}
-          <div className="h-5 w-px bg-border/60 mx-2 hidden md:block" />
-          <ThemeToggle />
         </div>
       </div>
 
       {/* Mobile dropdown */}
       {mobileMenuOpen && (
         <div className="fixed top-20 left-1/2 -translate-x-1/2 w-fit px-4 z-40 md:hidden">
-          <div className="backdrop-blur-xl bg-background/90 border border-border/50 rounded-2xl shadow-lg overflow-hidden">
-            <div className="flex flex-col px-4 py-3 gap-1">
+          <div className="panel rounded-lg overflow-hidden font-mono text-xs">
+            <div className="flex flex-col px-2 py-2 gap-0.5">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`text-left px-4 py-2.5 rounded-md transition-colors duration-150 ${
                     activeSection === item.href.slice(1)
                       ? "text-accent bg-accent/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
+                  {activeSection === item.href.slice(1) ? "> " : ""}
                   {item.name}
                 </button>
               ))}

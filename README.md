@@ -1,6 +1,6 @@
 # Ritvik Reddy's Portfolio
 
-I had so much fun developing this portfolio using Cursor and v0.app!
+I had so much fun developing my portfolio!
 
 - Built with Next.js, React, and modern web tech
 - Designed for agentic AI, web, and cloud projects
