@@ -13,7 +13,7 @@ const AgentWorkflowAnimation = dynamic(
 
 const projects = [
     {
-    title: "Multi Agent Research Team",
+    title: "Deep Research Multi-Agent Systems",
     date: "June 2025",
     description:
       "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",

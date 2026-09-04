@@ -5,47 +5,27 @@ import { motion } from "framer-motion";
 const skillCategories = [
   {
     title: "LANGUAGES",
-    skills: ["JavaScript", "TypeScript", "Python", "Java", "C/C++", "C#", "HTML/CSS"],
+    skills: ["Python", "Java", "C#", "JavaScript", "TypeScript", "SQL", "HTML/CSS"],
   },
   {
-    title: "WEB_DEV",
-    skills: [
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "Tailwind CSS",
-      "REST APIs",
-      "Next.js",
-      ".NET",
-    ],
-  },
-  {
-    title: "AI_ML",
-    skills: [
-      "TensorFlow",
-      "Keras",
-      "Hugging Face",
-      "LLMs",
-      "LangChain",
-      "CrewAI",
-    ],
-  },
-  {
-    title: "DATABASES",
-    skills: ["PostgreSQL", "MySQL", "SQL Server", "MongoDB", "Firebase"],
+    title: "FRAMEWORKS_TOOLS",
+    skills: [".NET", "React", "Express", "REST APIs", "Git", "Cypress", "xUnit", "Socket.IO", "Tailwind CSS"],
   },
   {
     title: "CLOUD_DEVOPS",
-    skills: ["AWS", "Azure Functions", "Datadog APM", "Cloudflare", "Vercel", "Docker", "Git/GitHub"],
+    skills: ["AWS", "Microsoft Azure", "Datadog", "Docker"],
   },
   {
-    title: "AUTOMATION",
-    skills: [
-      "n8n",
-      "Google Sheets API",
-      "Workflow Automation",
-      "Data Processing",
-    ],
+    title: "DATABASES",
+    skills: ["PostgreSQL", "MySQL", "MongoDB", "DynamoDB", "Firebase"],
+  },
+  {
+    title: "AGENTIC_AI",
+    skills: ["LangGraph", "CrewAI", "LangChain", "LLM APIs"],
+  },
+  {
+    title: "MACHINE_LEARNING",
+    skills: ["TensorFlow", "Hugging Face"],
   },
 ];
 

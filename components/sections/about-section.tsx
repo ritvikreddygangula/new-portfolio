@@ -32,8 +32,8 @@ export function AboutSection() {
           viewport={{ once: true }}
           className="text-lg md:text-xl text-foreground leading-relaxed mb-10 max-w-2xl"
         >
-          CS student at Arizona State University building AI-powered products
-          and backend systems. Most recently a Software Engineering Intern at
+          Software Engineer with experience in building AI-powered products
+          and backend systems. Most recently a SWE Intern at
           GCM Grosvenor, shipping LLM-powered analytics and backend
           infrastructure for a $96B AUM investment platform.
         </motion.p>

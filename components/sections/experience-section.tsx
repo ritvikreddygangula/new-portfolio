@@ -9,18 +9,18 @@ const experiences = [
   {
     title: "Software Engineering Intern",
     company: "GCM Grosvenor",
-    logo: "/GCM-LOGO.jpg",
+    logo: "/gcm-mark.png",
     url: "https://gcmgrosvenor.com/",
     location: "Chicago, IL",
     period: "May – August 2026",
     description:
       "Software engineering intern at a $96B AUM investment firm, building LLM-powered portfolio analytics and core backend infrastructure for enterprise-scale client-facing platforms.",
     achievements: [
-      "Developed an LLM-powered portfolio insights feature in C#/.NET that synthesized live investment portfolio data into client-facing performance reports, enabling automated portfolio analysis within the enterprise client portal",
-      "Built core backend infrastructure in C#/.NET and SQL for an in-house enterprise client document portal replacing a third-party platform, implementing document categorization, REST APIs, and workflows for search, access control, and notifications",
-      "Rolled out Datadog APM instrumentation across 6+ .NET web applications and Azure Functions, standardizing application observability through end-to-end distributed tracing across production services",
+      "Developed an LLM-powered portfolio insights feature in C#/.NET that synthesized live investment data into client-facing performance reports, streamlining reporting across 500+ portfolios previously requiring 560 hours of team effort per quarter",
+      "Built core backend infrastructure and SQL-driven data models for an in-house enterprise client document portal replacing a third-party platform, implementing document categorization, REST APIs, and access-control workflows supporting 730+ clients and 500,000+ migrated documents",
+      "Rolled out Datadog APM alongside Sumo Logic across 6+ .NET web applications and Azure Functions, correlating distributed traces with centralized logs to cut production issue diagnosis time from hours to minutes",
     ],
-    technologies: ["C#/.NET", "SQL", "REST APIs", "Azure Functions", "Datadog APM", "LLMs"],
+    technologies: ["C#/.NET", "SQL", "REST APIs", "Azure Functions", "Datadog APM", "Sumo Logic", "LLMs"],
   },
   {
     title: "Jr. Data Analyst",
@@ -45,21 +45,20 @@ const experiences = [
     ],
   },
   {
-    title: "Software Development Intern",
-    company: "Tandur Municipality",
+    title: "Software Engineering Intern",
+    company: "Greater Hyderabad Municipal Corporation",
     logo: undefined as string | undefined,
     url: undefined as string | undefined,
-    location: "Telangana, India",
+    location: "Hyderabad, India",
     period: "May – August 2024",
     description:
-      "Worked on a full-stack civic platform serving 15,000+ users, contributing to frontend development, backend validation, and workflow automation to improve reliability and operational efficiency.",
+      "Engineered a full-stack civic automation platform serving 15,000+ citizens, redesigning backend data access patterns and access-control workflows to improve reliability and reduce manual effort.",
     achievements: [
-      "Reduced production issues by ~35% through comprehensive functional and API-level testing",
-      "Lowered post-release defects by ~30% with Python-based backend validation across 15+ endpoints",
-      "Cut manual paperwork by ~60% by building a React + Tailwind dashboard and automating workflows",
-      "Enabled real-time status updates via email and SMS for municipal officers",
+      "Engineered a full-stack automation platform (React, Python, AWS) to digitize permits and tax workflows for 15,000+ citizens, reducing manual effort by 60%",
+      "Designed and implemented 15+ REST APIs with input validation and JWT-based RBAC, enforcing customized access across 6 permission tiers for citizen and officer workflows",
+      "Refactored DynamoDB access patterns by redesigning partition and index strategy, eliminating full-table scans and reducing read latency by ~75% (measured via AWS CloudWatch)",
     ],
-    technologies: ["React", "Tailwind CSS", "n8n", "Python", "Flask", "MySQL"],
+    technologies: ["React", "Python", "AWS", "DynamoDB", "REST APIs", "JWT"],
   },
 ];
 
@@ -105,7 +104,7 @@ export function ExperienceSection() {
                     alt={`${exp.company} logo`}
                     width={32}
                     height={32}
-                    className="w-full h-full object-cover object-left"
+                    className="w-full h-full object-contain p-0.5"
                     unoptimized
                   />
                 </a>
