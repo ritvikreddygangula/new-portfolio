@@ -12,8 +12,47 @@ const AgentWorkflowAnimation = dynamic(
 );
 
 const projects = [
-    {
-    title: "Deep Research Multi-Agent Systems",
+  {
+    title: "DeltaLedger MCP",
+    date: "August 2026",
+    description:
+      "A three-agent LangGraph pipeline that turns SEC EDGAR filings into classified, cited findings, served as an MCP server and REST API on AWS.",
+    technologies: [
+      "Python",
+      "LangGraph",
+      "MCP",
+      "AWS Lambda",
+      "API Gateway",
+      "SQS",
+      "Step Functions",
+      "Terraform",
+    ],
+    achievements: [
+      "Aligner, Classifier, and Verifier agents; the Verifier retries retrieval once and drops unsupported findings",
+      "Gated in CI by a 30-pair hand-labeled eval set at a 90% accuracy threshold",
+      "Deployed as an MCP server and REST API with SQS-queued async requests, response caching, and Step Functions orchestration",
+      "All infrastructure provisioned with Terraform",
+    ],
+    github: "https://github.com/ritvikreddygangula/DeltaLedger-MCP",
+    demo: "https://d30z0su1b3sesp.cloudfront.net/",
+  },
+  {
+    title: "Forge",
+    date: "January 2026",
+    description:
+      "A distributed job orchestrator in Go with Raft-replicated coordinators, gRPC workers, and a Kafka-backed event log.",
+    technologies: ["Go", "gRPC", "Kafka", "Raft", "k3s", "Prometheus", "Grafana"],
+    achievements: [
+      "3 Raft-replicated coordinators and 25 gRPC workers sustaining 16.7 jobs/s across 1,000 real job submissions",
+      "Recovered every acknowledged job across 5 process-kill trials, with a 145 ms median leader failover",
+      "Followers forward writes to the leader; job state is durably replicated via Kafka",
+      "Prometheus/Grafana dashboards plus automated crash and partition fault-injection tests",
+    ],
+    github: "https://github.com/ritvikreddygangula/Forge",
+    demo: "#",
+  },
+  {
+    title: "Deep Research Multi-Agent System",
     date: "June 2025",
     description:
       "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",

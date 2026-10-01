@@ -46,7 +46,7 @@ export function HeroSection() {
                 className="border-border text-foreground hover:border-primary/50 hover:bg-primary/5 font-semibold px-6"
               >
                 <a
-                  href="https://drive.google.com/file/d/1NT_rK5epU6a-CdLnbLXw1sFs0WTJLM9p/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
