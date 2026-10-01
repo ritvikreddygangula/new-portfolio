@@ -6,6 +6,7 @@ import { Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -58,34 +59,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <div className="pattern-bg" aria-hidden="true"></div>
-        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: "var(--card)",
-              color: "var(--foreground)",
-              border: "1px solid var(--border)",
-              borderRadius: "0.75rem",
-              fontSize: "0.875rem",
-            },
-            success: {
-              iconTheme: { primary: "var(--accent)", secondary: "var(--card)" },
-            },
-            error: {
-              iconTheme: { primary: "#c0622a", secondary: "var(--card)" },
-            },
-          }}
-        />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <div className="pattern-bg" aria-hidden="true"></div>
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: "var(--card)",
+                color: "var(--foreground)",
+                border: "1px solid var(--border)",
+                borderRadius: "0.75rem",
+                fontSize: "0.875rem",
+              },
+              success: {
+                iconTheme: { primary: "var(--accent)", secondary: "var(--card)" },
+              },
+              error: {
+                iconTheme: { primary: "#c0622a", secondary: "var(--card)" },
+              },
+            }}
+          />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

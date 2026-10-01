@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Dark, editor-inspired palette — single source of truth (site is dark-only) */
+  /* Dark, editor-inspired palette — the default theme */
   --background: #0a0d12;
   --foreground: #dfe4ea;
   --card: #10151c;
@@ -46,6 +46,51 @@
     ),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   --background-pattern-size: 48px 48px;
+  --panel-shadow: rgba(0, 0, 0, 0.6);
+}
+
+/* Light theme — warm paper palette; amber/teal darkened for contrast on light surfaces */
+:root.light {
+  --background: #f6f4ef;
+  --foreground: #1a1f27;
+  --card: #ffffff;
+  --card-foreground: #1a1f27;
+  --popover: #ffffff;
+  --popover-foreground: #1a1f27;
+  --primary: #a8691c;
+  --primary-foreground: #ffffff;
+  --secondary: #efece5;
+  --secondary-foreground: #1a1f27;
+  --muted: #f0ede6;
+  --muted-foreground: #5b6472;
+  --accent: #1d7a86;
+  --accent-foreground: #ffffff;
+  --destructive: #c2453b;
+  --destructive-foreground: #ffffff;
+  --border: #e2ddd2;
+  --input: #e2ddd2;
+  --ring: #a8691c;
+  --chart-1: #a8691c;
+  --chart-2: #1d7a86;
+  --chart-3: #5b6472;
+  --chart-4: #c2453b;
+  --chart-5: #5f7d45;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1f27;
+  --sidebar-primary: #a8691c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #efece5;
+  --sidebar-accent-foreground: #1a1f27;
+  --sidebar-border: #e2ddd2;
+  --sidebar-ring: #a8691c;
+
+  --background-pattern: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  --panel-shadow: rgba(60, 45, 20, 0.18);
 }
 
 @theme inline {
@@ -139,7 +184,7 @@
 
 .panel:hover {
   border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
-  box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 12px 32px -16px var(--panel-shadow);
 }
 
 /* Editor window chrome — the traffic-light dots bar, reused by Hero + Skills */

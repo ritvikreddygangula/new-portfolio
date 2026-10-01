@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, Moon, Sun, X } from "lucide-react"
+import { useTheme } from "next-themes"
 
 const navItems = [
   { name: "about", href: "#about" },
@@ -14,6 +15,12 @@ const navItems = [
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+
+  // Theme is only known on the client; avoid rendering the wrong icon during SSR
+  useEffect(() => setMounted(true), [])
+  const isDark = !mounted || resolvedTheme !== "light"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +50,7 @@ export function Navigation() {
   return (
     <>
       <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-fit px-4">
-        <div className="flex items-center h-11 px-1.5 rounded-lg backdrop-blur-xl bg-card/80 border border-border shadow-xl shadow-black/40">
+        <div className="flex items-center h-11 px-1.5 rounded-lg backdrop-blur-xl bg-card/80 border border-border shadow-xl shadow-black/10 dark:shadow-black/40">
           {/* Nav links — desktop */}
           <div className="hidden md:flex items-center gap-0.5 font-mono text-xs">
             {navItems.map((item) => (
@@ -69,6 +76,17 @@ export function Navigation() {
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+
+          {/* Theme toggle */}
+          <div className="w-px h-5 bg-border mx-1" aria-hidden="true" />
+          <button
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+            className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors duration-150"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Light mode" : "Dark mode"}
+          >
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
         </div>
       </div>
