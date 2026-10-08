@@ -1,97 +1,49 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 const facts = [
-  { key: "school", value: "Arizona State University" },
-  { key: "degree", value: "B.S. Computer Science" },
-  { key: "gpa", value: "4.0" },
-  { key: "honors", value: "6× Dean's List" },
+  { term: "School", detail: "Arizona State University" },
+  { term: "Degree", detail: "B.S. Computer Science, May 2027" },
+  { term: "GPA", detail: "4.0, Dean's List six times" },
+  { term: "Certified", detail: "AWS Cloud Practitioner", badge: true },
 ];
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 px-6">
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mb-10"
-        >
-          <p className="eyebrow mb-3">// 01 — about</p>
-          <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
-        </motion.div>
+    <section id="about" className="px-6 py-14 md:py-20">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16">
+        <h2 className="display display-section lg:col-span-4 text-foreground">About</h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          viewport={{ once: true }}
-          className="text-lg md:text-xl text-foreground leading-relaxed mb-10 max-w-2xl"
-        >
-          Software Engineer with experience in building AI-powered products
-          and backend systems. Most recently a SWE Intern at
-          GCM Grosvenor, shipping LLM-powered analytics and backend
-          infrastructure for a $96B AUM investment platform.
-        </motion.p>
+        <div className="lg:col-span-8">
+          <p className="text-xl md:text-2xl leading-relaxed text-foreground max-w-2xl">
+            I&apos;m a software engineer who likes the layer underneath the
+            product: queues, retries, and the data paths that decide whether
+            a system holds up.
+          </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="panel rounded-xl overflow-hidden"
-        >
-          <div className="editor-chrome">
-            <div className="flex gap-1.5">
-              <span className="editor-dot editor-dot-red" />
-              <span className="editor-dot editor-dot-yellow" />
-              <span className="editor-dot editor-dot-green" />
-            </div>
-            <span className="flex-1 text-center text-xs font-mono text-muted-foreground">
-              profile.ts
-            </span>
-            <div className="w-12" />
-          </div>
-
-          <div className="p-5 md:p-6 font-mono text-sm space-y-2">
-            <p>
-              <span className="text-accent">const</span>{" "}
-              <span className="text-foreground">profile</span>{" "}
-              <span className="text-muted-foreground">=</span>{" "}
-              <span className="text-muted-foreground">{"{"}</span>
-            </p>
+          <dl className="mt-10 max-w-2xl border-b border-dotted border-foreground/45">
             {facts.map((fact) => (
-              <p key={fact.key} className="pl-4">
-                <span className="text-accent">{fact.key}</span>
-                <span className="text-muted-foreground">:</span>{" "}
-                <span className="text-primary">"{fact.value}"</span>
-                <span className="text-muted-foreground">,</span>
-              </p>
+              <div
+                key={fact.term}
+                className="rule-dotted grid grid-cols-[8rem_1fr] items-center gap-4 py-3.5"
+              >
+                <dt className="label text-muted-foreground">{fact.term}</dt>
+                <dd className="flex items-center gap-2.5 text-foreground">
+                  {fact.detail}
+                  {fact.badge && (
+                    <Image
+                      src="/certifications/aws-ccp-badge.png"
+                      alt=""
+                      width={22}
+                      height={22}
+                      className="object-contain"
+                      unoptimized
+                    />
+                  )}
+                </dd>
+              </div>
             ))}
-            <p className="pl-4 flex items-center gap-2">
-              <span className="text-accent">certified</span>
-              <span className="text-muted-foreground">:</span>{" "}
-              <span className="text-primary">"AWS Cloud Practitioner"</span>
-              <span className="text-muted-foreground">,</span>
-              <Image
-                src="/certifications/aws-ccp-badge.png"
-                alt="AWS Certified badge"
-                width={20}
-                height={20}
-                className="object-contain"
-                unoptimized
-              />
-            </p>
-            <p>
-              <span className="text-muted-foreground">{"}"}</span>
-              <span className="text-muted-foreground">;</span>
-            </p>
-          </div>
-        </motion.div>
+          </dl>
+        </div>
       </div>
     </section>
   );

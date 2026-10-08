@@ -68,17 +68,16 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6">
+    <section id="contact" className="px-6 py-14 md:py-20 overflow-x-clip">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-8 md:mb-10"
         >
-          <p className="eyebrow mb-3">// 05 — contact</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">Get In Touch</h2>
+          <h2 className="display display-section text-foreground mb-5">Get in touch</h2>
           <p className="text-muted-foreground max-w-xl">
             I'm always open to discussing new opportunities, interesting
             projects, or just having a chat about technology.
@@ -92,12 +91,12 @@ export function ContactSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="panel rounded-xl p-8 h-full">
-              <h3 className="text-lg font-bold mb-6">Contact Information</h3>
+            <div className="panel rounded-sm p-8 h-full">
+              <h3 className="display display-title mb-6">Contact Information</h3>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
                     <Mail className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -112,7 +111,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
                     <Phone className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -127,7 +126,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
                     <Linkedin className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -144,7 +143,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
                     <Github className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -169,8 +168,8 @@ export function ContactSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="panel rounded-xl p-8">
-              <h3 className="text-lg font-bold mb-6">Send a Message</h3>
+            <div className="panel rounded-sm p-8">
+              <h3 className="display display-title mb-6">Send a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -212,7 +211,7 @@ export function ContactSection() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
+                  className="w-full rounded-sm bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-xs uppercase tracking-[0.08em]"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

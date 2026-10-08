@@ -2,22 +2,22 @@ import type React from "react";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Space_Grotesk } from "next/font/google";
+import { Antonio } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+// Compressed gothic for display type; Geist carries body and labels
+const antonio = Antonio({
   subsets: ["latin"],
-  weight: ["500", "700"],
   variable: "--font-display",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ritvik Reddy",
+  title: "Ritvik Reddy Gangula",
   description:
     "Software Engineer and Computer Science student at Arizona State University, building AI-powered products and backend systems. Currently a Software Engineering Intern at GCM Grosvenor.",
   keywords: [
@@ -50,7 +50,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  generator: "v0.app",
 };
 
 export default function RootLayout({
@@ -64,16 +63,15 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${antonio.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="pattern-bg" aria-hidden="true"></div>
-          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
           <Toaster
             position="bottom-right"
             toastOptions={{

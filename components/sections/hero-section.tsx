@@ -1,192 +1,151 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
-import { motion } from "framer-motion";
-import { Typewriter } from "react-simple-typewriter";
+import { useState } from "react";
+import { Check, Copy, FileText, Mail } from "lucide-react";
+import Image from "next/image";
+
+// What I'm learning right now; update the date whenever this list changes
+const nowUpdated = "Oct 2026";
+const nowTopics = ["Evaluating LLM systems", "LLM as a judge", "RAG and ways to improve retrieval"];
+
+const channels = [
+  { name: "Email", value: "ritvikreddygangula@gmail.com", href: "mailto:ritvikreddygangula@gmail.com" },
+  { name: "GitHub", value: "github.com/ritvikreddygangula", href: "https://github.com/ritvikreddygangula" },
+  { name: "LinkedIn", value: "linkedin.com/in/gritvik", href: "https://linkedin.com/in/gritvik" },
+];
 
 export function HeroSection() {
-  const scrollToProjects = () => {
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  const [active, setActive] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const channel = channels[active];
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(channel.value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      window.location.href = channel.href;
+    }
   };
 
   return (
-    <section className="min-h-screen flex items-center px-6 py-32 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10 w-full">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left — headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <p className="eyebrow mb-4">software engineer</p>
-            <h1 className="font-display font-bold text-5xl md:text-6xl leading-[1.05] tracking-tight mb-6 text-foreground">
-              Ritvik Reddy
-              <br />
-              Gangula
-            </h1>
-            <p className="text-lg text-muted-foreground mb-8 max-w-md leading-relaxed">
-              Building scalable backend infrastructure and AI agents layered on top of it.
-            </p>
+    <section id="top" className="px-5 pt-12 pb-10 md:px-8 md:pt-14 md:pb-12">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
+        <div>
+          <h1 className="display display-hero text-foreground">
+            Ritvik
+            <br />
+            Reddy
+            <br />
+            Gangula
+          </h1>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-              <Button
-                onClick={scrollToProjects}
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6"
-              >
-                View My Work
-                <ArrowDown className="ml-2 h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                asChild
-                className="border-border text-foreground hover:border-primary/50 hover:bg-primary/5 font-semibold px-6"
-              >
+          <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/85">
+            Software engineer building backend systems that stay up when parts
+            of them fail, and the AI agents that run on top of them. Computer
+            science at Arizona State, graduating May 2027.
+          </p>
+
+          <div className="mt-8 flex flex-wrap">
+            <a
+              href="https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-solid"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              View resume
+            </a>
+            <a href="#projects" className="btn btn-line -ml-px">
+              See projects
+            </a>
+          </div>
+
+          {/* Reach-me box, styled after a terminal install snippet */}
+          <div className="mt-10 max-w-md">
+            <p className="label text-muted-foreground mb-2">Reach me</p>
+            <div className="border border-primary/60 bg-card">
+              <div role="tablist" aria-label="Contact channel" className="grid grid-cols-3 border-b border-primary/30">
+                {channels.map((c, i) => (
+                  <button
+                    key={c.name}
+                    role="tab"
+                    aria-selected={active === i}
+                    onClick={() => {
+                      setActive(i);
+                      setCopied(false);
+                    }}
+                    className={`label py-2 transition-colors ${
+                      active === i
+                        ? "bg-primary text-primary-foreground"
+                        : "text-foreground/70 hover:text-primary"
+                    } ${i > 0 ? "border-l border-primary/30" : ""}`}
+                  >
+                    {c.name}
+                  </button>
+                ))}
+              </div>
+              <div className="flex items-center justify-between gap-3 px-3 py-2.5">
                 <a
-                  href="https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={channel.href}
+                  target={channel.href.startsWith("http") ? "_blank" : undefined}
+                  rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="truncate font-mono text-[0.8125rem] text-foreground hover:text-primary"
                 >
-                  <Download className="mr-2 h-4 w-4" />
-                  Resume
+                  {channel.value}
                 </a>
-              </Button>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className="border-border hover:border-primary/50 hover:bg-primary/5"
+                <button
+                  onClick={copy}
+                  className="flex shrink-0 items-center gap-1.5 label text-foreground/70 hover:text-primary"
+                  aria-live="polite"
                 >
-                  <a
-                    href="https://github.com/ritvikreddygangula"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="h-4 w-4" />
-                    <span className="sr-only">GitHub</span>
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className="border-border hover:border-primary/50 hover:bg-primary/5"
-                >
-                  <a
-                    href="https://linkedin.com/in/gritvik"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Linkedin className="h-4 w-4" />
-                    <span className="sr-only">LinkedIn</span>
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className="border-border hover:border-primary/50 hover:bg-primary/5"
-                >
-                  <a href="mailto:ritvikreddygangula@gmail.com">
-                    <Mail className="h-4 w-4" />
-                    <span className="sr-only">Email</span>
-                  </a>
-                </Button>
+                  {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Copy className="h-3.5 w-3.5" />}
+                  {copied ? "Copied" : "Copy"}
+                </button>
               </div>
             </div>
-          </motion.div>
+          </div>
+        </div>
 
-          {/* Right — code panel */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-            className="panel rounded-xl overflow-hidden text-left"
-          >
-            <div className="editor-chrome">
-              <div className="flex gap-1.5">
-                <span className="editor-dot editor-dot-red" />
-                <span className="editor-dot editor-dot-yellow" />
-                <span className="editor-dot editor-dot-green" />
-              </div>
-              <span className="flex-1 text-center text-xs font-mono text-muted-foreground">
-                ritvik.ts
-              </span>
-              <div className="w-12" />
+        {/* Portrait + what I'm exploring right now */}
+        <div className="w-full max-w-[21rem] justify-self-center lg:justify-self-end space-y-5">
+          <figure className="plate bg-card p-2">
+            <div className="relative aspect-[4/5]">
+              <Image
+                src="/headshot.webp"
+                alt="Ritvik Reddy Gangula"
+                fill
+                priority
+                sizes="(min-width: 1024px) 336px, 80vw"
+                className="object-cover"
+              />
             </div>
+          </figure>
 
-            <div className="p-6 md:p-8 font-mono text-sm md:text-base leading-relaxed overflow-x-auto">
-              <p>
-                <span className="text-accent">const</span>{" "}
-                <span className="text-foreground">ritvik</span>{" "}
-                <span className="text-muted-foreground">=</span>{" "}
-                <span className="text-muted-foreground">{"{"}</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-accent">name</span>
-                <span className="text-muted-foreground">:</span>{" "}
-                <span className="text-primary">"Ritvik Reddy Gangula"</span>
-                <span className="text-muted-foreground">,</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-accent">role</span>
-                <span className="text-muted-foreground">:</span>{" "}
-                <span className="text-primary">"Software Engineer"</span>
-                <span className="text-muted-foreground">,</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-accent">school</span>
-                <span className="text-muted-foreground">:</span>{" "}
-                <span className="text-primary">"Arizona State University"</span>
-                <span className="text-muted-foreground">,</span>
-              </p>
-              <p className="pl-4 flex flex-wrap items-baseline gap-1">
-                <span className="text-accent">focus</span>
-                <span className="text-muted-foreground">:</span>{" "}
-                <span className="text-primary">
-                  "
-                  <Typewriter
-                    words={[
-                      "AI-powered products",
-                      "backend systems",
-                      "cloud infrastructure",
-                      "developer tools",
-                    ]}
-                    loop={0}
-                    cursor
-                    cursorStyle="_"
-                    typeSpeed={55}
-                    deleteSpeed={35}
-                    delaySpeed={1400}
-                  />
-                  "
-                </span>
-                <span className="text-muted-foreground">,</span>
-              </p>
-              <p>
-                <span className="text-muted-foreground">{"}"}</span>
-                <span className="text-muted-foreground">;</span>
-              </p>
+          <div id="now" className="border border-primary/60 bg-card">
+            <div className="flex items-center justify-between border-b border-primary/30 px-3 py-2">
+              <p className="label text-primary">Now exploring</p>
+              <p className="label text-muted-foreground">{nowUpdated}</p>
             </div>
-          </motion.div>
+            <ul className="px-3 py-2">
+              {nowTopics.map((topic) => (
+                <li key={topic} className="flex items-baseline gap-2.5 py-1.5 text-[0.95rem] text-foreground">
+                  <span className="label text-primary" aria-hidden="true">+</span>
+                  {topic}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="mailto:ritvikreddygangula@gmail.com?subject=Evals%20and%20RAG"
+              className="flex items-center justify-between gap-3 border-t border-primary/30 px-3 py-2.5 text-sm text-foreground/85 hover:text-primary transition-colors"
+            >
+              Exploring the same? Ping me, happy to chat.
+              <Mail className="h-3.5 w-3.5 shrink-0 text-primary" />
+            </a>
+          </div>
         </div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="eyebrow">scroll</span>
-        <div className="animate-bounce">
-          <ArrowDown className="h-4 w-4 text-muted-foreground" />
-        </div>
-      </motion.div>
     </section>
   );
 }

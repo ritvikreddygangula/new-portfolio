@@ -9,10 +9,16 @@
 }
 
 /* ── Canvas ───────────────────────────────────────────────────────────────── */
+/* Explicit height: percentage heights collapse to 0 when the parent has no set height */
 .ag-canvas {
-  height: 100%;
-  min-height: 600px;
-  flex: 1;
+  height: 480px;
+  flex: none;
+}
+
+@media (max-width: 640px) {
+  .ag-canvas {
+    height: 380px;
+  }
 }
 
 .ag-canvas .react-flow__renderer {
