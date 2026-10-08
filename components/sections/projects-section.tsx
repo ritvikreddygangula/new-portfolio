@@ -58,8 +58,6 @@ const projects = [
     date: "June 2025",
     description:
       "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",
-    longDescription:
-      "Developed a collaborative AI research platform using Gradio for the frontend and CrewAI for agent orchestration. Implemented LangGraph for complex workflow management, enabling researchers to conduct deep analysis with AI assistance.",
     technologies: ["Gradio", "CrewAI", "LangGraph", "Python", "AI Agents"],
     achievements: [
       "Orchestrates planner, researcher, aggregator, critic, and synthesizer agents using LangGraph with parallel execution",
@@ -76,8 +74,6 @@ const projects = [
     date: "December 2024",
     description:
       "Real-time chat application with rooms, presence indicators, and multi-device conversation sync.",
-    longDescription:
-      "Built a real-time messaging platform using Node.js, Express, and Socket.IO with rooms, presence indicators, and message delivery acknowledgements, backed by MongoDB for reliable multi-device conversations. Implemented JWT authentication, REST APIs, and server-side rate limiting (express-rate-limit / Redis) to mitigate spam and ensure availability, with a React + Socket.IO client and Dockerized backend services for repeatable deployments.",
     technologies: [
       "Node.js",
       "Express",
@@ -103,8 +99,6 @@ const projects = [
     date: "March 2026",
     description:
       "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
-    longDescription:
-      "Built a full-stack meeting intelligence platform with a FastAPI backend and Next.js frontend. Implements a multi-stage NLP pipeline using BERT-based semantic chunking (512-token chunks with 50-token overlap), extractive TextRank summarization, and pattern-based action item extraction with confidence scoring. Features JWT authentication, per-user transcript isolation, full CRUD with re-analysis on edit, and a real-time multi-step progress indicator.",
     technologies: [
       "FastAPI",
       "Next.js",
@@ -130,8 +124,6 @@ const projects = [
     date: "May 2025",
     description:
       "AI-powered career assistant providing personalized guidance and recommendations.",
-    longDescription:
-      "Created an intelligent career guidance system using LangChain for natural language processing and Hugging Face models for personalized recommendations. Deployed on Vercel with a modern React interface.",
     technologies: ["LangChain", "Hugging Face", "Vercel", "React", "AI/ML"],
     achievements: [
       "Personalized recommendations",
@@ -147,8 +139,6 @@ const projects = [
     date: "December 2024",
     description:
       "LSTM-based machine learning model for accurate stock price forecasting.",
-    longDescription:
-      "Implemented a deep learning solution using LSTM networks with TensorFlow and Keras. Utilized Pandas for data preprocessing and Matplotlib for visualization, achieving high accuracy in stock price predictions.",
     technologies: [
       "TensorFlow",
       "Keras",
