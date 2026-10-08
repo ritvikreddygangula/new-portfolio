@@ -257,7 +257,21 @@ const AgentWorkflowAnimation: React.FC<AgentWorkflowAnimationProps> = ({ autoPla
     };
   }, [autoPlay, isInView]);
 
-  const onInit = useCallback((instance: any) => instance.fitView({ padding: 0.15 }), []);
+  // Re-fit whenever the canvas resizes: it can mount inside a collapsed or
+  // expanding panel, where the first fit runs against a near-zero height
+  const flowRef = React.useRef<any>(null);
+  const onInit = useCallback((instance: any) => {
+    flowRef.current = instance;
+    instance.fitView({ padding: 0.15 });
+  }, []);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => flowRef.current?.fitView({ padding: 0.15 }));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <div className="ag-wrap" ref={wrapperRef}>

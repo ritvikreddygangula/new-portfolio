@@ -1,9 +1,8 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { ExternalLink, Github } from "lucide-react";
-import { motion } from "framer-motion";
+import { DetailList, ExpandableRow } from "@/components/expandable-row";
 import dynamic from "next/dynamic";
 
 const AgentWorkflowAnimation = dynamic(
@@ -14,6 +13,7 @@ const AgentWorkflowAnimation = dynamic(
 const projects = [
   {
     title: "DeltaLedger MCP",
+    highlights: ["3-agent LangGraph pipeline", "90% eval gate in CI", "MCP server on AWS"],
     date: "August 2026",
     description:
       "A three-agent LangGraph pipeline that turns SEC EDGAR filings into classified, cited findings, served as an MCP server and REST API on AWS.",
@@ -38,6 +38,7 @@ const projects = [
   },
   {
     title: "Forge",
+    highlights: ["16.7 jobs/s", "145 ms leader failover", "0 acknowledged jobs lost"],
     date: "January 2026",
     description:
       "A distributed job orchestrator in Go with Raft-replicated coordinators, gRPC workers, and a Kafka-backed event log.",
@@ -53,6 +54,7 @@ const projects = [
   },
   {
     title: "Deep Research Multi-Agent System",
+    highlights: ["Parallel LangGraph agents", "Live agent graph UI", "Pinecone memory"],
     date: "June 2025",
     description:
       "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",
@@ -70,6 +72,7 @@ const projects = [
   },
   {
     title: "Chatify",
+    highlights: ["Real-time rooms", "JWT + Redis rate limits", "Dockerized"],
     date: "December 2024",
     description:
       "Real-time chat application with rooms, presence indicators, and multi-device conversation sync.",
@@ -96,6 +99,7 @@ const projects = [
   },
     {
     title: "Meeting Intelligence Platform",
+    highlights: ["BERT semantic chunking", "Action item extraction", "FastAPI + Next.js"],
     date: "March 2026",
     description:
       "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
@@ -122,6 +126,7 @@ const projects = [
   },
   {
     title: "AI Career Assistant",
+    highlights: ["LangChain", "Hugging Face models", "Deployed on Vercel"],
     date: "May 2025",
     description:
       "AI-powered career assistant providing personalized guidance and recommendations.",
@@ -138,6 +143,7 @@ const projects = [
   },
   {
     title: "Stock Price Forecasting",
+    highlights: ["LSTM model", "TensorFlow / Keras", "Time series"],
     date: "December 2024",
     description:
       "LSTM-based machine learning model for accurate stock price forecasting.",
@@ -162,113 +168,56 @@ const projects = [
 ];
 
 export function ProjectsSection() {
+  const [open, setOpen] = useState<number | null>(null);
+
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="px-6 py-14 md:py-20">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <p className="eyebrow mb-3">// 03 — projects</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Featured Projects</h2>
-        </motion.div>
+        <h2 className="display display-section text-foreground mb-8 md:mb-10">Projects</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <ol className="border-b border-dotted border-foreground/45">
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              className={project.showWorkflow ? "md:col-span-2" : ""}
+            <ExpandableRow
+              key={project.title}
+              id={`project-${index}`}
+              title={project.title}
+              meta={project.date}
+              summary={project.description}
+              highlights={project.highlights}
+              open={open === index}
+              onToggle={() => setOpen(open === index ? null : index)}
             >
-              <div className="panel rounded-xl p-6 md:p-8 h-full">
-                <div className={`flex ${project.showWorkflow ? 'flex-col lg:flex-row gap-6' : 'flex-col'} h-full`}>
-                  {/* Left side - Project Details */}
-                  <div className={`flex flex-col ${project.showWorkflow ? 'lg:w-[45%]' : 'w-full'}`}>
-                    <div className="flex items-baseline justify-between gap-3 mb-3">
-                      <h3 className="text-xl font-bold text-foreground">
-                        {project.title}
-                      </h3>
-                      <span className="text-xs font-mono text-muted-foreground flex-shrink-0">
-                        {project.date}
-                      </span>
-                    </div>
+              <DetailList items={project.achievements} />
+              <p className="mt-6 label text-muted-foreground max-w-3xl">{project.technologies.join(" / ")}</p>
 
-                    <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                      {project.description}
-                    </p>
-
-                    <ul className="space-y-1.5 mb-5">
-                      {project.achievements.map((achievement, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-sm text-muted-foreground"
-                        >
-                          <span className="w-1 h-1 bg-accent rounded-full mt-2 flex-shrink-0" />
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.map((tech, i) => (
-                        <Badge
-                          key={i}
-                          variant="secondary"
-                          className="bg-secondary text-muted-foreground border border-border font-mono text-xs font-normal"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap gap-3 mt-auto">
-                      {project.github !== "#" && (
-                        <Button
-                          asChild
-                          variant="outline"
-                          size="sm"
-                          className="border-border text-foreground hover:border-primary/50 hover:bg-primary/5"
-                        >
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
-                      {project.demo !== "#" && (
-                        <Button
-                          asChild
-                          size="sm"
-                          className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
-                        >
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Try Now
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Right side - Workflow Animation */}
-                  {project.showWorkflow && (
-                    <div className="lg:w-[55%] flex items-center justify-end">
-                      <div className="w-full h-full">
-                        <AgentWorkflowAnimation autoPlay={true} />
-                      </div>
-                    </div>
-                  )}
-                </div>
+              <div className="mt-6 flex flex-wrap">
+                {project.github !== "#" && (
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-line">
+                    <Github className="h-3.5 w-3.5" />
+                    Code
+                  </a>
+                )}
+                {project.demo !== "#" && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`btn btn-solid ${project.github !== "#" ? "-ml-px" : ""}`}
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Live demo
+                  </a>
+                )}
               </div>
-            </motion.div>
+
+              {project.showWorkflow && open === index && (
+                <div className="mt-8 max-w-4xl">
+                  <AgentWorkflowAnimation autoPlay={true} />
+                </div>
+              )}
+            </ExpandableRow>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

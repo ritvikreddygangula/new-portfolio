@@ -3,94 +3,76 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* claude.ai-inspired palette: warm paper, charcoal ink, clay accent */
 :root {
-  /* Dark, editor-inspired palette — the default theme */
-  --background: #0a0d12;
-  --foreground: #dfe4ea;
-  --card: #10151c;
-  --card-foreground: #dfe4ea;
-  --popover: #10151c;
-  --popover-foreground: #dfe4ea;
-  --primary: #d9a25a;
-  --primary-foreground: #0a0d12;
-  --secondary: #161c25;
-  --secondary-foreground: #dfe4ea;
-  --muted: #131820;
-  --muted-foreground: #8892a0;
-  --accent: #5fc4d0;
-  --accent-foreground: #0a0d12;
-  --destructive: #e2685f;
-  --destructive-foreground: #0a0d12;
-  --border: #1f2733;
-  --input: #1f2733;
-  --ring: #d9a25a;
-  --chart-1: #d9a25a;
-  --chart-2: #5fc4d0;
-  --chart-3: #8892a0;
-  --chart-4: #e2685f;
-  --chart-5: #7c9a5f;
-  --radius: 0.625rem;
-  --sidebar: #10151c;
-  --sidebar-foreground: #dfe4ea;
-  --sidebar-primary: #d9a25a;
-  --sidebar-primary-foreground: #0a0d12;
-  --sidebar-accent: #161c25;
-  --sidebar-accent-foreground: #dfe4ea;
-  --sidebar-border: #1f2733;
-  --sidebar-ring: #d9a25a;
-
-  --background-pattern: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  --background-pattern-size: 48px 48px;
-  --panel-shadow: rgba(0, 0, 0, 0.6);
+  --background: #f5f4ed;
+  --foreground: #141413;
+  --card: #faf9f5;
+  --card-foreground: #141413;
+  --popover: #faf9f5;
+  --popover-foreground: #141413;
+  --primary: #b4532f;
+  --primary-foreground: #ffffff;
+  --secondary: #ecebe3;
+  --secondary-foreground: #141413;
+  --muted: #ecebe3;
+  --muted-foreground: #5e5d59;
+  --accent: #b4532f;
+  --accent-foreground: #ffffff;
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+  --border: #dad8ce;
+  --input: #cfccc0;
+  --ring: #b4532f;
+  --chart-1: #b4532f;
+  --chart-2: #5e5d59;
+  --chart-3: #8f8d84;
+  --chart-4: #b3261e;
+  --chart-5: #4f7a5a;
+  --radius: 0.25rem;
+  --sidebar: #faf9f5;
+  --sidebar-foreground: #141413;
+  --sidebar-primary: #b4532f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ecebe3;
+  --sidebar-accent-foreground: #141413;
+  --sidebar-border: #dad8ce;
+  --sidebar-ring: #b4532f;
 }
 
-/* Light theme — warm paper palette; amber/teal darkened for contrast on light surfaces */
-:root.light {
-  --background: #f6f4ef;
-  --foreground: #1a1f27;
-  --card: #ffffff;
-  --card-foreground: #1a1f27;
-  --popover: #ffffff;
-  --popover-foreground: #1a1f27;
-  --primary: #a8691c;
-  --primary-foreground: #ffffff;
-  --secondary: #efece5;
-  --secondary-foreground: #1a1f27;
-  --muted: #f0ede6;
-  --muted-foreground: #5b6472;
-  --accent: #1d7a86;
-  --accent-foreground: #ffffff;
-  --destructive: #c2453b;
-  --destructive-foreground: #ffffff;
-  --border: #e2ddd2;
-  --input: #e2ddd2;
-  --ring: #a8691c;
-  --chart-1: #a8691c;
-  --chart-2: #1d7a86;
-  --chart-3: #5b6472;
-  --chart-4: #c2453b;
-  --chart-5: #5f7d45;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #1a1f27;
-  --sidebar-primary: #a8691c;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #efece5;
-  --sidebar-accent-foreground: #1a1f27;
-  --sidebar-border: #e2ddd2;
-  --sidebar-ring: #a8691c;
-
-  --background-pattern: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
-  --panel-shadow: rgba(60, 45, 20, 0.18);
+:root.dark {
+  --background: #262624;
+  --foreground: #faf9f5;
+  --card: #30302e;
+  --card-foreground: #faf9f5;
+  --popover: #30302e;
+  --popover-foreground: #faf9f5;
+  --primary: #d97757;
+  --primary-foreground: #141413;
+  --secondary: #353532;
+  --secondary-foreground: #faf9f5;
+  --muted: #2d2d2b;
+  --muted-foreground: #a6a39a;
+  --accent: #d97757;
+  --accent-foreground: #141413;
+  --destructive: #ef8a7a;
+  --destructive-foreground: #141413;
+  --border: #3e3d39;
+  --input: #4a4944;
+  --ring: #d97757;
+  --chart-1: #d97757;
+  --chart-2: #a6a39a;
+  --chart-3: #6f6d66;
+  --chart-4: #ef8a7a;
+  --chart-5: #8fb59a;
+  --sidebar: #30302e;
+  --sidebar-foreground: #faf9f5;
+  --sidebar-primary: #d97757;
+  --sidebar-primary-foreground: #141413;
+  --sidebar-accent: #353532;
+  --sidebar-accent-foreground: #faf9f5;
+  --sidebar-border: #3e3d39;
+  --sidebar-ring: #d97757;
 }
 
 @theme inline {
@@ -148,70 +130,98 @@
   html {
     scroll-behavior: smooth;
   }
+  section[id] {
+    scroll-margin-top: 1.5rem;
+  }
 }
 
-.pattern-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  width: 100vw;
-  height: 100vh;
-  background-image: var(--background-pattern);
-  background-size: var(--background-pattern-size);
-}
+@layer components {
+/* ---- Print-inspired type system ---- */
 
-.font-display {
+/* Compressed gothic display, set light like an engraved poster */
+.display {
   font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
 }
 
-/* Eyebrow / section label — "// 01 — about" style markers */
-.eyebrow {
+.display-hero {
+  font-size: clamp(3.75rem, 8vw, 7rem);
+  text-transform: uppercase;
+  line-height: 1.02;
+}
+
+.display-section {
+  font-size: clamp(2.75rem, 5vw, 4.25rem);
+}
+
+.display-title {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+/* Small typewriter labels: only for real data (dates, places, stacks) */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+/* Dotted rule, the divider used for every list */
+.rule-dotted {
+  border-top: 1px dotted color-mix(in srgb, var(--foreground) 45%, transparent);
+}
+
+/* Thin frame inset around the hero, like a printed plate */
+.plate {
+  border: 1px solid color-mix(in srgb, var(--foreground) 22%, transparent);
+}
+
+/* Square buttons: filled ink and outlined */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  padding: 0 1rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  border: 1px solid var(--primary);
+  border-radius: 2px;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Editor-pane card: the base surface for every panel in the new design */
+.btn-solid {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-solid:hover {
+  background: color-mix(in srgb, var(--primary) 85%, var(--foreground));
+}
+
+.btn-line {
+  color: var(--primary);
+}
+
+.btn-line:hover {
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* Surface for the contact panels and project cards */
 .panel {
   background: var(--card);
   border: 1px solid var(--border);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease,
-    transform 0.25s ease;
 }
-
-.panel:hover {
-  border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
-  box-shadow: 0 12px 32px -16px var(--panel-shadow);
-}
-
-/* Editor window chrome — the traffic-light dots bar, reused by Hero + Skills */
-.editor-chrome {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--card) 92%, black 8%);
-}
-
-.editor-dot {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 9999px;
-  flex-shrink: 0;
-}
-
-.editor-dot-red {
-  background: #e2685f;
-}
-
-.editor-dot-yellow {
-  background: #d9a25a;
-}
-
-.editor-dot-green {
-  background: #7c9a5f;
 }

@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RR Emblem Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f5f4ed;
+    --card: #faf9f5;
+    --ink: #b4532f;
+    --text: #141413;
+    --muted: #5e5d59;
+    --rule: #dad8ce;
+  }
+  :root[data-theme="dark"] {
+    --paper: #262624;
+    --card: #30302e;
+    --ink: #d97757;
+    --text: #faf9f5;
+    --muted: #a6a39a;
+    --rule: #3e3d39;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--text);
+    font-family: "Geist Mono", ui-monospace, monospace;
+  }
+  header {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+    justify-content: space-between;
+  }
+  h1 {
+    margin: 0;
+    font-family: "Antonio", sans-serif;
+    font-weight: 300;
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    line-height: 1;
+  }
+  header p { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.8rem; max-width: 36rem; line-height: 1.6; }
+  .toggle {
+    font: inherit;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+  }
+  .toggle:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); }
+  .toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 1.25rem;
+  }
+  figure {
+    margin: 0;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 0.75rem;
+  }
+  figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  figcaption { padding: 0.85rem 0.25rem 0.25rem; }
+  figcaption b {
+    display: block;
+    font-family: "Antonio", sans-serif;
+    font-weight: 400;
+    font-size: 1.35rem;
+    line-height: 1.1;
+  }
+  figcaption b span { color: var(--ink); margin-right: 0.4rem; }
+  figcaption small { display: block; margin-top: 0.4rem; color: var(--muted); font-size: 0.72rem; line-height: 1.55; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>RR emblem options</h1>
+    <p>Fifteen marks in the spirit of the Hermes engraving: sunburst rays, taut line bundles, veined plates, halftone and hatching. Drawn in the portfolio's clay ink on paper.</p>
+  </div>
+  <button class="toggle" id="theme" type="button">Dark mode</button>
+</header>
+<main id="grid"></main>
+
+<script>
+// Seeded random so every emblem draws the same way on each load
+function rng(seed) {
+  return function () {
+    seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const C = 160; // centre of the 320 x 320 canvas
+const f = (n) => n.toFixed(2);
+const INK = 'stroke="currentColor"';
+const PAPER = 'style="fill:var(--paper)"';
+
+// Radial rays between two radii
+function rays(n, r1, r2, w = 0.7, cx = C, cy = C, offset = 0) {
+  let s = "";
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 + offset;
+    s += `<line x1="${f(cx + r1 * Math.cos(a))}" y1="${f(cy + r1 * Math.sin(a))}" x2="${f(cx + r2 * Math.cos(a))}" y2="${f(cy + r2 * Math.sin(a))}"/>`;
+  }
+  return `<g ${INK} stroke-width="${w}">${s}</g>`;
+}
+
+// A fan of taut lines held at one point, like the strings in the Hermes fists
+function bundle(x, y, angle, spread, len, count, w = 0.55, seed = 1) {
+  const r = rng(seed);
+  let s = "";
+  for (let i = 0; i < count; i++) {
+    const a = angle + (i / (count - 1) - 0.5) * spread + (r() - 0.5) * 0.02;
+    const L = len * (0.8 + r() * 0.35);
+    s += `<line x1="${f(x)}" y1="${f(y)}" x2="${f(x + L * Math.cos(a))}" y2="${f(y + L * Math.sin(a))}"/>`;
+  }
+  return `<g ${INK} stroke-width="${w}">${s}</g>`;
+}
+
+// The grip: a small knot where a bundle is held
+function knot(x, y, r = 5) {
+  return `<circle cx="${f(x)}" cy="${f(y)}" r="${r}" fill="currentColor"/><circle cx="${f(x)}" cy="${f(y)}" r="${r - 2}" ${PAPER}/>`;
+}
+
+// Marble-like veins: jittered random walks
+function veins(x, y, w, h, count, seed, sw = 0.8) {
+  const r = rng(seed);
+  let s = "";
+  for (let i = 0; i < count; i++) {
+    let px = x + r() * w, py = y + r() * h;
+    let d = `M${f(px)} ${f(py)}`;
+    let a = r() * Math.PI * 2;
+    const steps = 6 + Math.floor(r() * 10);
+    for (let k = 0; k < steps; k++) {
+      a += (r() - 0.5) * 1.4;
+      px += Math.cos(a) * (3 + r() * 6);
+      py += Math.sin(a) * (3 + r() * 6);
+      d += ` L${f(px)} ${f(py)}`;
+    }
+    s += `<path d="${d}"/>`;
+  }
+  return `<g fill="none" stroke-width="${sw}" stroke-linecap="round">${s}</g>`;
+}
+
+function rr(size, opts = {}) {
+  const { weight = 300, fill = "currentColor", stroke = "", sw = 0, x = C, y = C, ls = -2, extra = "" } = opts;
+  return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-family="Antonio, sans-serif" font-weight="${weight}" font-size="${size}" letter-spacing="${ls}" ${fill.startsWith("style") ? fill : `fill="${fill}"`} ${stroke ? `stroke="${stroke}" stroke-width="${sw}" paint-order="stroke"` : ""} ${extra}>RR</text>`;
+}
+
+const emblems = [
+  {
+    name: "Solar seal",
+    note: "The Hermes sunburst on its own: a ring of fine rays around a thin RR.",
+    draw: () => `${rays(140, 70, 142, 0.6)}<circle cx="${C}" cy="${C}" r="64" fill="none" ${INK} stroke-width="1"/>${rr(104)}`,
+  },
+  {
+    name: "Tethered",
+    note: "RR holds six bundles of taut line pulled to the edges, like the many-armed figure.",
+    draw: () => {
+      const pts = [[112, 108, -2.4], [208, 108, -0.7], [96, 196, 2.6], [224, 196, 0.5], [138, 236, 1.95], [182, 236, 1.2]];
+      return `${rays(120, 92, 112, 0.5)}${pts.map(([x, y, a], i) => bundle(x, y, a, 0.55, 190, 16, 0.5, i + 3)).join("")}${rr(118, { weight: 400 })}${pts.map(([x, y]) => knot(x, y, 4.5)).join("")}`;
+    },
+  },
+  {
+    name: "Marble plate",
+    note: "A veined ink plate behind the letters, ringed by rays. Closest to the original's centre square.",
+    draw: () => `${rays(150, 96, 150, 0.55)}<rect x="88" y="88" width="144" height="144" fill="currentColor"/><g style="stroke:var(--paper)">${veins(88, 88, 144, 144, 34, 11, 0.7)}</g>${rr(112, { weight: 400, fill: "style=\"fill:var(--paper)\"" })}`,
+  },
+  {
+    name: "Mirror",
+    note: "One R turned back on the other, sharing a spine. Symmetric, like a seal.",
+    draw: () => `${rays(96, 104, 146, 0.6)}<circle cx="${C}" cy="${C}" r="98" fill="none" ${INK} stroke-width="1.2"/>
+      <text x="${C + 2}" y="${C}" text-anchor="start" dominant-baseline="central" font-family="Antonio" font-weight="400" font-size="130" fill="currentColor">R</text>
+      <text x="${-(C - 2)}" y="${C}" text-anchor="start" dominant-baseline="central" font-family="Antonio" font-weight="400" font-size="130" fill="currentColor" transform="scale(-1,1)">R</text>`,
+  },
+  {
+    name: "Engraved",
+    note: "Letters cut with diagonal hatching inside a fine outline, ringed by tick marks.",
+    draw: (id) => `<defs><pattern id="h${id}" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" ${INK} stroke-width="1.1"/></pattern></defs>
+      ${rays(180, 118, 128, 0.7)}${rays(36, 112, 136, 1.4)}<circle cx="${C}" cy="${C}" r="108" fill="none" ${INK} stroke-width="0.8"/>
+      ${rr(150, { weight: 700, fill: `url(#h${id})`, stroke: "currentColor", sw: 1.2 })}`,
+  },
+  {
+    name: "Halftone sun",
+    note: "A disc of printed dots that thin out toward the edge, with RR knocked out of it.",
+    draw: (id) => {
+      let dots = "";
+      for (let y = 6; y < 320; y += 7) for (let x = 6 + ((y / 7) % 2) * 3.5; x < 320; x += 7) {
+        const d = Math.hypot(x - C, y - C);
+        if (d > 146) continue;
+        const r = 3.1 * (1 - d / 150) ** 0.6;
+        if (r > 0.35) dots += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}"/>`;
+      }
+      // Paper-coloured letters with a paper halo sit over the dots; ink outline on top
+      return `<g fill="currentColor">${dots}</g>
+        ${rr(150, { weight: 700, fill: 'style="fill:var(--paper);stroke:var(--paper);stroke-width:10;paint-order:stroke"' })}
+        ${rr(150, { weight: 700, fill: "none", stroke: "currentColor", sw: 1.2 })}`;
+    },
+  },
+  {
+    name: "Coin",
+    note: "A struck medallion with your full name around the rim.",
+    draw: (id) => `<defs><path id="c${id}" d="M ${C} ${C} m -118 0 a 118 118 0 1 1 236 0 a 118 118 0 1 1 -236 0"/></defs>
+      <circle cx="${C}" cy="${C}" r="146" fill="none" ${INK} stroke-width="1.6"/><circle cx="${C}" cy="${C}" r="136" fill="none" ${INK} stroke-width="0.7"/>
+      <circle cx="${C}" cy="${C}" r="100" fill="none" ${INK} stroke-width="0.7"/>${rays(72, 102, 108, 0.8)}
+      <text font-family="Antonio" font-size="17" letter-spacing="3.2" fill="currentColor"><textPath href="#c${id}" startOffset="0">RITVIK REDDY GANGULA ✦ SOFTWARE ENGINEER ✦ EST. MMXXVI ✦</textPath></text>
+      ${rr(96, { weight: 400 })}`,
+  },
+  {
+    name: "String art",
+    note: "Hundreds of tensioned lines from the letters to the frame corners.",
+    draw: () => {
+      let s = "";
+      const anchors = [[118, 214], [150, 214], [170, 214], [202, 214], [118, 106], [202, 106]];
+      const r = rng(7);
+      anchors.forEach(([ax, ay]) => {
+        for (let i = 0; i < 20; i++) {
+          const edge = Math.floor(r() * 4), t = r() * 320;
+          const [ex, ey] = [[t, 0], [320, t], [t, 320], [0, t]][edge];
+          s += `<line x1="${ax}" y1="${ay}" x2="${f(ex)}" y2="${f(ey)}"/>`;
+        }
+      });
+      return `<g ${INK} stroke-width="0.4" opacity="0.85">${s}</g><rect x="96" y="92" width="128" height="136" ${PAPER}/>${rr(126, { weight: 400 })}`;
+    },
+  },
+  {
+    name: "Quorum",
+    note: "RR at the centre of a three-node cluster with one leader. A nod to Forge and Raft.",
+    draw: () => {
+      const nodes = [0, 1, 2].map((i) => { const a = -Math.PI / 2 + (i * 2 * Math.PI) / 3; return [C + 112 * Math.cos(a), C + 112 * Math.sin(a)]; });
+      let links = "";
+      nodes.forEach(([x, y], i) => { links += bundle(x, y, Math.atan2(C - y, C - x), 0.5, 85, 12, 0.45, 20 + i); });
+      return `${rays(160, 132, 148, 0.5)}<circle cx="${C}" cy="${C}" r="112" fill="none" ${INK} stroke-width="0.7" stroke-dasharray="2 4"/>${links}
+        <circle cx="${C}" cy="${C}" r="56" ${PAPER}/>${rr(92, { weight: 400 })}
+        ${nodes.map(([x, y], i) => `<circle cx="${f(x)}" cy="${f(y)}" r="${i === 0 ? 13 : 9}" fill="currentColor"/>${i === 0 ? `<circle cx="${f(x)}" cy="${f(y)}" r="19" fill="none" ${INK} stroke-width="0.8"/>` : ""}`).join("")}`;
+    },
+  },
+  {
+    name: "Lightning",
+    note: "Bold letters filled with the veined, crackling texture of the original plate.",
+    draw: (id) => `<defs><clipPath id="t${id}">${rr(176, { weight: 700 })}</clipPath></defs>
+      ${rays(64, 128, 150, 1.1)}${rays(192, 136, 146, 0.5)}
+      ${rr(176, { weight: 700, fill: "none", stroke: "currentColor", sw: 1.6 })}
+      <g clip-path="url(#t${id})" ${INK}>${veins(40, 40, 240, 240, 90, 5, 1)}</g>`,
+  },
+  {
+    name: "Halo",
+    note: "Wavy flame rays, like the hair framing the face in the engraving.",
+    draw: () => {
+      let s = "";
+      const n = 44;
+      for (let i = 0; i < n; i++) {
+        const a = (i / n) * Math.PI * 2;
+        let d = "";
+        for (let k = 0; k <= 12; k++) {
+          const r = 72 + k * 6.2;
+          const wob = Math.sin(k * 0.9 + i) * 0.06;
+          d += `${k ? "L" : "M"}${f(C + r * Math.cos(a + wob))} ${f(C + r * Math.sin(a + wob))}`;
+        }
+        s += `<path d="${d}"/>`;
+      }
+      return `<g fill="none" ${INK} stroke-width="1.1" stroke-linecap="round">${s}</g><circle cx="${C}" cy="${C}" r="66" fill="none" ${INK} stroke-width="0.8"/>${rr(100, { weight: 300 })}`;
+    },
+  },
+  {
+    name: "Moiré",
+    note: "Chords across a circle that weave a cardioid. RR rests in the cusp.",
+    draw: () => {
+      let s = "";
+      const n = 180, R = 140;
+      for (let i = 0; i < n; i++) {
+        const a1 = (i / n) * Math.PI * 2 + Math.PI / 2, a2 = ((i * 2) / n) * Math.PI * 2 + Math.PI / 2;
+        s += `<line x1="${f(C + R * Math.cos(a1))}" y1="${f(C + R * Math.sin(a1))}" x2="${f(C + R * Math.cos(a2))}" y2="${f(C + R * Math.sin(a2))}"/>`;
+      }
+      return `<g ${INK} stroke-width="0.4">${s}</g><circle cx="${C}" cy="${C}" r="${R}" fill="none" ${INK} stroke-width="1"/><rect x="118" y="196" width="84" height="66" ${PAPER}/>${rr(72, { weight: 500, y: 229 })}`;
+    },
+  },
+  {
+    name: "Octagon",
+    note: "A heraldic plate: double-ruled octagon with radial engraving inside.",
+    draw: () => {
+      const oct = (r) => Array.from({ length: 8 }, (_, i) => { const a = Math.PI / 8 + (i * Math.PI) / 4; return `${f(C + r * Math.cos(a))},${f(C + r * Math.sin(a))}`; }).join(" ");
+      return `<polygon points="${oct(150)}" fill="none" ${INK} stroke-width="1.6"/><polygon points="${oct(140)}" fill="none" ${INK} stroke-width="0.6"/>${rays(128, 66, 128, 0.5)}<circle cx="${C}" cy="${C}" r="62" ${PAPER} ${INK} stroke-width="1"/>${rr(96, { weight: 400 })}`;
+    },
+  },
+  {
+    name: "Negative burst",
+    note: "A dense full-bleed explosion of rays with RR left as empty paper.",
+    draw: (id) => `<defs><mask id="m${id}"><rect width="320" height="320" fill="white"/>${rr(170, { weight: 700, fill: "black" })}<circle cx="${C}" cy="${C}" r="5" fill="black"/></mask></defs>
+      <g mask="url(#m${id})">${rays(260, 8, 240, 0.8)}</g>`,
+  },
+  {
+    name: "Winged",
+    note: "RR with a feathered wing on each side, after the winged helmet of Hermes.",
+    draw: () => {
+      const wing = (dir) => {
+        let s = "";
+        for (let i = 0; i < 14; i++) {
+          const x0 = C + dir * 44, y0 = 150 + i * 2.2;
+          const len = 118 - i * 6.5;
+          const tipX = x0 + dir * len, tipY = 92 + i * 7.5;
+          const cx = x0 + dir * len * 0.45, cy = y0 - 46 + i * 2;
+          s += `<path d="M${f(x0)} ${f(y0)} Q ${f(cx)} ${f(cy)} ${f(tipX)} ${f(tipY)}" stroke-width="${f(1.3 - i * 0.06)}"/>`;
+        }
+        return s;
+      };
+      return `<g fill="none" ${INK} stroke-linecap="round">${wing(1)}${wing(-1)}</g>${rays(90, 104, 116, 0.5, C, C + 6)}${rr(110, { weight: 400, y: 168 })}`;
+    },
+  },
+];
+
+const grid = document.getElementById("grid");
+function render() {
+  grid.innerHTML = emblems.map((e, i) => `
+    <figure>
+      <svg viewBox="0 0 320 320" role="img" aria-label="${e.name} emblem">${e.draw(i)}</svg>
+      <figcaption><b><span>${String(i + 1).padStart(2, "0")}</span>${e.name}</b><small>${e.note}</small></figcaption>
+    </figure>`).join("");
+}
+// Draw after Antonio loads so the letters use the portfolio's display face
+document.fonts.ready.then(render);
+render();
+
+const btn = document.getElementById("theme");
+btn.addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme === "dark";
+  document.documentElement.dataset.theme = dark ? "light" : "dark";
+  btn.textContent = dark ? "Dark mode" : "Light mode";
+});
+</script>
+</body>
+</html>
