@@ -43,7 +43,10 @@
   --glass-edge: rgba(20, 20, 19, 0.09);
   --glass-highlight: rgba(255, 255, 255, 0.7);
   --glass-shadow: rgba(60, 45, 30, 0.12);
-  --sheet-fill: rgba(245, 244, 237, 0.72);
+  --sheet-fill: rgba(245, 244, 237, 0.34);
+  --nav-fill-top: rgba(255, 255, 255, 0.42);
+  --nav-fill-bottom: rgba(250, 249, 245, 0.18);
+  --nav-rim: rgba(255, 255, 255, 0.85);
 }
 
 :root.dark {
@@ -84,7 +87,10 @@
   --glass-edge: rgba(250, 249, 245, 0.09);
   --glass-highlight: rgba(250, 249, 245, 0.08);
   --glass-shadow: rgba(0, 0, 0, 0.35);
-  --sheet-fill: rgba(38, 38, 36, 0.74);
+  --sheet-fill: rgba(38, 38, 36, 0.36);
+  --nav-fill-top: rgba(250, 249, 245, 0.1);
+  --nav-fill-bottom: rgba(250, 249, 245, 0.03);
+  --nav-rim: rgba(250, 249, 245, 0.22);
 }
 
 @theme inline {
@@ -253,8 +259,22 @@
   background: var(--sheet-fill);
   border: 1px solid var(--glass-edge);
   border-radius: 2rem;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  /* Light blur: the network still shows through as soft shapes, just out of focus */
+  -webkit-backdrop-filter: blur(5px) saturate(140%);
+  backdrop-filter: blur(5px) saturate(140%);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+/* Clear glass for the nav: mostly transparent, lit rim on top, content behind stays visible */
+.glass-clear {
+  background: linear-gradient(180deg, var(--nav-fill-top), var(--nav-fill-bottom));
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(8px) saturate(170%);
+  backdrop-filter: blur(8px) saturate(170%);
+  box-shadow:
+    inset 0 1px 0 var(--nav-rim),
+    inset 0 -1px 0 color-mix(in srgb, var(--nav-rim) 35%, transparent),
+    0 10px 30px -16px var(--glass-shadow);
 }
 
 /* Small rounded tag for highlights */

@@ -67,7 +67,7 @@ export function Navigation() {
         <a
           href="#top"
           className={`display justify-self-start rounded-2xl border px-3.5 py-2 text-[1.35rem] uppercase leading-[0.85] text-foreground transition-[background-color,border-color,box-shadow] duration-300 ${
-            scrolled ? "glass" : "border-transparent"
+            scrolled ? "glass-clear" : "border-transparent"
           }`}
         >
           Ritvik
@@ -76,7 +76,7 @@ export function Navigation() {
         </a>
 
         {/* Desktop: one glass pill holds the links, theme toggle and Contact */}
-        <nav aria-label="Primary" className="glass hidden items-center gap-1 rounded-full p-1.5 md:flex">
+        <nav aria-label="Primary" className="glass-clear hidden items-center gap-1 rounded-full p-1.5 md:flex">
           <ul className="flex items-center">
             {navItems.map((item) => {
               const isActive = active === item.id
@@ -111,7 +111,7 @@ export function Navigation() {
         </nav>
 
         {/* Mobile: theme toggle and menu in a small pill */}
-        <div className="glass flex items-center gap-0.5 rounded-full p-1 md:hidden">
+        <div className="glass-clear flex items-center gap-0.5 rounded-full p-1 md:hidden">
           {themeToggle}
           <button
             className="grid h-9 w-9 place-items-center rounded-full text-foreground/80"
