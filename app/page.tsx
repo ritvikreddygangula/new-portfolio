@@ -9,9 +9,9 @@ import { ContactSection } from "@/components/sections/contact-section";
 export default function Home() {
   return (
     <main className="relative">
-      {/* Nav + hero sit inside a thin printed frame */}
+      <Navigation />
+      {/* The hero sits inside a thin printed frame */}
       <div className="plate m-2.5 md:m-4">
-        <Navigation />
         <HeroSection />
       </div>
       <AboutSection />

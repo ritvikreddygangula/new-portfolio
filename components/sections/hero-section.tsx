@@ -49,7 +49,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="top" className="px-5 pt-12 pb-10 md:px-8 md:pt-14 md:pb-12">
+    <section id="top" className="px-5 pt-28 pb-10 md:px-8 md:pt-32 md:pb-12">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
         <div>
           <h1 className="display display-hero text-foreground">
