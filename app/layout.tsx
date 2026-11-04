@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/theme-provider";
+import { NodeNetwork } from "@/components/node-network";
 import "./globals.css";
 
 // Compressed gothic for display type; Geist carries body and labels
@@ -71,7 +72,8 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+          <NodeNetwork />
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
           <Toaster
             position="bottom-right"
             toastOptions={{
