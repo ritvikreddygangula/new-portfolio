@@ -37,6 +37,13 @@
   --sidebar-accent-foreground: #141413;
   --sidebar-border: #dad8ce;
   --sidebar-ring: #b4532f;
+
+  /* Warm frosted glass that sits on the paper */
+  --glass-fill: rgba(250, 249, 245, 0.62);
+  --glass-edge: rgba(20, 20, 19, 0.09);
+  --glass-highlight: rgba(255, 255, 255, 0.7);
+  --glass-shadow: rgba(60, 45, 30, 0.12);
+  --sheet-fill: rgba(245, 244, 237, 0.72);
 }
 
 :root.dark {
@@ -72,6 +79,12 @@
   --sidebar-accent-foreground: #faf9f5;
   --sidebar-border: #3e3d39;
   --sidebar-ring: #d97757;
+
+  --glass-fill: rgba(48, 48, 46, 0.55);
+  --glass-edge: rgba(250, 249, 245, 0.09);
+  --glass-highlight: rgba(250, 249, 245, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+  --sheet-fill: rgba(38, 38, 36, 0.74);
 }
 
 @theme inline {
@@ -178,6 +191,7 @@
 /* Thin frame inset around the hero, like a printed plate */
 .plate {
   border: 1px solid color-mix(in srgb, var(--foreground) 22%, transparent);
+  border-radius: 2rem;
 }
 
 /* Square buttons: filled ink and outlined */
@@ -192,7 +206,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border: 1px solid var(--primary);
-  border-radius: 2px;
+  border-radius: 9999px;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
@@ -218,9 +232,35 @@
   outline-offset: 3px;
 }
 
+/* Frosted glass: blurs the node network behind it, with a soft lit top edge */
+.glass {
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    0 12px 32px -18px var(--glass-shadow);
+}
+
 /* Surface for the contact panels and project cards */
 .panel {
-  background: var(--card);
-  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+}
+
+/* Large frosted sheet that Experience and Projects are read on */
+.reading-sheet {
+  background: var(--sheet-fill);
+  border: 1px solid var(--glass-edge);
+  border-radius: 2rem;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Small rounded tag for highlights */
+.tag {
+  border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--primary) 6%, transparent);
 }
 }
