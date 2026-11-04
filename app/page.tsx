@@ -15,8 +15,11 @@ export default function Home() {
         <HeroSection />
       </div>
       <AboutSection />
-      <ExperienceSection />
-      <ProjectsSection />
+      {/* Experience and Projects are read on one frosted sheet that softens the network behind */}
+      <div className="reading-sheet mx-2.5 md:mx-4">
+        <ExperienceSection />
+        <ProjectsSection />
+      </div>
       <SkillsSection />
       <ContactSection />
 
