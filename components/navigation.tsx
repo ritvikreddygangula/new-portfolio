@@ -63,16 +63,23 @@ export function Navigation() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-5">
       <div className="mx-auto flex max-w-[84rem] items-center justify-between gap-4 md:grid md:grid-cols-[1fr_auto_1fr]">
-        {/* Name, top left; it gains a glass backing once the page scrolls under it */}
+        {/* Signature, top left; it writes itself in on load and gains a glass backing once the page scrolls */}
         <a
           href="#top"
-          className={`display justify-self-start rounded-2xl border px-3.5 py-2 text-[1.35rem] uppercase leading-[0.85] text-foreground transition-[background-color,border-color,box-shadow] duration-300 ${
+          aria-label="Ritvik Reddy Gangula, back to top"
+          className={`justify-self-start rounded-full border px-5 pb-1 pt-2.5 text-foreground transition-[background-color,border-color,box-shadow] duration-300 ${
             scrolled ? "glass-clear" : "border-transparent"
           }`}
         >
-          Ritvik
-          <br />
-          Gangula
+          <motion.span
+            aria-hidden="true"
+            className="block font-signature text-[2.6rem] leading-none md:text-[2.9rem]"
+            initial={{ clipPath: "inset(-20% 100% -20% 0)" }}
+            animate={{ clipPath: "inset(-20% -10% -20% 0)" }}
+            transition={reduce ? { duration: 0 } : { duration: 1.4, delay: 0.2, ease: [0.45, 0.05, 0.25, 1] }}
+          >
+            Ritvik
+          </motion.span>
         </a>
 
         {/* Desktop: one glass pill holds the links, theme toggle and Contact */}

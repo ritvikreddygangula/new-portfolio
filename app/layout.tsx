@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Antonio } from "next/font/google";
+import { Antonio, Mrs_Saint_Delafield } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
@@ -14,6 +14,14 @@ import "./globals.css";
 const antonio = Antonio({
   subsets: ["latin"],
   variable: "--font-display",
+  display: "swap",
+});
+
+// Handwritten face for the signature in the top left
+const signature = Mrs_Saint_Delafield({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-sig",
   display: "swap",
 });
 
@@ -64,7 +72,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${antonio.variable} antialiased`}
+        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${antonio.variable} ${signature.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
