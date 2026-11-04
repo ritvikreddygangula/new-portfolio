@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { Check, Copy, FileText, Mail } from "lucide-react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
+
+const ease = [0.16, 1, 0.3, 1] as const;
+const nameLines = ["Ritvik", "Reddy", "Gangula"];
 
 // What I'm learning right now; update the date whenever this list changes
 const nowUpdated = "Oct 2026";
@@ -18,6 +22,21 @@ export function HeroSection() {
   const [active, setActive] = useState(0);
   const [copied, setCopied] = useState(false);
   const channel = channels[active];
+  const reduce = useReducedMotion();
+
+  // The page's one orchestrated entrance: each line of the name rises out of its own mask,
+  // then the rest of the hero fades in. Reduced motion keeps the same props with zero duration
+  // so the server-rendered state always resolves to visible.
+  const rise = (i: number) => ({
+    initial: { y: "110%" },
+    animate: { y: "0%" },
+    transition: reduce ? { duration: 0 } : { duration: 0.9, delay: 0.1 + i * 0.09, ease },
+  });
+  const fade = (delay: number) => ({
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: reduce ? { duration: 0 } : { duration: 0.7, delay, ease },
+  });
 
   const copy = async () => {
     try {
@@ -34,82 +53,86 @@ export function HeroSection() {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
         <div>
           <h1 className="display display-hero text-foreground">
-            Ritvik
-            <br />
-            Reddy
-            <br />
-            Gangula
+            {nameLines.map((line, i) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span {...rise(i)} className="block">
+                  {line}
+                </motion.span>
+              </span>
+            ))}
           </h1>
 
-          <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/85">
-            Software engineer building backend systems that stay up when parts
-            of them fail, and the AI agents that run on top of them. Computer
-            science at Arizona State, graduating May 2027.
-          </p>
+          <motion.div {...fade(0.5)}>
+            <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/85">
+              Software engineer building backend systems that stay up when parts
+              of them fail, and the AI agents that run on top of them. Computer
+              science at Arizona State, graduating May 2027.
+            </p>
 
-          <div className="mt-8 flex flex-wrap">
-            <a
-              href="https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-solid"
-            >
-              <FileText className="h-3.5 w-3.5" />
-              View resume
-            </a>
-            <a href="#projects" className="btn btn-line -ml-px">
-              See projects
-            </a>
-          </div>
+            <div className="mt-8 flex flex-wrap">
+              <a
+                href="https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-solid"
+              >
+                <FileText className="h-3.5 w-3.5" />
+                View resume
+              </a>
+              <a href="#projects" className="btn btn-line -ml-px">
+                See projects
+              </a>
+            </div>
 
-          {/* Reach-me box, styled after a terminal install snippet */}
-          <div className="mt-10 max-w-md">
-            <p className="label text-muted-foreground mb-2">Reach me</p>
-            <div className="border border-primary/60 bg-card">
-              <div role="tablist" aria-label="Contact channel" className="grid grid-cols-3 border-b border-primary/30">
-                {channels.map((c, i) => (
-                  <button
-                    key={c.name}
-                    role="tab"
-                    aria-selected={active === i}
-                    onClick={() => {
-                      setActive(i);
-                      setCopied(false);
-                    }}
-                    className={`label py-2 transition-colors ${
-                      active === i
-                        ? "bg-primary text-primary-foreground"
-                        : "text-foreground/70 hover:text-primary"
-                    } ${i > 0 ? "border-l border-primary/30" : ""}`}
+            {/* Reach-me box, styled after a terminal install snippet */}
+            <div className="mt-10 max-w-md">
+              <p className="label text-muted-foreground mb-2">Reach me</p>
+              <div className="border border-primary/60 bg-card">
+                <div role="tablist" aria-label="Contact channel" className="grid grid-cols-3 border-b border-primary/30">
+                  {channels.map((c, i) => (
+                    <button
+                      key={c.name}
+                      role="tab"
+                      aria-selected={active === i}
+                      onClick={() => {
+                        setActive(i);
+                        setCopied(false);
+                      }}
+                      className={`label py-2 transition-colors ${
+                        active === i
+                          ? "bg-primary text-primary-foreground"
+                          : "text-foreground/70 hover:text-primary"
+                      } ${i > 0 ? "border-l border-primary/30" : ""}`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between gap-3 px-3 py-2.5">
+                  <a
+                    href={channel.href}
+                    target={channel.href.startsWith("http") ? "_blank" : undefined}
+                    rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="truncate font-mono text-[0.8125rem] text-foreground hover:text-primary"
                   >
-                    {c.name}
+                    {channel.value}
+                  </a>
+                  <button
+                    onClick={copy}
+                    className="flex shrink-0 items-center gap-1.5 label text-foreground/70 hover:text-primary"
+                    aria-live="polite"
+                  >
+                    {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copied ? "Copied" : "Copy"}
                   </button>
-                ))}
-              </div>
-              <div className="flex items-center justify-between gap-3 px-3 py-2.5">
-                <a
-                  href={channel.href}
-                  target={channel.href.startsWith("http") ? "_blank" : undefined}
-                  rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="truncate font-mono text-[0.8125rem] text-foreground hover:text-primary"
-                >
-                  {channel.value}
-                </a>
-                <button
-                  onClick={copy}
-                  className="flex shrink-0 items-center gap-1.5 label text-foreground/70 hover:text-primary"
-                  aria-live="polite"
-                >
-                  {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Copy className="h-3.5 w-3.5" />}
-                  {copied ? "Copied" : "Copy"}
-                </button>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Portrait + what I'm exploring right now */}
-        <div className="w-full max-w-[21rem] justify-self-center lg:justify-self-end space-y-5">
+        <motion.div {...fade(0.35)} className="w-full max-w-[21rem] justify-self-center lg:justify-self-end space-y-5">
           <figure className="plate bg-card p-2">
             <div className="relative aspect-[4/5]">
               <Image
@@ -144,7 +167,7 @@ export function HeroSection() {
               <Mail className="h-3.5 w-3.5 shrink-0 text-primary" />
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
