@@ -10,7 +10,7 @@ const nameLines = ["Ritvik", "Reddy", "Gangula"];
 
 // What I'm learning right now; update the date whenever this list changes
 const nowUpdated = "Oct 2026";
-const nowTopics = ["Evaluating LLM systems", "LLM as a judge", "RAG and ways to improve retrieval"];
+const nowTopics = ["Neural networks", "Evaluating LLM systems", "LLM as a judge", "RAG and ways to improve retrieval"];
 
 const channels = [
   { name: "Email", value: "ritvikreddygangula@gmail.com", href: "mailto:ritvikreddygangula@gmail.com" },
