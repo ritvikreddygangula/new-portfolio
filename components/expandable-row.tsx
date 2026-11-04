@@ -55,7 +55,7 @@ export function ExpandableRow({
         <p className="text-foreground/85 max-w-3xl">{summary}</p>
         <ul className="mt-4 flex flex-wrap gap-2">
           {highlights.map((h) => (
-            <li key={h} className="label border border-primary/50 px-2.5 py-1 text-primary">
+            <li key={h} className="tag label px-3 py-1 text-primary">
               {h}
             </li>
           ))}

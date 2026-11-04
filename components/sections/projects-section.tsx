@@ -180,7 +180,7 @@ export function ProjectsSection() {
               <DetailList items={project.achievements} />
               <p className="mt-6 label text-muted-foreground max-w-3xl">{project.technologies.join(" / ")}</p>
 
-              <div className="mt-6 flex flex-wrap">
+              <div className="mt-6 flex flex-wrap gap-3">
                 {project.github !== "#" && (
                   <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-line">
                     <Github className="h-3.5 w-3.5" />
@@ -192,7 +192,7 @@ export function ProjectsSection() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`btn btn-solid ${project.github !== "#" ? "-ml-px" : ""}`}
+                    className="btn btn-solid"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
                     Live demo

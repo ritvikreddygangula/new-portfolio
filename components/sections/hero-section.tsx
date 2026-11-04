@@ -69,7 +69,7 @@ export function HeroSection() {
               science at Arizona State, graduating May 2027.
             </p>
 
-            <div className="mt-8 flex flex-wrap">
+            <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing"
                 target="_blank"
@@ -79,7 +79,7 @@ export function HeroSection() {
                 <FileText className="h-3.5 w-3.5" />
                 View resume
               </a>
-              <a href="#projects" className="btn btn-line -ml-px">
+              <a href="#projects" className="btn btn-line">
                 See projects
               </a>
             </div>
@@ -87,8 +87,8 @@ export function HeroSection() {
             {/* Reach-me box, styled after a terminal install snippet */}
             <div className="mt-10 max-w-md">
               <p className="label text-muted-foreground mb-2">Reach me</p>
-              <div className="border border-primary/60 bg-card">
-                <div role="tablist" aria-label="Contact channel" className="grid grid-cols-3 border-b border-primary/30">
+              <div className="glass rounded-2xl overflow-hidden">
+                <div role="tablist" aria-label="Contact channel" className="m-1.5 grid grid-cols-3 gap-1 rounded-full bg-foreground/[0.05] p-1">
                   {channels.map((c, i) => (
                     <button
                       key={c.name}
@@ -98,17 +98,17 @@ export function HeroSection() {
                         setActive(i);
                         setCopied(false);
                       }}
-                      className={`label py-2 transition-colors ${
+                      className={`label rounded-full py-1.5 transition-colors ${
                         active === i
                           ? "bg-primary text-primary-foreground"
                           : "text-foreground/70 hover:text-primary"
-                      } ${i > 0 ? "border-l border-primary/30" : ""}`}
+                      }`}
                     >
                       {c.name}
                     </button>
                   ))}
                 </div>
-                <div className="flex items-center justify-between gap-3 px-3 py-2.5">
+                <div className="flex items-center justify-between gap-3 px-4 pb-3 pt-2">
                   <a
                     href={channel.href}
                     target={channel.href.startsWith("http") ? "_blank" : undefined}
@@ -133,8 +133,8 @@ export function HeroSection() {
 
         {/* Portrait + what I'm exploring right now */}
         <motion.div {...fade(0.35)} className="w-full max-w-[21rem] justify-self-center lg:justify-self-end space-y-5">
-          <figure className="plate bg-card p-2">
-            <div className="relative aspect-[4/5]">
+          <figure className="glass rounded-[1.75rem] p-2">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]">
               <Image
                 src="/headshot.webp"
                 alt="Ritvik Reddy Gangula"
@@ -146,12 +146,12 @@ export function HeroSection() {
             </div>
           </figure>
 
-          <div id="now" className="border border-primary/60 bg-card">
-            <div className="flex items-center justify-between border-b border-primary/30 px-3 py-2">
+          <div id="now" className="glass rounded-2xl overflow-hidden">
+            <div className="flex items-center justify-between border-b border-foreground/10 px-4 py-2.5">
               <p className="label text-primary">Now exploring</p>
               <p className="label text-muted-foreground">{nowUpdated}</p>
             </div>
-            <ul className="px-3 py-2">
+            <ul className="px-4 py-2">
               {nowTopics.map((topic) => (
                 <li key={topic} className="flex items-baseline gap-2.5 py-1.5 text-[0.95rem] text-foreground">
                   <span className="label text-primary" aria-hidden="true">+</span>
@@ -161,7 +161,7 @@ export function HeroSection() {
             </ul>
             <a
               href="mailto:ritvikreddygangula@gmail.com?subject=Evals%20and%20RAG"
-              className="flex items-center justify-between gap-3 border-t border-primary/30 px-3 py-2.5 text-sm text-foreground/85 hover:text-primary transition-colors"
+              className="flex items-center justify-between gap-3 border-t border-foreground/10 px-4 py-3 text-sm text-foreground/85 hover:text-primary transition-colors"
             >
               Exploring the same? Ping me, happy to chat.
               <Mail className="h-3.5 w-3.5 shrink-0 text-primary" />

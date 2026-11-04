@@ -91,12 +91,12 @@ export function ContactSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="panel rounded-sm p-8 h-full">
+            <div className="glass panel p-8 h-full">
               <h3 className="display display-title mb-6">Contact Information</h3>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Mail className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -111,7 +111,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Phone className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -126,7 +126,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Linkedin className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -143,7 +143,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 border border-primary/40 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Github className="h-5 w-5 text-accent" />
                   </div>
                   <div>
@@ -168,7 +168,7 @@ export function ContactSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="panel rounded-sm p-8">
+            <div className="glass panel p-8">
               <h3 className="display display-title mb-6">Send a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -179,7 +179,7 @@ export function ContactSection() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="mt-2"
+                    className="mt-2 h-11 rounded-xl bg-background/60 px-4"
                     placeholder="Your name"
                   />
                 </div>
@@ -192,7 +192,7 @@ export function ContactSection() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="mt-2"
+                    className="mt-2 h-11 rounded-xl bg-background/60 px-4"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -204,14 +204,14 @@ export function ContactSection() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="mt-2 min-h-[120px]"
+                    className="mt-2 min-h-[120px] rounded-xl bg-background/60 px-4 py-3"
                     placeholder="Tell me about your project or just say hello!"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full rounded-sm bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-xs uppercase tracking-[0.08em]"
+                  className="w-full h-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-xs uppercase tracking-[0.08em]"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
