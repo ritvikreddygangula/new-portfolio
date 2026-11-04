@@ -5,6 +5,7 @@ const facts = [
   { term: "Degree", detail: "B.S. Computer Science, May 2027" },
   { term: "GPA", detail: "4.0, Dean's List six times" },
   { term: "Certified", detail: "AWS Cloud Practitioner", badge: true },
+  { term: "Karate", detail: "Black belt" },
 ];
 
 export function AboutSection() {
@@ -18,6 +19,11 @@ export function AboutSection() {
             I&apos;m a software engineer who likes the layer underneath the
             product: queues, retries, and the data paths that decide whether
             a system holds up.
+          </p>
+
+          <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">
+            Away from the keyboard, I&apos;m a black belt in karate. It taught me how much feedback and
+            consistency matter, and I bring both to how I build software.
           </p>
 
           <dl className="mt-10 max-w-2xl border-b border-dotted border-foreground/45">
