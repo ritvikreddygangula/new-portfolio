@@ -1,0 +1,278 @@
+// All visible content lives here. Roles, projects, metrics and links are copied
+// verbatim from the previous site; nothing in this file is invented.
+
+export const site = {
+  name: "Ritvik Reddy Gangula",
+  shortName: "Ritvik",
+  role: "Software engineer",
+  url: "https://ritvikreddy.dev",
+  description:
+    "Software engineer and computer science student at Arizona State University, building backend systems that survive failure and the AI agents that run on them.",
+  email: "ritvikreddygangula@gmail.com",
+  phone: { label: "+1 (623) 499-0719", href: "tel:+16234990719" },
+  resume: "https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing",
+  github: { label: "github.com/ritvikreddygangula", href: "https://github.com/ritvikreddygangula" },
+  linkedin: { label: "linkedin.com/in/gritvik", href: "https://linkedin.com/in/gritvik" },
+  formEndpoint: "https://formspree.io/f/mvgrqndk",
+};
+
+export const nav = [
+  { name: "About", id: "about" },
+  { name: "Experience", id: "experience" },
+  { name: "Projects", id: "projects" },
+  { name: "Skills", id: "skills" },
+  { name: "Contact", id: "contact" },
+];
+
+export const hero = {
+  // The sentence is split so the hero can underline the clause the graph is showing.
+  lede: {
+    before: "Software engineer building ",
+    infra: "backend systems that stay up when parts of them fail",
+    between: ", and ",
+    agents: "the AI agents that run on top of them",
+    after: ". Computer science at Arizona State, graduating May 2027.",
+  },
+};
+
+export const about = {
+  statement:
+    "I'm a software engineer who likes the layer underneath the product: queues, retries, and the data paths that decide whether a system holds up.",
+  facts: [
+    { term: "School", detail: "Arizona State University" },
+    { term: "Degree", detail: "B.S. Computer Science, May 2027" },
+    { term: "GPA", detail: "4.0, Dean's List six times" },
+    { term: "Certified", detail: "AWS Cloud Practitioner", badge: true },
+  ],
+  // What I'm learning right now; update the date whenever this list changes.
+  now: {
+    updated: "Oct 2026",
+    topics: ["Evaluating LLM systems", "LLM as a judge", "RAG and ways to improve retrieval"],
+    cta: {
+      label: "Exploring the same? Ping me, happy to chat.",
+      href: "mailto:ritvikreddygangula@gmail.com?subject=Evals%20and%20RAG",
+    },
+  },
+};
+
+export type Experience = {
+  title: string;
+  company: string;
+  url?: string;
+  location: string;
+  period: string;
+  summary: string;
+  highlights: string[];
+  // Wrap a result in **double asterisks** to set it in the strong ink.
+  achievements: string[];
+  stack: string[];
+};
+
+export const experiences: Experience[] = [
+  {
+    title: "Software Engineering Intern",
+    company: "GCM Grosvenor",
+    url: "https://gcmgrosvenor.com/",
+    location: "Chicago, IL",
+    period: "Jun – Aug 2026",
+    summary:
+      "A $96B AUM investment firm. I built a RAG service on Azure OpenAI and backend services for client-facing platforms.",
+    highlights: ["560+ team hours saved per quarter", "730+ clients served", "1.5s median retrieval"],
+    achievements: [
+      "Engineered a RAG service in C#/.NET on Azure OpenAI (GPT-4o) that drafts client reports grounded in research documents via hybrid retrieval (Azure AI Search, **1.5s** median retrieval latency), covering **500+ portfolios** and saving **560+ team hours per quarter**",
+      "Built production backend services for an in-house document portal replacing a third-party platform, using ASP.NET Core Web API, EF Core, and SQL Server, with client-scoped RBAC and SAS-based downloads from Azure Blob Storage, serving **730+ clients** and **500K+ migrated documents**, tested with xUnit and Cypress E2E",
+      "Implemented distributed tracing, log correlation, and production dashboards across 6+ .NET web apps and Azure Functions with Datadog APM and Sumo Logic (Serilog trace IDs), cutting diagnosis of a production Azure Function timeout from hours to **under 30 minutes**",
+    ],
+    stack: ["C#/.NET", "ASP.NET Core", "EF Core", "SQL Server", "Azure OpenAI", "Azure AI Search", "Azure Functions", "Datadog", "xUnit", "Cypress"],
+  },
+  {
+    title: "Jr. Data Analyst",
+    company: "Food Forest AI",
+    url: "https://www.foodforest.ai/",
+    location: "Philadelphia, PA",
+    period: "June – May 2025",
+    summary:
+      "Automated data enrichment and quality validation pipelines using Python and GPT, improving dataset reliability across analytics workflows.",
+    highlights: ["25+ hours saved per week", "~40% more accurate data"],
+    achievements: [
+      "Improved dataset accuracy by **~40%** through automated validation and consistency checks",
+      "Reduced manual data processing by **35%+** by streamlining Google Sheets–based workflows",
+      "Implemented anomaly detection to identify data inconsistencies across production datasets",
+      "Strengthened downstream ML and analytics reliability with preventative data checks",
+    ],
+    stack: ["Python", "OpenAI API", "Google Sheets API", "Data analysis"],
+  },
+  {
+    title: "Software Engineering Intern",
+    company: "Greater Hyderabad Municipal Corporation",
+    location: "Hyderabad, India",
+    period: "May – Aug 2024",
+    summary:
+      "Backend APIs and a fast React frontend for a civic permit portal used by 15,000+ citizens and officers.",
+    highlights: ["75% faster reads", "3.4s → 0.8s render", "65% fewer search calls"],
+    achievements: [
+      "Built cursor-based pagination on DynamoDB (LastEvaluatedKey) and a React frontend with debounced search and react-window virtualization, cutting search API calls by **65%** and initial render of 5K+ record permit histories from **3.4s to 0.8s**",
+      "Replaced full-table scans on a 50K+ record permit table with key-based queries by redesigning the DynamoDB partition and sort keys and adding a status GSI, cutting average read latency **75%** (400ms to 100ms, CloudWatch)",
+      "Built **15+ REST APIs** in Node.js/Express (TypeScript) with Joi request validation and Okta-based authentication and RBAC, enforcing 6 permission tiers through authorization middleware and role-based guards",
+    ],
+    stack: ["Node.js", "Express", "TypeScript", "React", "DynamoDB", "AWS", "Okta", "Joi"],
+  },
+];
+
+export type GlyphName = "pipeline" | "raft" | "fanout" | "hub" | "tree" | "branch" | "series";
+
+export type Project = {
+  title: string;
+  date: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  achievements: string[];
+  github?: string;
+  demo?: string;
+  // Small topology drawing of the project's real architecture.
+  glyph: GlyphName;
+  glyphAlt: string;
+};
+
+export const projects: Project[] = [
+  {
+    title: "DeltaLedger MCP",
+    date: "August 2026",
+    description:
+      "A three-agent LangGraph pipeline that turns SEC EDGAR filings into classified, cited findings, served as an MCP server and REST API on AWS.",
+    highlights: ["3-agent LangGraph pipeline", "90% eval gate in CI", "MCP server on AWS"],
+    technologies: ["Python", "LangGraph", "MCP", "AWS Lambda", "API Gateway", "SQS", "Step Functions", "Terraform"],
+    achievements: [
+      "Aligner, Classifier, and Verifier agents; the Verifier retries retrieval once and drops unsupported findings",
+      "Gated in CI by a 30-pair hand-labeled eval set at a 90% accuracy threshold",
+      "Deployed as an MCP server and REST API with SQS-queued async requests, response caching, and Step Functions orchestration",
+      "All infrastructure provisioned with Terraform",
+    ],
+    github: "https://github.com/ritvikreddygangula/DeltaLedger-MCP",
+    demo: "https://d30z0su1b3sesp.cloudfront.net/",
+    glyph: "pipeline",
+    glyphAlt: "Three agents in a row, the last one looping back to retry retrieval",
+  },
+  {
+    title: "Forge",
+    date: "January 2026",
+    description:
+      "A distributed job orchestrator in Go with Raft-replicated coordinators, gRPC workers, and a Kafka-backed event log.",
+    highlights: ["16.7 jobs/s", "145 ms leader failover", "0 acknowledged jobs lost"],
+    technologies: ["Go", "gRPC", "Kafka", "Raft", "k3s", "Prometheus", "Grafana"],
+    achievements: [
+      "3 Raft-replicated coordinators and 25 gRPC workers sustaining 16.7 jobs/s across 1,000 real job submissions",
+      "Recovered every acknowledged job across 5 process-kill trials, with a 145 ms median leader failover",
+      "Followers forward writes to the leader; job state is durably replicated via Kafka",
+      "Prometheus/Grafana dashboards plus automated crash and partition fault-injection tests",
+    ],
+    github: "https://github.com/ritvikreddygangula/Forge",
+    glyph: "raft",
+    glyphAlt: "Three coordinators in a triangle above a row of workers",
+  },
+  {
+    title: "Deep Research Multi-Agent System",
+    date: "June 2025",
+    description:
+      "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",
+    highlights: ["Parallel LangGraph agents", "Live agent graph UI", "Pinecone memory"],
+    technologies: ["Gradio", "CrewAI", "LangGraph", "Python", "AI Agents"],
+    achievements: [
+      "Orchestrates planner, researcher, aggregator, critic, and synthesizer agents using LangGraph with parallel execution",
+      "Streams real-time node-level updates to a React UI with live agent graph visualization",
+      "Uses Pinecone vector memory to retrieve past context and improve future research quality",
+    ],
+    github: "https://github.com/ritvikreddygangula/multi-agent-research-",
+    demo: "https://multi-agent-research-v773.onrender.com/",
+    glyph: "fanout",
+    glyphAlt: "A planner fanning out to parallel researchers, then an aggregator, critic and synthesizer",
+  },
+  {
+    title: "Chatify",
+    date: "December 2024",
+    description:
+      "Real-time chat application with rooms, presence indicators, and multi-device conversation sync.",
+    highlights: ["Real-time rooms", "JWT + Redis rate limits", "Dockerized"],
+    technologies: ["Node.js", "Express", "Socket.IO", "React", "MongoDB", "Docker", "JWT", "Redis"],
+    achievements: [
+      "Real-time rooms & presence indicators",
+      "MongoDB persistence & multi-device sync",
+      "JWT auth & Redis-backed rate limiting",
+      "Dockerized full-stack deployment",
+    ],
+    github: "https://github.com/ritvikreddygangula/chatify",
+    demo: "https://chatify-0eq1n.sevalla.app/login",
+    glyph: "hub",
+    glyphAlt: "A server in the middle with six connected clients around it",
+  },
+  {
+    title: "Meeting Intelligence Platform",
+    date: "March 2026",
+    description:
+      "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
+    highlights: ["BERT semantic chunking", "Action item extraction", "FastAPI + Next.js"],
+    technologies: ["FastAPI", "Next.js", "Python", "SQLAlchemy", "BERT", "Hugging Face", "JWT", "TypeScript"],
+    achievements: [
+      "BERT-based semantic chunking with overlap for context preservation",
+      "Hierarchical extractive summarization (chunk → overall)",
+      "Pattern-based action item extraction with assignee & deadline detection",
+      "Secure JWT auth with bcrypt and per-user data isolation",
+    ],
+    github: "https://github.com/ritvikreddygangula/meeting-intelligence",
+    glyph: "tree",
+    glyphAlt: "Four transcript chunks merging upward into one overall summary",
+  },
+  {
+    title: "AI Career Assistant",
+    date: "May 2025",
+    description: "AI-powered career assistant providing personalized guidance and recommendations.",
+    highlights: ["LangChain", "Hugging Face models", "Deployed on Vercel"],
+    technologies: ["LangChain", "Hugging Face", "Vercel", "React", "AI/ML"],
+    achievements: ["Personalized recommendations", "Natural language processing", "Cloud deployment"],
+    github: "https://github.com/ritvikreddygangula/ai-career-assistant",
+    glyph: "branch",
+    glyphAlt: "One question passing through a model and branching into three recommendations",
+  },
+  {
+    title: "Stock Price Forecasting",
+    date: "December 2024",
+    description: "LSTM-based machine learning model for accurate stock price forecasting.",
+    highlights: ["LSTM model", "TensorFlow / Keras", "Time series"],
+    technologies: ["TensorFlow", "Keras", "LSTM", "Pandas", "Matplotlib", "Python"],
+    achievements: ["High prediction accuracy", "Time series analysis", "Data visualization"],
+    github: "https://github.com/ritvikreddygangula/stock-forecasting",
+    glyph: "series",
+    glyphAlt: "A rising time series with a dashed forecast segment at the end",
+  },
+];
+
+export const skillCategories = [
+  { title: "Languages", skills: ["Go", "Python", "Java", "C#", "TypeScript", "JavaScript", "SQL"] },
+  {
+    title: "Backend & frameworks",
+    skills: [".NET / ASP.NET Core", "EF Core", "Node.js / Express", "React", "Angular", "REST APIs", "gRPC", "JWT / Okta"],
+  },
+  {
+    title: "Cloud & DevOps",
+    skills: ["AWS Lambda, SQS, Step Functions", "Azure OpenAI, AI Search, Functions", "Terraform", "Docker", "Kubernetes (k3s)", "GitHub Actions"],
+  },
+  {
+    title: "Distributed systems & data",
+    skills: ["Kafka", "Raft (hashicorp/raft)", "SQL Server", "DynamoDB", "MongoDB", "Redis"],
+  },
+  {
+    title: "Agentic AI & ML",
+    skills: ["LangGraph", "MCP", "RAG", "LangChain", "CrewAI", "TensorFlow", "Hugging Face"],
+  },
+  {
+    title: "Observability & testing",
+    skills: ["Datadog APM", "Prometheus", "Grafana", "Sumo Logic", "xUnit", "Cypress"],
+  },
+];
+
+export const contact = {
+  heading: "Get in touch",
+  intro:
+    "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.",
+};
