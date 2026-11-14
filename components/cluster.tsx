@@ -104,7 +104,7 @@ export function Cluster() {
             </div>
           </dl>
           <div className="hud__actions">
-            <button type="button" className="chip" onClick={() => sim.current?.strike()}>
+            <button type="button" className="chip chip--strike" onClick={() => sim.current?.strike()}>
               <span className="chip__dot" aria-hidden="true" />
               {agents ? "Take down an agent" : "Take down the leader"}
             </button>

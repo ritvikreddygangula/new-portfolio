@@ -7,9 +7,12 @@ export function SkillsSection() {
       <SectionHead id="skills" title="Skills" meta={`${skillCategories.length} layers of the stack`} />
 
       <dl className="skills">
-        {skillCategories.map((category) => (
+        {skillCategories.map((category, index) => (
           <div key={category.title} className="skills__row" data-reveal="">
-            <dt>{category.title}</dt>
+            <dt>
+              <span className="skills__layer">L{index + 1}</span>
+              {category.title}
+            </dt>
             <dd>
               <ul>
                 {category.skills.map((skill) => (

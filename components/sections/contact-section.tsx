@@ -12,7 +12,7 @@ const channels = [
 
 export function ContactSection() {
   return (
-    <section id="contact" className="section section--airy contact" aria-labelledby="contact-title" tabIndex={-1}>
+    <section id="contact" className="section contact" aria-labelledby="contact-title" tabIndex={-1}>
       <SectionHead id="contact" title={contact.heading} />
 
       <p className="contact__intro" data-reveal="">
