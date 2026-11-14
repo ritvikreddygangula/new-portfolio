@@ -1,37 +1,43 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "404, node not found",
-  description: "This address is not part of the cluster. Head back to the portfolio of Ritvik Reddy Gangula.",
+  title: "404, not in the sources",
+  description: "Nothing on this site matches that address. Head back to the portfolio of Ritvik Reddy Gangula.",
 };
 
 export default function NotFound() {
   return (
     <section className="lost" aria-labelledby="lost-title">
-      <div className="lost__copy">
+      <div className="lost__in">
         <p className="lost__code">404</p>
         <h1 id="lost-title" className="lost__title">
-          This node is down.
+          Not in the <em>sources.</em>
         </h1>
+        <ol className="lost__hits" aria-label="What was retrieved for this address">
+          <li>
+            <span>0.00</span>
+            <span>No page</span>
+            <span>dropped</span>
+          </li>
+          <li>
+            <span>0.00</span>
+            <span>No section</span>
+            <span>dropped</span>
+          </li>
+          <li>
+            <span>0.00</span>
+            <span>No file</span>
+            <span>dropped</span>
+          </li>
+        </ol>
         <p className="lost__text">
-          Nothing answers at this address, and no retry will change that. The rest of the cluster is healthy.
+          <span className="stamp">Refused</span>
+          Nothing on this site matches that address, and I would rather say so than guess.
         </p>
         <a className="btn btn--solid" href="/">
-          <span>Route me home</span>
+          <span>Back to the first page</span>
         </a>
       </div>
-      <svg className="lost__glyph" viewBox="0 0 240 150" aria-hidden="true">
-        <line x1="120" y1="24" x2="56" y2="118" className="glyph__edge" />
-        <line x1="56" y1="118" x2="184" y2="118" className="glyph__edge" />
-        <line x1="120" y1="24" x2="184" y2="118" className="glyph__edge" strokeDasharray="3 5" />
-        <circle cx="120" cy="24" r="9" className="glyph__node glyph__node--hot" />
-        <circle cx="56" cy="118" r="9" className="glyph__node glyph__node--big" />
-        <circle cx="184" cy="118" r="11" className="lost__dead" />
-        <path d="M179 113l10 10M189 113l-10 10" className="lost__cross" />
-        {/* Requests still leave the leader for the dead node, and never arrive. */}
-        <circle r="3.5" className="lost__packet" />
-        <circle r="3.5" className="lost__packet lost__packet--live" />
-      </svg>
     </section>
   );
 }

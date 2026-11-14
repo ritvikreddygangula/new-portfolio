@@ -1,6 +1,7 @@
 import { Entry } from "@/components/entry";
 import { Glyph } from "@/components/glyph";
 import { SectionHead } from "@/components/section-head";
+import { Sim } from "@/components/sim";
 import { projects } from "@/data/site";
 
 export function ProjectsSection() {
@@ -16,7 +17,7 @@ export function ProjectsSection() {
             title={project.title}
             summary={project.description}
             marks={project.highlights}
-            defaultOpen={index === 0}
+            defaultOpen={!!project.sim}
             feature={project.feature}
             aside={
               <>
@@ -24,11 +25,6 @@ export function ProjectsSection() {
                 <p className="entry__when">
                   <span>{project.date}</span>
                 </p>
-                {project.note && (
-                  <a className="entry__note" href="/#top">
-                    {project.note}
-                  </a>
-                )}
               </>
             }
             links={
@@ -54,6 +50,7 @@ export function ProjectsSection() {
               ))}
             </ul>
             <p className="stack">{project.technologies.join(" / ")}</p>
+            {project.sim && <Sim />}
           </Entry>
         ))}
       </ol>

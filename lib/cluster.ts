@@ -667,7 +667,7 @@ export function createCluster(
     dpr = Math.min(window.devicePixelRatio || 1, small ? 1.75 : 2);
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
-    const inset = small ? { t: 16, r: 20, b: 16, l: 20 } : { t: 104, r: 56, b: 150, l: 48 };
+    const inset = small ? { t: 16, r: 20, b: 16, l: 20 } : { t: 34, r: 48, b: 34, l: 48 };
     rect = { x: inset.l, y: inset.t, w: W - inset.l - inset.r, h: Math.max(120, H - inset.t - inset.b) };
     layout();
     place(1);

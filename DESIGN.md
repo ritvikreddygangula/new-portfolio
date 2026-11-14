@@ -1,96 +1,77 @@
-# Design notes
+# Design
 
-Written before the build and kept so later changes stay consistent.
+Second direction, after the owner's review of the first (cluster-graph hero, blue on black, sans only).
 
 ## Brief
 
-- **Subject:** Ritvik Reddy Gangula, software engineer, CS at Arizona State (May 2027).
-- **Audience:** recruiters and engineers.
-- **Job of the site:** get hired. A recruiter should find role, results and resume in seconds; an engineer should find something worth poking.
-- **Constraints:** Next.js 15, Tailwind v4, TypeScript, Vercel. Every role, project, metric and link is copied verbatim from the previous site into `data/site.ts`. Nothing is invented. Dark by default with a light mode. One signature moment, everything else quiet.
-- **Stack:** the existing Next.js app, plus GSAP and Lenis. Canvas 2D for the hero (no WebGL: 30 nodes do not need a GPU, and it keeps the page light).
-
-## Concepts considered
-
-| | Idea | Anchor | Originality / Fit / Feasible / Portable (lower is better) |
-|---|---|---|---|
-| A. Material | The hero is a running model of his own systems. You can take nodes down and it recovers. | Forge: 3 Raft coordinators, 25 workers, leader failover, no acknowledged job lost. DeltaLedger: aligner, classifier, verifier. His own line: "systems that stay up when parts of them fail". | 4 / 5 / 4 / 1 |
-| B. Process | The page is one request: each section is a hop, and a latency budget ticks down as you scroll. | His work on retrieval latency and tracing. | 3 / 4 / 4 / 3 |
-| C. Formal | Everything is a log line: the whole site is one monospace stream you scroll through. | Observability work. | 2 / 3 / 5 / 4 |
-
-**Picked A.** It only works for someone who built these two systems, and it turns his headline claim into something a visitor can test with one click. Borrowed from B for the page rail: a packet that travels the page with a stop per section.
+- **Subject:** Ritvik Reddy Gangula, software engineer, CS at Arizona State (May 2027), karate black belt.
+- **Audience:** recruiters and engineers. **Job:** get interviews.
+- **Constraints:** every role, project, metric and link is copied as written. Light and dark. Vercel.
+- **Owner's review, applied:** colour portrait; no text running the width of the screen; a warm, authored
+  palette and type (the warmth of claude.ai was the reference, not its brand); karate as its own moment;
+  About in one screen; keep the signature emblem; "Now exploring" in the hero; replace the hero graph with
+  something that shows AI work (RAG, LLM as judge); a centered glass island for navigation; company logos
+  and sites beside the employer names; the cluster simulation moves into Forge's detail view.
 
 ## Concept card
 
 ```
-Idea:        The site runs a small copy of the systems he built. Break it and watch it recover.
-Metaphor:    A cluster and the agents on top of it: nodes, edges, packets, failures, elections.
-Signature:   Hero canvas. A Raft cluster (Forge) passes jobs; take any node down and jobs are
-             re-queued, a leader is elected, writes are held without quorum. Scrolling through
-             the hero moves the same 30 nodes into DeltaLedger's three-agent pipeline.
-Emotion:     "Wait, this is live." Precise, calm, confident.
-Motion verb: Route. Things travel along a path and land on a node.
-Screenshot:  The cluster mid-failover: one coordinator dashed red, a new leader pulsing, the name beside it.
+Idea:        The page answers questions about its owner, shows its sources, and refuses when it has none.
+Metaphor:    Practice with feedback. One technique, repeated, judged every time.
+Signature:   Ask this page: a question is typed, passages are retrieved and scored, a judge keeps or
+             drops each one, the stamp lands, the answer is quoted with citations.
+Emotion:     Calm, exact, a little dry. A person who checks their work.
+Motion verb: Strike and hold. Quick out, then completely still.
+Screenshot:  The serif name beside the panel with a green GROUNDED stamp and three cited passages.
 ```
 
-The simulation is a model, and says so ("Modeled on Forge"). It shows no measured numbers. Elections take about half a second on screen so they can be seen.
+**Anchor.** Three facts only this person has: he is exploring exactly these three topics now (RAG, LLM as a
+judge, evaluating LLM systems), which are the three parts of the panel; he says karate taught him "focus,
+and how important feedback is", which is what a judge is; and the quote he gave about one kick practiced
+10,000 times, which is the panel's rep counter.
 
-### The driver
-
-`lib/driver.ts` holds one number, `p` (0 = infrastructure, 1 = agents), written by scroll through the hero. It drives the node layout and behavior, the readout, and which clause of the hero sentence is underlined ("backend systems that stay up..." then "the AI agents that run on top of them").
-
-Idle: packets keep flowing and a worker is taken down by fault injection every 9 to 15 seconds when nobody has touched anything. The simulation pauses off screen and has a Pause button. Under reduced motion it is one still frame that still answers clicks.
+**Honesty.** Retrieval is real: BM25 over passages built from `data/site.ts`, in the browser. The judge is a
+rule (a score floor and a ratio to the best passage), and the panel says so. Answers are verbatim passages.
+The six sample questions carry an expected source and run as an eval on every load. No model is called and
+no number is invented.
 
 ## System
 
-**Palette** (dark is default, `.light` on `<html>` switches)
-
 | Role | Dark | Light |
 |---|---|---|
-| ground | `#0a0b0d` | `#f1f2ee` |
-| ink | `#ecede8` | `#0c0e11` |
-| muted | `#969b98` | `#565b60` |
-| accent (healthy, leader, active) | `#6b93ff` | `#1c40d8` |
-| fault (a node that is down) | `#ff6b4a` | `#c2311a` |
-| line | ink at 15% | ink at 15% |
+| ground | `#1c1a17` | `#f3efe4` |
+| surface | `#25221e` | `#ebe5d6` |
+| ink | `#f0ebdf` | `#1f1c17` |
+| muted | `#a8a092` | `#5f594d` |
+| accent (clay) | `#e27a54` | `#a63c1a` |
+| moss (passes, healthy) | `#a3b684` | `#45662f` |
+| fault | `#ef6247` | `#b3261e` |
 
-Color is semantic, not decorative: blue means live or leading, red-orange only ever means down. No gradients.
+The clay is the red of the polo logo in the portrait pushed toward earth; the moss is the garden behind him.
+The theme follows the system until the visitor picks one.
 
-**Type**
+- **Type:** Boska (Fontshare) for the name, section titles, employer and project names, the statement, the
+  question and the answer; italic for the surname and the question. Supreme for reading text. Martian Mono
+  only for data. Mrs Saint Delafield only for the signature.
+- **Grid:** one centered column, 72rem. Reading text never exceeds about 46rem.
+- **Shape:** 18px on surfaces (panel, portrait, simulation), full pills for anything you press, glass only
+  on the island.
+- **Motion:** one ease out family; the stamp alone overshoots. GSAP ticker is the only clock; Lenis scroll.
+- **Idle:** the panel practices the sample questions until someone takes over. It pauses off screen.
+- **Reduced motion:** the first question is shown answered; typing still searches instantly; no smooth scroll.
 
-- Supreme 400/500 (Fontshare, self-hosted): display and text. Display tracking -0.05em, leading 0.9.
-- Martian Mono 400: data only (dates, stacks, readout, graph labels).
-- Mrs Saint Delafield: the signature, in the header and the footer, nowhere else.
+## Karate
 
-**Grid:** 12 columns, gutter `clamp(1.125rem, 3.2vw, 3.25rem)`. Two hanging lines: column 1 and column 4. Section titles and labels sit on 1, content on 4.
+- A card in About, in his words, with the quote, under a stitched black belt.
+- The reading bar at the top of the page is a belt: white at the start, black at the end.
+- "Rep 0001 of 10,000" counts every retrieval the panel runs.
 
-**Shape:** rectangles have square corners. Circles are reserved for nodes, so anything round on the page is a node.
+## Navigation
 
-**Motion:** one easing family (`expo.out` and a softer cubic-bezier for hovers). Lenis on GSAP's ticker, ScrollTrigger reads Lenis, the simulation runs on the same ticker. The hero intro is CSS so the first paint never waits for JavaScript.
+A centered glass island (blur, saturation, top highlight). A lens of thicker glass sits under the current
+section and slides to whatever is pointed at. On phones the island moves to the bottom, where the thumb is.
+The signature emblem belongs to the first screen and leaves with it.
 
-**Interaction, one treatment per role**
+## Not changed
 
-- Buttons and contact rows: flood with ink from the left, like a signal filling a wire.
-- Nav links and entry titles: a node appears and the label moves over for it.
-- Text links: the underline thickens; external arrows travel.
-- Project rows: a packet runs the project's own topology.
-- Theme switch: the new theme spreads from the toggle (View Transitions).
-
-**Sections (each a different layout)**
-
-```
-Hero        sticky stage: name + sentence left, live graph right, readout strip under the graph
-About       large statement, then portrait | facts table | now exploring
-Experience  rows: when | company, role, summary, three results, folding detail
-Projects    rows: topology drawing + date | title, summary, results, links, folding detail
-Skills      six layers: name | inline list with hairline separators
-Contact     big link rows | form
-Footer      the signature at full width, status line, links
-404         "This node is down."
-```
-
-## Decisions worth knowing
-
-- **Single page.** There are no case-study pages because writing them would mean inventing content. Detail folds open in place and the code and demo links stay outside the fold.
-- **Dashes.** "Jun – Aug 2026" and similar keep their dashes because the content is copied as written.
-- **Genericness check.** Changed from the obvious answer: no particle network background (the graph is a specific system with real rules), no glowing gradient, no card grid, no mono-for-everything, no green-on-black terminal look.
+Project topology drawings, the fold rows, the contact form, the footer signature.

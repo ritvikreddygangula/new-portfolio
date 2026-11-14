@@ -3,7 +3,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { driver } from "./driver";
 
 const EASE = "expo.out";
 
@@ -41,8 +40,6 @@ export function initMotion() {
   };
   document.addEventListener("click", onClick);
 
-  const onMenu = (e: Event) => ((e as CustomEvent<boolean>).detail ? lenis?.stop() : lenis?.start());
-  window.addEventListener("menu", onMenu);
   let refreshTimer = 0;
   const onLayout = () => {
     window.clearTimeout(refreshTimer);
@@ -52,22 +49,8 @@ export function initMotion() {
   document.fonts?.ready.then(onLayout);
 
   const ctx = gsap.context(() => {
-    const hero = document.querySelector<HTMLElement>("[data-hero]");
-    const rail = document.querySelector<HTMLElement>("[data-rail]");
+    const belt = document.querySelector<HTMLElement>("[data-belt]");
     const sections = gsap.utils.toArray<HTMLElement>("main section[id]");
-
-    // The driver: scroll through the hero turns the cluster into the agent pipeline.
-    if (hero && !reduced) {
-      ScrollTrigger.create({
-        trigger: hero,
-        start: "top top",
-        end: "bottom bottom",
-        onUpdate: (self) => {
-          driver.p = self.progress;
-          hero.style.setProperty("--p", self.progress.toFixed(3));
-        },
-      });
-    }
 
     // Frame: the header steps aside on the way down and returns on the way up.
     ScrollTrigger.create({
@@ -76,30 +59,18 @@ export function initMotion() {
       onUpdate: (self) => {
         const y = self.scroll();
         html.classList.toggle("is-scrolled", y > 24);
-        html.classList.toggle("frame-away", y > 220 && self.direction === 1);
-        rail?.style.setProperty("--sp", self.progress.toFixed(4));
+        if (belt) {
+          // The belt climbs the ranks with the page: white, yellow, orange, green, blue, brown, black.
+          belt.style.setProperty("--sp", self.progress.toFixed(4));
+          belt.dataset.rank = String(Math.min(6, Math.floor(self.progress * 6.4)));
+        }
       },
     });
-
-    // The rail: a packet travels the page; each section is a stop at its true position.
-    const stops = gsap.utils.toArray<HTMLElement>("[data-stop]");
-    const placeStops = () => {
-      const max = ScrollTrigger.maxScroll(window) || 1;
-      stops.forEach((stop) => {
-        const section = document.getElementById(stop.dataset.stop || "");
-        if (!section) return;
-        const top = section.getBoundingClientRect().top + window.scrollY;
-        stop.style.top = `${Math.min(100, (top / max) * 100).toFixed(2)}%`;
-      });
-    };
-    placeStops();
-    ScrollTrigger.addEventListener("refresh", placeStops);
 
     sections.forEach((section) => {
       const id = section.id;
       const set = (on: boolean) => {
         document.querySelectorAll(`[data-nav="${id}"]`).forEach((a) => (on ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
-        document.querySelector(`[data-stop="${id}"]`)?.classList.toggle("is-on", on);
       };
       ScrollTrigger.create({ trigger: section, start: "top 50%", end: "bottom 50%", onToggle: (self) => set(self.isActive) });
     });
@@ -138,7 +109,6 @@ export function initMotion() {
   return () => {
     ctx.revert();
     document.removeEventListener("click", onClick);
-    window.removeEventListener("menu", onMenu);
     window.removeEventListener("layout", onLayout);
     gsap.ticker.remove(raf);
     lenis?.destroy();

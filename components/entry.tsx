@@ -10,6 +10,8 @@ export function Entry({
   id,
   title,
   role,
+  logo,
+  site,
   aside,
   summary,
   marks,
@@ -21,6 +23,9 @@ export function Entry({
   id: string;
   title: string;
   role?: string;
+  // Company mark and website, shown beside the name.
+  logo?: string;
+  site?: { href: string; label: string };
   aside: ReactNode;
   summary: string;
   marks: string[];
@@ -44,14 +49,28 @@ export function Entry({
       <div className="entry__main">
         <h3 className="entry__title">
           <button type="button" className="entry__toggle" aria-expanded={open} aria-controls={panel} onClick={toggle}>
-            <span className="entry__name">{title}</span>
+            <span className="entry__name">
+              {logo && <img className="entry__logo" src={logo} alt="" width={36} height={36} loading="lazy" decoding="async" />}
+              <span>{title}</span>
+            </span>
             <span className="entry__more">
               <span className="entry__word">{open ? "Close" : "Details"}</span>
               <span className="entry__plus" aria-hidden="true" />
             </span>
           </button>
         </h3>
-        {role && <p className="entry__role">{role}</p>}
+        {(role || site) && (
+          <p className="entry__role">
+            {role}
+            {site && (
+              <a className="link link--ext entry__site" href={site.href} target="_blank" rel="noopener noreferrer">
+                {site.label}
+                <span className="sr-only">, website of {title}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </p>
+        )}
         <p className="entry__sum">{summary}</p>
         <ul className="marks">
           {marks.map((mark) => (

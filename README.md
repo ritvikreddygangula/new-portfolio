@@ -2,9 +2,9 @@
 
 Personal site built with Next.js 15, Tailwind CSS v4 and TypeScript. Deployed on Vercel.
 
-The hero runs a small simulation of two of the projects: a Raft cluster (Forge) that turns into a
-three-agent pipeline (DeltaLedger MCP) as you scroll. Any node can be taken down. See `DESIGN.md`
-for the idea and the design system.
+The hero answers questions about the site's own content: real BM25 retrieval in the browser, a rule
+that keeps or drops each passage, and a quoted answer with citations. The Forge project's detail view
+holds a playable model of its Raft cluster. See `DESIGN.md` for the idea and the design system.
 
 ## Run locally
 
@@ -19,22 +19,24 @@ pnpm build    # production build
 ```
 app/
   layout.tsx          fonts, metadata, theme flag script, header, analytics
-  page.tsx            page structure: hero, sections, footer, scroll rail
+  page.tsx            page structure: hero, sections, footer, belt progress bar
   not-found.tsx       404
   globals.css         color tokens (dark + light) and every style
   sitemap.ts, robots.ts, icon.svg
 data/site.ts          ALL content: roles, projects, skills, links
 lib/
-  cluster.ts          the hero simulation (canvas)
-  driver.ts           the one scroll value the hero reads
-  motion.ts           smooth scroll, reveals, header and rail behavior
+  ask.ts              the hero's retrieval, judge rule and eval over data/site.ts
+  cluster.ts          the Forge simulation (canvas)
+  motion.ts           smooth scroll, reveals, scroll spy and the belt
 components/
-  cluster.tsx         canvas + readout for the simulation
-  header.tsx          signature, nav, theme toggle, mobile menu
+  ask.tsx             the hero panel: question, passages, verdict, answer
+  sim.tsx             canvas + readout for the Forge simulation
+  header.tsx          signature, glass island nav, theme toggle
+  belt.tsx            reading progress, white belt to black
   entry.tsx           the folding row used by Experience and Projects
   glyph.tsx           the small topology drawing for each project
   sections/           one file per page section
-public/               headshot, certification badge, og.png
+public/               headshot, company logos, certification badge, og.png
 design/               standalone design explorations (not part of the site)
 ```
 
@@ -43,5 +45,7 @@ design/               standalone design explorations (not part of the site)
 Everything visible is in `data/site.ts`:
 
 - **Now exploring**: `about.now` (update the date when the list changes)
+- **Hero questions**: `hero.questions`; each has the source expected to rank first, so they double as a test
+- **Karate card**: `about.karate`
 - **Experience / Projects / Skills**: `experiences`, `projects`, `skillCategories`
 - **Colors**: the `:root` (dark) and `:root.light` blocks in `app/globals.css`

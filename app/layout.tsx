@@ -7,7 +7,15 @@ import { Motion } from "@/components/motion";
 import { site } from "@/data/site";
 import "./globals.css";
 
-// Supreme carries display and text; Martian Mono is only for data; the script is only the signature.
+// Boska is the display voice, Supreme the reading text, Martian Mono only data; the script is only the signature.
+const boska = localFont({
+  src: [
+    { path: "./fonts/boska-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/boska-400-italic.woff2", weight: "400", style: "italic" },
+  ],
+  variable: "--font-boska",
+  display: "swap",
+});
 const supreme = localFont({
   src: [
     { path: "./fonts/supreme-400-normal.woff2", weight: "400", style: "normal" },
@@ -57,14 +65,14 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0b0d" },
-    { media: "(prefers-color-scheme: light)", color: "#f1f2ee" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1a17" },
+    { media: "(prefers-color-scheme: light)", color: "#f3efe4" },
   ],
 };
 
-// Runs before first paint. Sets the saved theme, and turns on hidden-until-revealed styles only
+// Runs before first paint. Sets the saved theme, or the system's when nothing is saved, and turns on hidden-until-revealed styles only
 // when JavaScript and motion are both available. If the bundle never arrives, content shows anyway.
-const flags = `(function(){var d=document.documentElement;try{if(localStorage.getItem('theme')==='light')d.classList.add('light')}catch(e){}d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!d.classList.contains('ready'))d.classList.remove('motion')},3500)}})()`;
+const flags = `(function(){var d=document.documentElement;var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t?t==='light':matchMedia('(prefers-color-scheme: light)').matches)d.classList.add('light');d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!d.classList.contains('ready'))d.classList.remove('motion')},3500)}})()`;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -79,7 +87,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${supreme.variable} ${mono.variable} ${sign.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${boska.variable} ${supreme.variable} ${mono.variable} ${sign.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: flags }} />
       </head>

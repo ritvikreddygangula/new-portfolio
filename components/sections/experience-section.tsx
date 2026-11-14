@@ -24,6 +24,8 @@ export function ExperienceSection() {
             id={`exp-${index}`}
             title={exp.company}
             role={exp.title}
+            logo={exp.logo}
+            site={exp.url ? { href: exp.url, label: new URL(exp.url).hostname.replace(/^www\./, "") } : undefined}
             summary={exp.summary}
             marks={exp.highlights}
             defaultOpen={index === 0}
@@ -42,14 +44,6 @@ export function ExperienceSection() {
               ))}
             </ul>
             <p className="stack">{exp.stack.join(" / ")}</p>
-            {exp.url && (
-              <p className="entry__links">
-                <a className="link link--ext" href={exp.url} target="_blank" rel="noopener noreferrer">
-                  Visit {exp.company}
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </p>
-            )}
           </Entry>
         ))}
       </ol>

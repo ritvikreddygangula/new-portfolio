@@ -1,4 +1,4 @@
-import { Cluster } from "@/components/cluster";
+import { Ask } from "@/components/ask";
 import { hero, site } from "@/data/site";
 
 const i = (n: number) => ({ "--i": n }) as React.CSSProperties;
@@ -7,22 +7,24 @@ export function HeroSection() {
   const { lede } = hero;
   return (
     <section id="top" className="hero" data-hero tabIndex={-1}>
-      <div className="hero__stage">
+      <div className="hero__in">
         <div className="hero__copy">
           <h1 className="hero__name">
             <span className="line">
               <span style={i(0)}>Ritvik Reddy</span>
             </span>{" "}
             <span className="line">
-              <span style={i(1)}>Gangula</span>
+              <span style={i(1)}>
+                <em>Gangula</em>
+              </span>
             </span>
           </h1>
 
           <p className="hero__lede intro-fade" style={i(3)}>
             {lede.before}
-            <span className="clause clause--infra">{lede.infra}</span>
+            {lede.infra}
             {lede.between}
-            <span className="clause clause--agents">{lede.agents}</span>
+            {lede.agents}
             {lede.after}
           </p>
 
@@ -39,7 +41,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <Cluster />
+        <Ask />
       </div>
     </section>
   );

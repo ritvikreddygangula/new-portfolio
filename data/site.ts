@@ -25,7 +25,6 @@ export const nav = [
 ];
 
 export const hero = {
-  // The sentence is split so the hero can underline the clause the graph is showing.
   lede: {
     before: "Software engineer building ",
     infra: "backend systems that stay up when parts of them fail",
@@ -33,6 +32,16 @@ export const hero = {
     agents: "the AI agents that run on top of them",
     after: ". Computer science at Arizona State, graduating May 2027.",
   },
+  // Questions the hero can answer from this file. Each one is also a test:
+  // `expect` is the source that should rank first, or null when the page should refuse.
+  questions: [
+    { q: "Has he shipped RAG in production?", expect: "GCM Grosvenor" },
+    { q: "How does Forge survive a crash?", expect: "Forge" },
+    { q: "How does he evaluate LLM output?", expect: "DeltaLedger MCP" },
+    { q: "What is his favorite pizza?", expect: null },
+    { q: "Where does he study?", expect: "About" },
+    { q: "What did karate teach him?", expect: "About" },
+  ] as { q: string; expect: string | null }[],
 };
 
 export const about = {
@@ -43,7 +52,17 @@ export const about = {
     { term: "Degree", detail: "B.S. Computer Science, May 2027" },
     { term: "GPA", detail: "4.0, Dean's List six times" },
     { term: "Certified", detail: "AWS Cloud Practitioner", badge: true },
+    { term: "Karate", detail: "Black belt" },
   ],
+  // In the owner's words.
+  karate: {
+    title: "Karate, black belt",
+    text: "Karate taught me focus, and how important feedback is.",
+    quote: "I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.",
+    by: "Bruce Lee",
+    // About the site, not the owner: explains the progress bar.
+    belt: "The bar across the top of this page is a belt. It starts white and is black by the last line.",
+  },
   // What I'm learning right now; update the date whenever this list changes.
   now: {
     updated: "Oct 2026",
@@ -59,6 +78,8 @@ export type Experience = {
   title: string;
   company: string;
   url?: string;
+  // Company mark, shown beside the name.
+  logo?: string;
   location: string;
   period: string;
   summary: string;
@@ -73,6 +94,7 @@ export const experiences: Experience[] = [
     title: "Software Engineering Intern",
     company: "GCM Grosvenor",
     url: "https://gcmgrosvenor.com/",
+    logo: "/logos/gcm-grosvenor.png",
     location: "Chicago, IL",
     period: "Jun – Aug 2026",
     summary:
@@ -89,6 +111,7 @@ export const experiences: Experience[] = [
     title: "Jr. Data Analyst",
     company: "Food Forest AI",
     url: "https://www.foodforest.ai/",
+    logo: "/logos/food-forest-ai.png",
     location: "Philadelphia, PA",
     period: "June – May 2025",
     summary:
@@ -133,8 +156,8 @@ export type Project = {
   // Small topology drawing of the project's real architecture.
   glyph: GlyphName;
   glyphAlt: string;
-  // How this project shows up elsewhere on the site (about the site, not the project).
-  note?: string;
+  // A playable model of the system sits in the detail view.
+  sim?: boolean;
   // Results set at display size.
   feature?: boolean;
 };
@@ -157,7 +180,6 @@ export const projects: Project[] = [
     demo: "https://d30z0su1b3sesp.cloudfront.net/",
     glyph: "pipeline",
     glyphAlt: "Three agents in a row, the last one looping back to retry retrieval",
-    note: "Scroll the top of this page: the simulation turns into this pipeline.",
   },
   {
     title: "Forge",
@@ -175,8 +197,8 @@ export const projects: Project[] = [
     github: "https://github.com/ritvikreddygangula/Forge",
     glyph: "raft",
     glyphAlt: "Three coordinators in a triangle above a row of workers",
-    note: "The simulation at the top of this page is modeled on Forge.",
     feature: true,
+    sim: true,
   },
   {
     title: "Deep Research Multi-Agent System",
