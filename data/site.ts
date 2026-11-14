@@ -133,6 +133,10 @@ export type Project = {
   // Small topology drawing of the project's real architecture.
   glyph: GlyphName;
   glyphAlt: string;
+  // How this project shows up elsewhere on the site (about the site, not the project).
+  note?: string;
+  // Results set at display size.
+  feature?: boolean;
 };
 
 export const projects: Project[] = [
@@ -153,6 +157,7 @@ export const projects: Project[] = [
     demo: "https://d30z0su1b3sesp.cloudfront.net/",
     glyph: "pipeline",
     glyphAlt: "Three agents in a row, the last one looping back to retry retrieval",
+    note: "Scroll the top of this page: the simulation turns into this pipeline.",
   },
   {
     title: "Forge",
@@ -170,6 +175,8 @@ export const projects: Project[] = [
     github: "https://github.com/ritvikreddygangula/Forge",
     glyph: "raft",
     glyphAlt: "Three coordinators in a triangle above a row of workers",
+    note: "The simulation at the top of this page is modeled on Forge.",
+    feature: true,
   },
   {
     title: "Deep Research Multi-Agent System",

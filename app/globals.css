@@ -870,6 +870,45 @@ html.motion .menu__link {
 .projects .entry__when {
   padding-top: 0;
 }
+.entry__note {
+  position: relative;
+  max-width: 17.5rem;
+  padding-left: 1rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-data);
+  line-height: 1.7;
+  color: var(--muted);
+  transition: color 0.3s var(--ease-soft), translate 0.4s var(--ease-soft);
+}
+.entry__note::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.entry__note:focus-visible {
+  color: var(--ink);
+}
+@media (hover: hover) {
+  .entry__note:hover {
+    color: var(--ink);
+    translate: 0 -3px;
+  }
+}
+/* The project the hero is modeled on gets its results at display size. */
+.entry--feature .marks {
+  max-width: none;
+}
+.entry--feature .marks li {
+  padding-top: 1rem;
+  font-size: var(--t-l);
+  letter-spacing: -0.034em;
+  line-height: 1.05;
+}
 .entry__toggle {
   display: flex;
   width: 100%;
@@ -1696,6 +1735,16 @@ html.is-scrolled .rail {
   }
   .marks li {
     font-size: 1.125rem;
+  }
+  .entry--feature .marks li {
+    font-size: 1.6rem;
+  }
+  .entry__aside {
+    flex-wrap: wrap;
+  }
+  .entry__note {
+    flex-basis: 100%;
+    max-width: none;
   }
 
   .skills__row {

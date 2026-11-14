@@ -16,13 +16,19 @@ export function ProjectsSection() {
             title={project.title}
             summary={project.description}
             marks={project.highlights}
-            defaultOpen={index < 2}
+            defaultOpen={index === 0}
+            feature={project.feature}
             aside={
               <>
                 <Glyph name={project.glyph} label={project.glyphAlt} />
                 <p className="entry__when">
                   <span>{project.date}</span>
                 </p>
+                {project.note && (
+                  <a className="entry__note" href="/#top">
+                    {project.note}
+                  </a>
+                )}
               </>
             }
             links={

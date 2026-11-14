@@ -89,6 +89,7 @@ export function createCluster(
   let queue = 0;
   let flushAt = 0;
   let spawnAt = 0.9;
+  let warm = false;
   let chaosAt = 7;
   let lastUserKill = -99;
   let done = 0;
@@ -346,6 +347,21 @@ export function createCluster(
     }
 
     const ready = mode === "cluster" ? leader >= 0 : coords.every((c) => c.up);
+    // The cluster is already under load when it appears: a few jobs start mid-route.
+    if (!warm && time >= spawnAt) {
+      warm = true;
+      for (let k = 0; k < 8; k++) {
+        const job = jobPath();
+        if (!job) break;
+        const p = packet(job.path, job.workAt);
+        p.i = 1 + ((Math.random() * (job.path.length - 1)) | 0);
+        p.from = job.path[p.i - 1];
+        p.t = Math.random() * 0.9;
+        p.done = p.i > job.workAt;
+        p.x = nodes[p.from].x; p.y = nodes[p.from].y;
+        packets.push(p);
+      }
+    }
     if (time >= spawnAt) {
       spawnAt = time + (mode === "cluster" ? 0.3 + Math.random() * 0.22 : 0.55 + Math.random() * 0.4);
       spawn();
