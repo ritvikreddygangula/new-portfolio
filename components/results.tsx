@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { about, experiences, hero, projects } from "@/data/site";
 
-const HOLD = 5.5; // seconds each result stays up
+const HOLD = 3.5; // seconds each result stays up
 
 const slides = hero.results.map((r) => {
   if (r.from === "experience") {

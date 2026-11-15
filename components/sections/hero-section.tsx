@@ -6,7 +6,7 @@ const i = (n: number) => ({ "--i": n }) as React.CSSProperties;
 export function HeroSection() {
   const { lede } = hero;
   return (
-    <section id="top" className="hero" data-hero tabIndex={-1}>
+    <section id="top" className="hero" tabIndex={-1}>
       <div className="hero__in">
         <div className="hero__copy">
           <h1 className="hero__name">

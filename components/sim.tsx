@@ -5,12 +5,10 @@ import { gsap } from "gsap";
 import { createCluster, type Hud } from "@/lib/cluster";
 
 const initial: Hud = {
-  mode: "cluster",
   up: 28,
   total: 28,
   leader: "coord-2, term 1",
   done: 0,
-  requeued: 0,
   log: "Take down any node. The system routes around it.",
   paused: false,
 };
@@ -28,7 +26,7 @@ export function Sim() {
     if (!el) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setStill(reduced);
-    const s = createCluster(el, { onHud: setHud, getP: () => 0, reduced });
+    const s = createCluster(el, { onHud: setHud, reduced });
     sim.current = s;
     if (reduced) return () => s.destroy();
 

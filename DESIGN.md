@@ -52,7 +52,7 @@ The theme follows the system until the visitor picks one.
 - **Shape:** 18px on surfaces (panel, portrait, simulation), full pills for anything you press, glass only
   on the island.
 - **Motion:** one ease out family; the stamp alone overshoots. GSAP ticker is the only clock; Lenis scroll.
-- **Idle:** the card moves to the next result every 5.5 s. It waits while pointed at, focused or off screen.
+- **Idle:** the card moves to the next result every 3.5 s. It waits while pointed at, focused or off screen.
 - **Reduced motion:** the card stays on the first result until a dot is pressed; no smooth scroll.
 
 ## Karate

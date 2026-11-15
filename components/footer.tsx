@@ -23,7 +23,6 @@ export function Footer() {
           <a href="/#top">Back to top</a>
         </nav>
       </div>
-      <p className="foot__colophon">Set in Boska, Supreme and Martian Mono. Built with Next.js, GSAP and Lenis.</p>
     </footer>
   );
 }
