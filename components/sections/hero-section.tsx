@@ -1,4 +1,4 @@
-import { Ask } from "@/components/ask";
+import { Results } from "@/components/results";
 import { hero, site } from "@/data/site";
 
 const i = (n: number) => ({ "--i": n }) as React.CSSProperties;
@@ -41,7 +41,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <Ask />
+        <Results />
       </div>
     </section>
   );

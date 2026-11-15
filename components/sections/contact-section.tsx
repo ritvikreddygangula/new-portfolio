@@ -5,7 +5,6 @@ import { contact, site } from "@/data/site";
 
 const channels = [
   { name: "Email", value: site.email, href: `mailto:${site.email}`, external: false },
-  { name: "Phone", value: site.phone.label, href: site.phone.href, external: false },
   { name: "LinkedIn", value: site.linkedin.label, href: site.linkedin.href, external: true },
   { name: "GitHub", value: site.github.label, href: site.github.href, external: true },
 ];

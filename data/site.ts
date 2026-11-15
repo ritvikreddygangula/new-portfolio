@@ -9,7 +9,6 @@ export const site = {
   description:
     "Software engineer and computer science student at Arizona State University, building backend systems that survive failure and the AI agents that run on them.",
   email: "ritvikreddygangula@gmail.com",
-  phone: { label: "+1 (623) 499-0719", href: "tel:+16234990719" },
   resume: "https://drive.google.com/file/d/1Cftg989Ngyrtr3NPd3cSpAB34iSJRukc/view?usp=sharing",
   github: { label: "github.com/ritvikreddygangula", href: "https://github.com/ritvikreddygangula" },
   linkedin: { label: "linkedin.com/in/gritvik", href: "https://linkedin.com/in/gritvik" },
@@ -32,16 +31,15 @@ export const hero = {
     agents: "the AI agents that run on top of them",
     after: ". Computer science at Arizona State, graduating May 2027.",
   },
-  // Questions the hero can answer from this file. Each one is also a test:
-  // `expect` is the source that should rank first, or null when the page should refuse.
-  questions: [
-    { q: "Has he shipped RAG in production?", expect: "GCM Grosvenor" },
-    { q: "How does Forge survive a crash?", expect: "Forge" },
-    { q: "How does he evaluate LLM output?", expect: "DeltaLedger MCP" },
-    { q: "What is his favorite pizza?", expect: null },
-    { q: "Where does he study?", expect: "About" },
-    { q: "What did karate teach him?", expect: "About" },
-  ] as { q: string; expect: string | null }[],
+  // The results the hero shows one at a time. Each points at an entry below, so the
+  // words are the same ones used in Experience and Projects.
+  results: [
+    { from: "experience", index: 0, highlight: 0 },
+    { from: "project", index: 1, highlight: 1 },
+    { from: "project", index: 0, highlight: 1 },
+    { from: "experience", index: 2, highlight: 0 },
+    { from: "experience", index: 1, highlight: 1 },
+  ] as { from: "experience" | "project"; index: number; highlight: number }[],
 };
 
 export const about = {

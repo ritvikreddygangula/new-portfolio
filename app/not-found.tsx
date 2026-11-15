@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "404, not in the sources",
+  title: "404, nothing here",
   description: "Nothing on this site matches that address. Head back to the portfolio of Ritvik Reddy Gangula.",
 };
 
@@ -11,29 +11,9 @@ export default function NotFound() {
       <div className="lost__in">
         <p className="lost__code">404</p>
         <h1 id="lost-title" className="lost__title">
-          Not in the <em>sources.</em>
+          Nothing <em>here.</em>
         </h1>
-        <ol className="lost__hits" aria-label="What was retrieved for this address">
-          <li>
-            <span>0.00</span>
-            <span>No page</span>
-            <span>dropped</span>
-          </li>
-          <li>
-            <span>0.00</span>
-            <span>No section</span>
-            <span>dropped</span>
-          </li>
-          <li>
-            <span>0.00</span>
-            <span>No file</span>
-            <span>dropped</span>
-          </li>
-        </ol>
-        <p className="lost__text">
-          <span className="stamp">Refused</span>
-          Nothing on this site matches that address, and I would rather say so than guess.
-        </p>
+        <p className="lost__text">Nothing lives at this address. Everything I have made is one page away.</p>
         <a className="btn btn--solid" href="/">
           <span>Back to the first page</span>
         </a>
