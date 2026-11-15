@@ -58,8 +58,6 @@ export const about = {
     text: "Karate taught me focus, and how important feedback is.",
     quote: "I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.",
     by: "Bruce Lee",
-    // About the site, not the owner: explains the progress bar.
-    belt: "The bar across the top of this page is a belt. It starts white and is black by the last line.",
   },
   // What I'm learning right now; update the date whenever this list changes.
   now: {

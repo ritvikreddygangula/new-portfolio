@@ -18,19 +18,18 @@ pnpm build    # production build
 ```
 app/
   layout.tsx          fonts, metadata, theme flag script, header, analytics
-  page.tsx            page structure: hero, sections, footer, belt progress bar
+  page.tsx            page structure: hero, sections, footer
   not-found.tsx       404
   globals.css         color tokens (dark + light) and every style
   sitemap.ts, robots.ts, icon.svg
 data/site.ts          ALL content: roles, projects, skills, links
 lib/
   cluster.ts          the Forge simulation (canvas)
-  motion.ts           smooth scroll, reveals, scroll spy and the belt
+  motion.ts           smooth scroll, reveals and scroll spy
 components/
   results.tsx         the hero card: one result at a time
   sim.tsx             canvas + readout for the Forge simulation
   header.tsx          signature, glass island nav, theme toggle
-  belt.tsx            reading progress, white belt to black
   entry.tsx           the folding row used by Experience and Projects
   glyph.tsx           the small topology drawing for each project
   sections/           one file per page section

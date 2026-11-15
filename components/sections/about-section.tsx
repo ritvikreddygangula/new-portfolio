@@ -50,7 +50,6 @@ export function AboutSection() {
             <blockquote>{karate.quote}</blockquote>
             <figcaption>{karate.by}</figcaption>
           </figure>
-          <p className="dojo__note">{karate.belt}</p>
         </aside>
       </div>
     </section>

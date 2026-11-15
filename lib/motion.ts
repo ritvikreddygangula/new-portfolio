@@ -49,7 +49,6 @@ export function initMotion() {
   document.fonts?.ready.then(onLayout);
 
   const ctx = gsap.context(() => {
-    const belt = document.querySelector<HTMLElement>("[data-belt]");
     const sections = gsap.utils.toArray<HTMLElement>("main section[id]");
 
     // Frame: the header steps aside on the way down and returns on the way up.
@@ -59,11 +58,6 @@ export function initMotion() {
       onUpdate: (self) => {
         const y = self.scroll();
         html.classList.toggle("is-scrolled", y > 24);
-        if (belt) {
-          // The belt climbs the ranks with the page: white, yellow, orange, green, blue, brown, black.
-          belt.style.setProperty("--sp", self.progress.toFixed(4));
-          belt.dataset.rank = String(Math.min(6, Math.floor(self.progress * 6.4)));
-        }
       },
     });
 

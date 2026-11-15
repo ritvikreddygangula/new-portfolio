@@ -58,14 +58,13 @@ The theme follows the system until the visitor picks one.
 ## Karate
 
 - A card in About, in his words, with the quote, under a stitched black belt.
-- The reading bar at the top of the page is a belt: white at the start, black at the end.
 
 ## Navigation
 
 A centered glass island (blur, saturation, top highlight). A lens of thicker glass sits under the current
 section and slides to whatever is pointed at. On phones the island moves to the bottom, where the thumb is.
-The signature emblem belongs to the first screen and leaves with it.
+The signature emblem stays fixed top left, like the island; content fades out before it reaches either.
 
 ## Not changed
 
-Project topology drawings, the fold rows, the contact form, the footer signature.
+Project topology drawings, the fold rows, the contact form.

@@ -343,7 +343,7 @@ html.motion .intro-fade {
 .top > * {
   pointer-events: auto;
 }
-/* Content dissolves before it reaches the island instead of being cut by it. */
+/* Content dissolves before it reaches the emblem and the island instead of being cut by them. */
 .top::before {
   content: "";
   position: fixed;
@@ -358,7 +358,7 @@ html.is-scrolled .top::before {
   opacity: 1;
 }
 
-/* The emblem: a signature, closed with a dot. It belongs to the first screen and leaves with it. */
+/* The emblem: a signature, closed with a dot. It stays put, like the island. */
 .sign {
   position: absolute;
   left: var(--gutter);
@@ -368,13 +368,6 @@ html.is-scrolled .top::before {
   gap: 0.2rem;
   padding: 0.35rem 0.5rem 0.1rem 0;
   line-height: 1;
-  transition: opacity 0.35s var(--ease-soft), translate 0.5s var(--ease), visibility 0s;
-}
-html.is-scrolled .sign:not(:focus-visible) {
-  opacity: 0;
-  translate: 0 -30%;
-  visibility: hidden;
-  transition: opacity 0.35s var(--ease-soft), translate 0.5s var(--ease), visibility 0s 0.4s;
 }
 .sign__ink {
   display: block;
@@ -518,34 +511,6 @@ html.motion .sign__node {
   .island__theme:hover svg {
     rotate: 60deg;
   }
-}
-
-/* The belt: reading progress. White at the top of the page, black at the end. */
-.belt {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 60;
-  height: 5px;
-  background: var(--line);
-  pointer-events: none;
-}
-.belt__fill {
-  display: block;
-  height: 100%;
-  transform-origin: 0 50%;
-  scale: var(--sp, 0) 1;
-  background: var(--belt, #f6f2e8);
-  box-shadow: 0 1px 0 var(--line-strong);
-  transition: background-color 0.5s var(--ease-soft);
-}
-.belt[data-rank="1"] { --belt: #e8c94c; }
-.belt[data-rank="2"] { --belt: #e08a2e; }
-.belt[data-rank="3"] { --belt: #5d9a57; }
-.belt[data-rank="4"] { --belt: #4273b8; }
-.belt[data-rank="5"] { --belt: #7b4c2d; }
-.belt[data-rank="6"] { --belt: #0d0c0b; }
-.belt[data-rank="6"] .belt__fill {
-  box-shadow: inset 0 -1px 0 color-mix(in srgb, #f0ebdf 55%, transparent);
 }
 
 /* ------------------------------------------------------------------ hero
@@ -1062,14 +1027,6 @@ html.motion .sign__node {
   line-height: 1.35;
   color: var(--muted);
 }
-.dojo__note {
-  margin-top: 0.9rem;
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--muted);
-}
 .dojo__quote figcaption {
   margin-top: 0.55rem;
   font-family: var(--f-mono);
@@ -1577,18 +1534,8 @@ html.motion .sign__node {
   width: 100%;
   max-width: calc(var(--wrap) + var(--gutter) * 2);
   margin-inline: auto;
-  padding: var(--s-normal) var(--gutter) 1.75rem;
+  padding: var(--s-tight) var(--gutter) 1.75rem;
   overflow: clip;
-}
-.foot__sign {
-  margin: 0 0 0.04em;
-  text-align: center;
-  font-family: var(--f-sign);
-  font-size: clamp(9rem, 36vw, 27rem);
-  line-height: 0.82;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
 }
 .foot__row {
   display: flex;
@@ -1599,20 +1546,6 @@ html.motion .sign__node {
   padding-top: 1.25rem;
   border-top: 1px solid var(--line-strong);
   font-size: var(--t-s);
-}
-.foot__status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--f-mono);
-  font-size: var(--t-data);
-  color: var(--muted);
-}
-.foot__dot {
-  width: 14px;
-  height: 5px;
-  background: #0d0c0b;
-  box-shadow: 0 0 0 1px var(--line-strong);
 }
 .foot__links {
   display: flex;
@@ -1715,9 +1648,6 @@ html.motion .lost__in > :nth-child(5) { animation-delay: 380ms; }
   .dojo__text {
     grid-column: 1;
   }
-  .dojo__note {
-    grid-column: 1 / -1;
-  }
   .dojo__quote {
     grid-column: 2;
     grid-row: 2 / span 2;
@@ -1735,10 +1665,15 @@ html.motion .lost__in > :nth-child(5) { animation-delay: 380ms; }
     font-size: 2.7rem;
   }
   .top::before {
+    height: 5.5rem;
+  }
+  .top::after {
+    content: "";
+    position: fixed;
     inset: auto 0 0 0;
     height: 6.5rem;
     background: linear-gradient(0deg, var(--ground) 18%, color-mix(in srgb, var(--ground) 70%, transparent) 55%, transparent);
-    opacity: 1;
+    pointer-events: none;
   }
   /* On a phone the island sits where the thumb is. */
   .island {

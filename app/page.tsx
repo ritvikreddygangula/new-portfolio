@@ -1,5 +1,4 @@
 import { Footer } from "@/components/footer";
-import { Belt } from "@/components/belt";
 import { AboutSection } from "@/components/sections/about-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
@@ -17,7 +16,6 @@ export default function Home() {
       <SkillsSection />
       <ContactSection />
       <Footer />
-      <Belt />
     </>
   );
 }
