@@ -1,49 +1,56 @@
 import Image from "next/image";
-
-const facts = [
-  { term: "School", detail: "Arizona State University" },
-  { term: "Degree", detail: "B.S. Computer Science, May 2027" },
-  { term: "GPA", detail: "4.0, Dean's List six times" },
-  { term: "Certified", detail: "AWS Cloud Practitioner", badge: true },
-];
+import { SectionHead } from "@/components/section-head";
+import { about, site } from "@/data/site";
 
 export function AboutSection() {
+  const { karate } = about;
   return (
-    <section id="about" className="px-6 py-14 md:py-20">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16">
-        <h2 className="display display-section lg:col-span-4 text-foreground">About</h2>
+    <section id="about" className="section about" aria-labelledby="about-title" tabIndex={-1}>
+      <SectionHead id="about" title="About" />
 
-        <div className="lg:col-span-8">
-          <p className="text-xl md:text-2xl leading-relaxed text-foreground max-w-2xl">
-            I&apos;m a software engineer who likes the layer underneath the
-            product: queues, retries, and the data paths that decide whether
-            a system holds up.
+      <div className="about__grid">
+        <figure className="about__portrait" data-reveal="clip">
+          <Image
+            src="/headshot.webp"
+            alt={`Portrait of ${site.name}`}
+            width={1200}
+            height={1500}
+            sizes="(min-width: 900px) 22rem, 70vw"
+          />
+        </figure>
+
+        <div className="about__main">
+          <p className="about__statement" data-reveal="">
+            {about.statement}
           </p>
-
-          <dl className="mt-10 max-w-2xl border-b border-dotted border-foreground/45">
-            {facts.map((fact) => (
-              <div
-                key={fact.term}
-                className="rule-dotted grid grid-cols-[8rem_1fr] items-center gap-4 py-3.5"
-              >
-                <dt className="label text-muted-foreground">{fact.term}</dt>
-                <dd className="flex items-center gap-2.5 text-foreground">
+          <dl className="facts" data-reveal="">
+            {about.facts.map((fact) => (
+              <div key={fact.term} className="facts__row">
+                <dt>{fact.term}</dt>
+                <dd>
                   {fact.detail}
                   {fact.badge && (
-                    <Image
-                      src="/certifications/aws-ccp-badge.png"
-                      alt=""
-                      width={22}
-                      height={22}
-                      className="object-contain"
-                      unoptimized
-                    />
+                    <Image src="/certifications/aws-ccp-badge.png" alt="" width={24} height={24} className="facts__badge" />
                   )}
                 </dd>
               </div>
             ))}
           </dl>
         </div>
+
+        <aside className="dojo" data-reveal="" aria-labelledby="dojo-title">
+          <span className="dojo__belt" aria-hidden="true">
+            <i />
+          </span>
+          <h3 id="dojo-title" className="dojo__title">
+            {karate.title}
+          </h3>
+          <p className="dojo__text">{karate.text}</p>
+          <figure className="dojo__quote">
+            <blockquote>{karate.quote}</blockquote>
+            <figcaption>{karate.by}</figcaption>
+          </figure>
+        </aside>
       </div>
     </section>
   );
