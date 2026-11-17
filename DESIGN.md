@@ -65,6 +65,14 @@ A centered glass island (blur, saturation, top highlight). A lens of thicker gla
 section and slides to whatever is pointed at. On phones the island moves to the bottom, where the thumb is.
 The signature emblem stays fixed top left, like the island; content fades out before it reaches either.
 
+## Project scenes
+
+Each project has a small looping picture of what it does (`components/scene.tsx`), in place of the
+earlier node-and-edge drawings: a board being pointed at, two filings compared, a leader failing over,
+a chat, a transcript becoming action items. The markup alone is the finished frame (reduced motion,
+no JS); a GSAP timeline replays it only while it is on screen. Labels use words and numbers already
+in the project's own copy.
+
 ## Not changed
 
-Project topology drawings, the fold rows, the contact form.
+The fold rows, the contact form.

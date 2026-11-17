@@ -31,7 +31,7 @@ components/
   sim.tsx             canvas + readout for the Forge simulation
   header.tsx          signature, glass island nav, theme toggle
   entry.tsx           the folding row used by Experience and Projects
-  glyph.tsx           the small topology drawing for each project
+  scene.tsx           the small looping picture of what each project does
   sections/           one file per page section
 public/               headshot, company logos, certification badge, og.png
 design/               standalone design explorations (not part of the site)

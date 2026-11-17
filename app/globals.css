@@ -13,6 +13,9 @@
   --accent-ink: #1c1a17;
   --moss: #a3b684;
   --fault: #ef6247;
+  --ochre: #e0b05a;
+  --teal: #7fb5b0;
+  --plum: #d596b0;
   --line: color-mix(in srgb, var(--ink) 14%, transparent);
   --line-strong: color-mix(in srgb, var(--ink) 40%, transparent);
   --glass: color-mix(in srgb, var(--surface) 62%, transparent);
@@ -57,6 +60,9 @@
   --accent-ink: #fff8ee;
   --moss: #45662f;
   --fault: #b3261e;
+  --ochre: #8a5f08;
+  --teal: #1f6a6c;
+  --plum: #8c3d60;
   --glass: color-mix(in srgb, #fbf8f0 60%, transparent);
   --glass-edge: rgba(255, 255, 255, 0.7);
   --shadow: rgba(60, 45, 20, 0.28);
@@ -756,6 +762,83 @@ html.motion .sign__node {
   }
 }
 
+/* A short clip in a project's detail view: small, with the player's own full screen control. */
+.clip {
+  max-width: 24rem;
+  margin-top: 1.75rem;
+}
+.clip video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: var(--r-s);
+  background: #000;
+}
+.yt {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: var(--r-s);
+  background: #000;
+  overflow: hidden;
+}
+.yt iframe,
+.yt__play,
+.yt__play img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.yt__play {
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+.yt__play img {
+  object-fit: cover;
+  transition: scale 0.6s var(--ease);
+}
+.yt__btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 3.25rem;
+  height: 3.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  transition: scale 0.4s var(--ease-strike);
+}
+.yt__btn svg {
+  translate: 1px 0;
+}
+.yt__play:hover img,
+.yt__play:focus-visible img {
+  scale: 1.04;
+}
+.yt__play:hover .yt__btn,
+.yt__play:focus-visible .yt__btn {
+  scale: 1.12;
+}
+.yt__play:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.clip figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-data);
+  line-height: 1.6;
+  color: var(--muted);
+}
+
 /* The Forge model, inside the project's detail view. Healthy is moss, down is red. */
 .sim {
   max-width: 46rem;
@@ -1079,18 +1162,6 @@ html.motion .sign__node {
 .projects .entry__when {
   padding-top: 0;
 }
-/* The featured project gets its results at display size. */
-.entry--feature .marks {
-  max-width: none;
-}
-.entry--feature .marks li {
-  padding-top: 1rem;
-  font-family: var(--f-serif);
-  font-weight: 400;
-  font-size: var(--t-l);
-  letter-spacing: -0.022em;
-  line-height: 1.05;
-}
 .entry__toggle {
   display: flex;
   width: 100%;
@@ -1263,57 +1334,152 @@ html.motion .sign__node {
   color: var(--muted);
 }
 
-/* Project topologies. */
-.glyph {
+/* Project scenes: a small looping picture of what each project does. Each has its own
+   pair of colours from the site's warm family, washed into the card. */
+.scene {
+  --c1: var(--accent);
+  --c2: var(--moss);
+  display: block;
   width: 100%;
   max-width: 17.5rem;
   height: auto;
-  overflow: visible;
+  border: 1px solid color-mix(in srgb, var(--c1) 34%, var(--line));
+  border-radius: var(--r-s);
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--c2) 26%, transparent), transparent 62%),
+    linear-gradient(155deg, color-mix(in srgb, var(--c1) 30%, var(--surface)), color-mix(in srgb, var(--c1) 8%, var(--surface)) 70%);
+  transition: border-color 0.4s var(--ease);
 }
-.glyph__edge {
-  stroke: var(--line-strong);
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
+.scene[data-scene="point"] { --c1: var(--ochre); --c2: var(--teal); }
+.scene[data-scene="diff"] { --c1: var(--accent); --c2: var(--moss); }
+.scene[data-scene="failover"] { --c1: var(--moss); --c2: var(--ochre); }
+.scene[data-scene="fan"] { --c1: var(--teal); --c2: var(--ochre); }
+.scene[data-scene="notes"] { --c1: var(--plum); --c2: var(--teal); }
+.scene[data-scene="chat"] { --c1: var(--accent); --c2: var(--moss); }
+.scene[data-scene="advise"] { --c1: var(--ochre); --c2: var(--plum); }
+.scene[data-scene="forecast"] { --c1: var(--teal); --c2: var(--accent); }
+.entry:hover .scene,
+.entry:focus-within .scene {
+  border-color: var(--c1);
 }
-.glyph__node {
+.sc-t {
+  fill: var(--muted);
+  font-family: var(--f-mono);
+  font-size: 5.4px;
+  letter-spacing: 0.02em;
+}
+.sc-t--onacc {
+  fill: var(--accent-ink);
+  font-size: 6px;
+}
+.sc-math {
   fill: var(--ink);
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 9.5px;
+  text-anchor: middle;
 }
-.glyph__node--big {
+.sc-laser {
+  fill: var(--fault);
+  stroke: color-mix(in srgb, var(--fault) 30%, transparent);
+  stroke-width: 3;
+}
+.sc-win--read {
+  fill: none;
+  stroke: var(--c2);
+}
+.sc-series--thin { stroke-width: 0.9; }
+.sc-card {
   fill: var(--ground);
+  stroke: var(--line-strong);
+  stroke-width: 0.8;
+}
+.sc-card--dash {
+  stroke-dasharray: 2.4 2;
+}
+.sc-bar { fill: color-mix(in srgb, var(--ink) 30%, transparent); }
+.sc-track { fill: color-mix(in srgb, var(--ink) 14%, transparent); }
+.sc-ink { fill: var(--ink); }
+.sc-acc,
+.sc-accfill { fill: var(--c1); }
+.sc-two { fill: var(--c2); }
+.sc-onacc { fill: var(--accent-ink); }
+.sc-pill { fill: color-mix(in srgb, var(--c2) 62%, transparent); }
+.sc-hl { fill: color-mix(in srgb, var(--c1) 30%, transparent); }
+.sc-done { fill: var(--c2); }
+.sc-on {
+  fill: var(--c2);
+  stroke: var(--ground);
+  stroke-width: 1.2;
+}
+.sc-down { fill: var(--fault); }
+.sc-wire,
+.sc-grid,
+.sc-today,
+.sc-scan,
+.sc-strike,
+.sc-ring,
+.sc-tick,
+.sc-cross,
+.sc-series {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sc-wire {
+  stroke: var(--line-strong);
+  stroke-width: 0.8;
+}
+.sc-wire--strong { stroke: var(--muted); }
+.sc-wire--two {
+  stroke: var(--c2);
+  stroke-width: 1.1;
+}
+.sc-grid {
+  stroke: var(--line);
+  stroke-width: 0.6;
+}
+.sc-today {
+  stroke: var(--muted);
+  stroke-width: 0.7;
+  stroke-dasharray: 1.6 2.2;
+}
+.sc-scan {
+  stroke: var(--c1);
+  stroke-width: 1.1;
+}
+.sc-strike {
+  stroke: var(--muted);
+  stroke-width: 0.9;
+}
+.sc-ring {
+  stroke: var(--c1);
+  stroke-width: 1.4;
+}
+.sc-tick {
+  stroke: var(--c2);
+  stroke-width: 1.5;
+}
+.sc-tick--on { stroke: var(--ground); }
+.sc-tick--onacc { stroke: var(--accent-ink); }
+.sc-cross {
+  stroke: var(--ground);
+  stroke-width: 1.5;
+}
+.sc-series {
   stroke: var(--ink);
-  stroke-width: 1.25;
-  vector-effect: non-scaling-stroke;
+  stroke-width: 1.5;
 }
-.glyph__node--hot {
-  fill: var(--accent);
+.sc-series--next {
+  stroke: var(--c2);
+  stroke-dasharray: 3 2.6;
 }
-.glyph__packet {
-  fill: var(--accent);
-  offset-distance: 0%;
-  offset-rotate: 0deg;
-  opacity: 0;
-}
-@keyframes travel {
-  from { offset-distance: 0%; }
-  to { offset-distance: 100%; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  /* An open project keeps a slow packet on its route; pointing at any row speeds one through. */
-  .entry[data-open="true"] .glyph__packet {
-    opacity: 1;
-    animation: travel 3.6s linear infinite;
-  }
-}
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .entry:hover .glyph__packet,
-  .entry:focus-within .glyph__packet {
-    opacity: 1;
-    animation: travel 1.7s linear infinite;
-  }
-}
-.entry:hover .glyph__node--big,
-.entry:focus-within .glyph__node--big {
-  stroke: var(--accent);
+.sc-band { fill: color-mix(in srgb, var(--c2) 20%, transparent); }
+.sc-win {
+  fill: color-mix(in srgb, var(--c1) 14%, transparent);
+  stroke: var(--c1);
+  stroke-width: 0.8;
+  stroke-dasharray: 2.4 2;
 }
 
 /* Skills: the stack, layer by layer. */
@@ -1614,18 +1780,40 @@ html.motion .lost__in > :nth-child(3) { animation-delay: 180ms; }
 html.motion .lost__in > :nth-child(4) { animation-delay: 300ms; }
 html.motion .lost__in > :nth-child(5) { animation-delay: 380ms; }
 
-/* Theme switch: the new theme spreads from the toggle. */
+/* Theme switch: the new theme spreads from the toggle behind a soft edge. */
+@property --vt-r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 ::view-transition-new(root) {
-  animation: theme-spread 0.75s cubic-bezier(0.65, 0, 0.2, 1) both;
+  mask-image: radial-gradient(
+    circle at var(--vt-x, 100%) var(--vt-y, 0),
+    #000 calc(var(--vt-r) - 130px),
+    transparent var(--vt-r)
+  );
+  animation: theme-spread 1.05s cubic-bezier(0.5, 0, 0.2, 1) both;
 }
 @keyframes theme-spread {
-  from { clip-path: circle(0 at var(--vt-x, 100%) var(--vt-y, 0)); }
-  to { clip-path: circle(150vmax at var(--vt-x, 100%) var(--vt-y, 0)); }
+  from { --vt-r: 0px; }
+  to { --vt-r: var(--vt-end, 150vmax); }
+}
+html.theme-snap *,
+html.theme-snap *::before,
+html.theme-snap *::after {
+  transition: none !important;
+}
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition: background-color 0.5s var(--ease-soft), color 0.5s var(--ease-soft), border-color 0.5s var(--ease-soft),
+    fill 0.5s var(--ease-soft), stroke 0.5s var(--ease-soft) !important;
 }
 
 /* ------------------------------------------------------------------ smaller screens */
@@ -1794,8 +1982,9 @@ html.motion .lost__in > :nth-child(5) { animation-delay: 380ms; }
   .projects .entry__when {
     text-align: right;
   }
-  .glyph {
-    width: 9.5rem;
+  .scene {
+    width: 100%;
+    max-width: 22rem;
   }
   .entry__toggle {
     align-items: flex-start;
@@ -1820,9 +2009,6 @@ html.motion .lost__in > :nth-child(5) { animation-delay: 380ms; }
   }
   .marks li {
     font-size: 1.125rem;
-  }
-  .entry--feature .marks li {
-    font-size: 1.6rem;
   }
 
   .skills__row {

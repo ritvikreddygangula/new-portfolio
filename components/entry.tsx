@@ -17,7 +17,6 @@ export function Entry({
   marks,
   links,
   defaultOpen = false,
-  feature = false,
   children,
 }: {
   id: string;
@@ -31,7 +30,6 @@ export function Entry({
   marks: string[];
   links?: ReactNode;
   defaultOpen?: boolean;
-  feature?: boolean;
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -44,7 +42,7 @@ export function Entry({
   };
 
   return (
-    <li className={feature ? "entry entry--feature" : "entry"} data-open={open} data-reveal="">
+    <li className="entry" data-open={open} data-reveal="">
       <div className="entry__aside">{aside}</div>
       <div className="entry__main">
         <h3 className="entry__title">
