@@ -1162,18 +1162,6 @@ html.motion .sign__node {
 .projects .entry__when {
   padding-top: 0;
 }
-/* The featured project gets its results at display size. */
-.entry--feature .marks {
-  max-width: none;
-}
-.entry--feature .marks li {
-  padding-top: 1rem;
-  font-family: var(--f-serif);
-  font-weight: 400;
-  font-size: var(--t-l);
-  letter-spacing: -0.022em;
-  line-height: 1.05;
-}
 .entry__toggle {
   display: flex;
   width: 100%;
@@ -2021,9 +2009,6 @@ html.theme-fade *::after {
   }
   .marks li {
     font-size: 1.125rem;
-  }
-  .entry--feature .marks li {
-    font-size: 1.6rem;
   }
 
   .skills__row {

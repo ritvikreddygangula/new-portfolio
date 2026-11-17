@@ -160,8 +160,6 @@ export type Project = {
   sceneAlt: string;
   // A playable model of the system sits in the detail view.
   sim?: boolean;
-  // Results set at display size.
-  feature?: boolean;
 };
 
 export const projects: Project[] = [
@@ -222,7 +220,6 @@ export const projects: Project[] = [
     clip: { src: "/videos/forge.mp4", poster: "/videos/forge.jpg" },
     scene: "failover",
     sceneAlt: "Three coordinators send jobs to a row of workers. The leader fails, another coordinator takes over, and jobs keep landing",
-    feature: true,
     sim: true,
   },
   {

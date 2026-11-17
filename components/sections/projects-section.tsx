@@ -18,7 +18,6 @@ export function ProjectsSection() {
             title={project.title}
             summary={project.description}
             marks={project.highlights}
-            feature={project.feature}
             aside={
               <>
                 <Scene name={project.scene} label={project.sceneAlt} />
