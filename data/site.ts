@@ -35,8 +35,8 @@ export const hero = {
   // words are the same ones used in Experience and Projects.
   results: [
     { from: "experience", index: 0, highlight: 0 },
+    { from: "project", index: 2, highlight: 1 },
     { from: "project", index: 1, highlight: 1 },
-    { from: "project", index: 0, highlight: 1 },
     { from: "experience", index: 2, highlight: 0 },
     { from: "experience", index: 1, highlight: 1 },
   ] as { from: "experience" | "project"; index: number; highlight: number }[],
@@ -138,7 +138,7 @@ export const experiences: Experience[] = [
   },
 ];
 
-export type GlyphName = "pipeline" | "raft" | "fanout" | "hub" | "tree" | "branch" | "series";
+export type SceneName = "point" | "diff" | "failover" | "fan" | "chat" | "notes" | "advise" | "forecast";
 
 export type Project = {
   title: string;
@@ -149,9 +149,11 @@ export type Project = {
   achievements: string[];
   github?: string;
   demo?: string;
-  // Small topology drawing of the project's real architecture.
-  glyph: GlyphName;
-  glyphAlt: string;
+  // A recorded walkthrough.
+  video?: string;
+  // A small looping picture of what the project does.
+  scene: SceneName;
+  sceneAlt: string;
   // A playable model of the system sits in the detail view.
   sim?: boolean;
   // Results set at display size.
@@ -159,6 +161,25 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    title: "TagAlong",
+    date: "November 2026",
+    description:
+      "When a teacher points at the board and says \"this\", a blind student hears the exact term in their earbud.",
+    highlights: ["Built at HackPrinceton", "Claude reads the board", "No AI while pointing"],
+    technologies: ["TypeScript", "React", "Express", "WebSockets", "MediaPipe", "Claude", "ElevenLabs", "Amazon Transcribe", "Amazon Polly"],
+    achievements: [
+      "When new writing appears and the board stays still for a second, Claude reads it and returns each term with its position",
+      "The camera tracks the teacher's finger, a pointer stick or a laser dot, in the browser",
+      "Speech recognition picks up \"this\", \"that\", \"these\" and \"those\"; the pointed term is spoken from the left or right, depending on where it is on the board",
+      "No AI runs while the teacher is pointing, so the whisper comes right away",
+      "One camera device at the front; every student listens on their own phone, and each phrase is voiced once on the server and shared",
+    ],
+    github: "https://github.com/Chinmay1545/TagAlong",
+    video: "https://www.youtube.com/watch?v=FgkwKn3QVdE",
+    scene: "point",
+    sceneAlt: "A board with an equation. A pointer lands on the top term while the teacher says this, and the student hears: the x plus 3 on top",
+  },
   {
     title: "DeltaLedger MCP",
     date: "August 2026",
@@ -174,8 +195,8 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/ritvikreddygangula/DeltaLedger-MCP",
     demo: "https://d30z0su1b3sesp.cloudfront.net/",
-    glyph: "pipeline",
-    glyphAlt: "Three agents in a row, the last one looping back to retry retrieval",
+    scene: "diff",
+    sceneAlt: "Two filings side by side. Two changed passages are found: one becomes a cited finding, the unsupported one is dropped",
   },
   {
     title: "Forge",
@@ -191,8 +212,8 @@ export const projects: Project[] = [
       "Prometheus/Grafana dashboards plus automated crash and partition fault-injection tests",
     ],
     github: "https://github.com/ritvikreddygangula/Forge",
-    glyph: "raft",
-    glyphAlt: "Three coordinators in a triangle above a row of workers",
+    scene: "failover",
+    sceneAlt: "Three coordinators send jobs to a row of workers. The leader fails, another coordinator takes over, and jobs keep landing",
     feature: true,
     sim: true,
   },
@@ -210,8 +231,8 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/ritvikreddygangula/multi-agent-research-",
     demo: "https://multi-agent-research-v773.onrender.com/",
-    glyph: "fanout",
-    glyphAlt: "A planner fanning out to parallel researchers, then an aggregator, critic and synthesizer",
+    scene: "fan",
+    sceneAlt: "One topic splits into three sub-questions researched in parallel, which merge into a report with source marks",
   },
   {
     title: "Chatify",
@@ -228,8 +249,8 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/ritvikreddygangula/chatify",
     demo: "https://chatify-0eq1n.sevalla.app/login",
-    glyph: "hub",
-    glyphAlt: "A server in the middle with six connected clients around it",
+    scene: "chat",
+    sceneAlt: "A chat window: a contact comes online, a message goes each way, a typing indicator, then the reply",
   },
   {
     title: "Meeting Intelligence Platform",
@@ -245,8 +266,8 @@ export const projects: Project[] = [
       "Secure JWT auth with bcrypt and per-user data isolation",
     ],
     github: "https://github.com/ritvikreddygangula/meeting-intelligence",
-    glyph: "tree",
-    glyphAlt: "Four transcript chunks merging upward into one overall summary",
+    scene: "notes",
+    sceneAlt: "A meeting transcript is cut into chunks, which become a short summary and two action items with an assignee and a date",
   },
   {
     title: "AI Career Assistant",
@@ -256,8 +277,8 @@ export const projects: Project[] = [
     technologies: ["LangChain", "Hugging Face", "Vercel", "React", "AI/ML"],
     achievements: ["Personalized recommendations", "Natural language processing", "Cloud deployment"],
     github: "https://github.com/ritvikreddygangula/ai-career-assistant",
-    glyph: "branch",
-    glyphAlt: "One question passing through a model and branching into three recommendations",
+    scene: "advise",
+    sceneAlt: "A profile card on the left produces three recommendations on the right, the first one marked",
   },
   {
     title: "Stock Price Forecasting",
@@ -267,8 +288,8 @@ export const projects: Project[] = [
     technologies: ["TensorFlow", "Keras", "LSTM", "Pandas", "Matplotlib", "Python"],
     achievements: ["High prediction accuracy", "Time series analysis", "Data visualization"],
     github: "https://github.com/ritvikreddygangula/stock-forecasting",
-    glyph: "series",
-    glyphAlt: "A rising time series with a dashed forecast segment at the end",
+    scene: "forecast",
+    sceneAlt: "A price line is drawn up to today, a window slides over the recent points, and a dashed forecast continues upward",
   },
 ];
 

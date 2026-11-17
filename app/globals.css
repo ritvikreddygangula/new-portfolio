@@ -1263,57 +1263,131 @@ html.motion .sign__node {
   color: var(--muted);
 }
 
-/* Project topologies. */
-.glyph {
+/* Project scenes: a small looping picture of what each project does. */
+.scene {
+  display: block;
   width: 100%;
   max-width: 17.5rem;
   height: auto;
-  overflow: visible;
+  border: 1px solid var(--line);
+  border-radius: var(--r-s);
+  background: var(--surface);
+  transition: border-color 0.4s var(--ease);
 }
-.glyph__edge {
-  stroke: var(--line-strong);
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
+.entry:hover .scene,
+.entry:focus-within .scene {
+  border-color: var(--accent);
 }
-.glyph__node {
+.sc-t {
+  fill: var(--muted);
+  font-family: var(--f-mono);
+  font-size: 5.4px;
+  letter-spacing: 0.02em;
+}
+.sc-t--onacc {
+  fill: var(--accent-ink);
+  font-size: 6px;
+}
+.sc-math {
   fill: var(--ink);
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 9.5px;
+  text-anchor: middle;
 }
-.glyph__node--big {
+.sc-laser {
+  fill: var(--fault);
+  stroke: color-mix(in srgb, var(--fault) 30%, transparent);
+  stroke-width: 3;
+}
+.sc-win--read { fill: none; }
+.sc-series--thin { stroke-width: 0.9; }
+.sc-card {
   fill: var(--ground);
-  stroke: var(--ink);
-  stroke-width: 1.25;
-  vector-effect: non-scaling-stroke;
+  stroke: var(--line-strong);
+  stroke-width: 0.8;
 }
-.glyph__node--hot {
-  fill: var(--accent);
+.sc-card--dash {
+  stroke-dasharray: 2.4 2;
 }
-.glyph__packet {
-  fill: var(--accent);
-  offset-distance: 0%;
-  offset-rotate: 0deg;
-  opacity: 0;
+.sc-bar { fill: color-mix(in srgb, var(--ink) 30%, transparent); }
+.sc-track { fill: color-mix(in srgb, var(--ink) 14%, transparent); }
+.sc-ink { fill: var(--ink); }
+.sc-acc,
+.sc-accfill { fill: var(--accent); }
+.sc-onacc { fill: var(--accent-ink); }
+.sc-pill { fill: color-mix(in srgb, var(--ink) 18%, transparent); }
+.sc-hl { fill: color-mix(in srgb, var(--accent) 24%, transparent); }
+.sc-done { fill: var(--moss); }
+.sc-on {
+  fill: var(--moss);
+  stroke: var(--surface);
+  stroke-width: 1.2;
 }
-@keyframes travel {
-  from { offset-distance: 0%; }
-  to { offset-distance: 100%; }
+.sc-down { fill: var(--fault); }
+.sc-wire,
+.sc-grid,
+.sc-today,
+.sc-scan,
+.sc-strike,
+.sc-ring,
+.sc-tick,
+.sc-cross,
+.sc-series {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-@media (prefers-reduced-motion: no-preference) {
-  /* An open project keeps a slow packet on its route; pointing at any row speeds one through. */
-  .entry[data-open="true"] .glyph__packet {
-    opacity: 1;
-    animation: travel 3.6s linear infinite;
-  }
+.sc-wire {
+  stroke: var(--line-strong);
+  stroke-width: 0.8;
 }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .entry:hover .glyph__packet,
-  .entry:focus-within .glyph__packet {
-    opacity: 1;
-    animation: travel 1.7s linear infinite;
-  }
+.sc-wire--strong { stroke: var(--muted); }
+.sc-grid {
+  stroke: var(--line);
+  stroke-width: 0.6;
 }
-.entry:hover .glyph__node--big,
-.entry:focus-within .glyph__node--big {
+.sc-today {
+  stroke: var(--muted);
+  stroke-width: 0.7;
+  stroke-dasharray: 1.6 2.2;
+}
+.sc-scan {
   stroke: var(--accent);
+  stroke-width: 1.1;
+}
+.sc-strike {
+  stroke: var(--muted);
+  stroke-width: 0.9;
+}
+.sc-ring {
+  stroke: var(--accent);
+  stroke-width: 1.4;
+}
+.sc-tick {
+  stroke: var(--moss);
+  stroke-width: 1.5;
+}
+.sc-tick--on { stroke: var(--ground); }
+.sc-tick--onacc { stroke: var(--accent-ink); }
+.sc-cross {
+  stroke: var(--ground);
+  stroke-width: 1.5;
+}
+.sc-series {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.sc-series--next {
+  stroke: var(--accent);
+  stroke-dasharray: 3 2.6;
+}
+.sc-band { fill: color-mix(in srgb, var(--accent) 16%, transparent); }
+.sc-win {
+  fill: color-mix(in srgb, var(--accent) 9%, transparent);
+  stroke: var(--accent);
+  stroke-width: 0.8;
+  stroke-dasharray: 2.4 2;
 }
 
 /* Skills: the stack, layer by layer. */
@@ -1794,8 +1868,9 @@ html.motion .lost__in > :nth-child(5) { animation-delay: 380ms; }
   .projects .entry__when {
     text-align: right;
   }
-  .glyph {
-    width: 9.5rem;
+  .scene {
+    width: 100%;
+    max-width: 22rem;
   }
   .entry__toggle {
     align-items: flex-start;
