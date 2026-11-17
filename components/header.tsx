@@ -60,17 +60,31 @@ export function Header() {
     };
   }, []);
 
-  // The new theme opens from the toggle.
+  // The new theme spreads from the toggle with a soft edge, at a steady pace to the far corner.
   const toggleTheme = (e: React.MouseEvent<HTMLButtonElement>) => {
     const root = document.documentElement;
     const next = root.classList.contains("light") ? "dark" : "light";
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const start = (document as Document & { startViewTransition?: (cb: () => void) => unknown }).startViewTransition;
-    if (!start || reduced) return setTheme(next);
+    if (reduced) return setTheme(next);
+    const start = (document as Document & { startViewTransition?: (cb: () => void) => { finished: Promise<void> } }).startViewTransition;
+    if (!start) {
+      // No view transitions here: cross-fade the colours instead of snapping.
+      root.classList.add("theme-fade");
+      setTheme(next);
+      window.setTimeout(() => root.classList.remove("theme-fade"), 600);
+      return;
+    }
     const r = e.currentTarget.getBoundingClientRect();
-    root.style.setProperty("--vt-x", `${r.left + r.width / 2}px`);
-    root.style.setProperty("--vt-y", `${r.top + r.height / 2}px`);
-    start.call(document, () => setTheme(next));
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    const far = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    root.style.setProperty("--vt-x", `${x}px`);
+    root.style.setProperty("--vt-y", `${y}px`);
+    root.style.setProperty("--vt-end", `${Math.ceil(far) + 140}px`);
+    // Colours must not be mid-fade when the new frame is captured.
+    root.classList.add("theme-snap");
+    const done = () => root.classList.remove("theme-snap");
+    start.call(document, () => setTheme(next)).finished.then(done, done);
   };
 
   return (

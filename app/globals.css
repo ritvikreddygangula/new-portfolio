@@ -1715,18 +1715,40 @@ html.motion .lost__in > :nth-child(3) { animation-delay: 180ms; }
 html.motion .lost__in > :nth-child(4) { animation-delay: 300ms; }
 html.motion .lost__in > :nth-child(5) { animation-delay: 380ms; }
 
-/* Theme switch: the new theme spreads from the toggle. */
+/* Theme switch: the new theme spreads from the toggle behind a soft edge. */
+@property --vt-r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 ::view-transition-new(root) {
-  animation: theme-spread 0.75s cubic-bezier(0.65, 0, 0.2, 1) both;
+  mask-image: radial-gradient(
+    circle at var(--vt-x, 100%) var(--vt-y, 0),
+    #000 calc(var(--vt-r) - 130px),
+    transparent var(--vt-r)
+  );
+  animation: theme-spread 1.05s cubic-bezier(0.5, 0, 0.2, 1) both;
 }
 @keyframes theme-spread {
-  from { clip-path: circle(0 at var(--vt-x, 100%) var(--vt-y, 0)); }
-  to { clip-path: circle(150vmax at var(--vt-x, 100%) var(--vt-y, 0)); }
+  from { --vt-r: 0px; }
+  to { --vt-r: var(--vt-end, 150vmax); }
+}
+html.theme-snap *,
+html.theme-snap *::before,
+html.theme-snap *::after {
+  transition: none !important;
+}
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition: background-color 0.5s var(--ease-soft), color 0.5s var(--ease-soft), border-color 0.5s var(--ease-soft),
+    fill 0.5s var(--ease-soft), stroke 0.5s var(--ease-soft) !important;
 }
 
 /* ------------------------------------------------------------------ smaller screens */
