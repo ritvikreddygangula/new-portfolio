@@ -2,6 +2,7 @@ import { Entry } from "@/components/entry";
 import { Scene } from "@/components/scene";
 import { SectionHead } from "@/components/section-head";
 import { Sim } from "@/components/sim";
+import { YouTube } from "@/components/youtube";
 import { projects } from "@/data/site";
 
 export function ProjectsSection() {
@@ -55,6 +56,12 @@ export function ProjectsSection() {
               ))}
             </ul>
             <p className="stack">{project.technologies.join(" / ")}</p>
+            {project.youtube && (
+              <figure className="clip">
+                <YouTube id={project.youtube.id} poster={project.youtube.poster} title={`${project.title} demo`} />
+                <figcaption>The {project.title} demo. It plays here; use the player's full screen button to enlarge it.</figcaption>
+              </figure>
+            )}
             {project.clip && (
               <figure className="clip">
                 <video

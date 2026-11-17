@@ -151,6 +151,8 @@ export type Project = {
   demo?: string;
   // A recorded walkthrough.
   video?: string;
+  // A YouTube video played inside the detail view.
+  youtube?: { id: string; poster: string };
   // A short clip shown in the detail view.
   clip?: { src: string; poster: string };
   // A small looping picture of what the project does.
@@ -180,6 +182,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/Chinmay1545/TagAlong",
     video: "https://www.youtube.com/watch?v=FgkwKn3QVdE",
+    youtube: { id: "FgkwKn3QVdE", poster: "/videos/tagalong.jpg" },
     scene: "point",
     sceneAlt: "A board with an equation. A pointer lands on the top term while the teacher says this, and the student hears: the x plus 3 on top",
   },
