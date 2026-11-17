@@ -165,14 +165,15 @@ export const projects: Project[] = [
     title: "TagAlong",
     date: "November 2026",
     description:
-      "When a teacher points at the board and says \"this\", a blind student hears the exact term in their earbud.",
-    highlights: ["Built at HackPrinceton", "Claude reads the board", "No AI while pointing"],
+      "When a teacher points at the board and says \"this\", a visually impaired student hears the exact term in their earbud.",
+    highlights: ["12s → 2s to read the board", "Near-zero latency whisper", "Built at HackPrinceton"],
     technologies: ["TypeScript", "React", "Express", "WebSockets", "MediaPipe", "Claude", "ElevenLabs", "Amazon Transcribe", "Amazon Polly"],
     achievements: [
+      "Cut the time for new writing on the board to appear as readable terms from 12 seconds to 2 seconds",
+      "Near-zero latency between the teacher pointing and the student hearing the term, because no AI runs while the teacher is pointing",
       "When new writing appears and the board stays still for a second, Claude reads it and returns each term with its position",
       "The camera tracks the teacher's finger, a pointer stick or a laser dot, in the browser",
       "Speech recognition picks up \"this\", \"that\", \"these\" and \"those\"; the pointed term is spoken from the left or right, depending on where it is on the board",
-      "No AI runs while the teacher is pointing, so the whisper comes right away",
       "One camera device at the front; every student listens on their own phone, and each phrase is voiced once on the server and shared",
     ],
     github: "https://github.com/Chinmay1545/TagAlong",
@@ -235,6 +236,23 @@ export const projects: Project[] = [
     sceneAlt: "One topic splits into three sub-questions researched in parallel, which merge into a report with source marks",
   },
   {
+    title: "Meeting Intelligence Platform",
+    date: "March 2026",
+    description:
+      "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
+    highlights: ["BERT semantic chunking", "Action item extraction", "FastAPI + Next.js"],
+    technologies: ["FastAPI", "Next.js", "Python", "SQLAlchemy", "BERT", "Hugging Face", "JWT", "TypeScript"],
+    achievements: [
+      "BERT-based semantic chunking with overlap for context preservation",
+      "Hierarchical extractive summarization (chunk → overall)",
+      "Pattern-based action item extraction with assignee & deadline detection",
+      "Secure JWT auth with bcrypt and per-user data isolation",
+    ],
+    github: "https://github.com/ritvikreddygangula/meeting-intelligence",
+    scene: "notes",
+    sceneAlt: "A meeting transcript is cut into chunks, which become a short summary and two action items with an assignee and a date",
+  },
+  {
     title: "Chatify",
     date: "December 2024",
     description:
@@ -251,23 +269,6 @@ export const projects: Project[] = [
     demo: "https://chatify-0eq1n.sevalla.app/login",
     scene: "chat",
     sceneAlt: "A chat window: a contact comes online, a message goes each way, a typing indicator, then the reply",
-  },
-  {
-    title: "Meeting Intelligence Platform",
-    date: "March 2026",
-    description:
-      "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
-    highlights: ["BERT semantic chunking", "Action item extraction", "FastAPI + Next.js"],
-    technologies: ["FastAPI", "Next.js", "Python", "SQLAlchemy", "BERT", "Hugging Face", "JWT", "TypeScript"],
-    achievements: [
-      "BERT-based semantic chunking with overlap for context preservation",
-      "Hierarchical extractive summarization (chunk → overall)",
-      "Pattern-based action item extraction with assignee & deadline detection",
-      "Secure JWT auth with bcrypt and per-user data isolation",
-    ],
-    github: "https://github.com/ritvikreddygangula/meeting-intelligence",
-    scene: "notes",
-    sceneAlt: "A meeting transcript is cut into chunks, which become a short summary and two action items with an assignee and a date",
   },
   {
     title: "AI Career Assistant",

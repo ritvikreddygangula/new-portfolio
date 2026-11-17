@@ -13,6 +13,9 @@
   --accent-ink: #1c1a17;
   --moss: #a3b684;
   --fault: #ef6247;
+  --ochre: #e0b05a;
+  --teal: #7fb5b0;
+  --plum: #d596b0;
   --line: color-mix(in srgb, var(--ink) 14%, transparent);
   --line-strong: color-mix(in srgb, var(--ink) 40%, transparent);
   --glass: color-mix(in srgb, var(--surface) 62%, transparent);
@@ -57,6 +60,9 @@
   --accent-ink: #fff8ee;
   --moss: #45662f;
   --fault: #b3261e;
+  --ochre: #8a5f08;
+  --teal: #1f6a6c;
+  --plum: #8c3d60;
   --glass: color-mix(in srgb, #fbf8f0 60%, transparent);
   --glass-edge: rgba(255, 255, 255, 0.7);
   --shadow: rgba(60, 45, 20, 0.28);
@@ -1263,20 +1269,33 @@ html.motion .sign__node {
   color: var(--muted);
 }
 
-/* Project scenes: a small looping picture of what each project does. */
+/* Project scenes: a small looping picture of what each project does. Each has its own
+   pair of colours from the site's warm family, washed into the card. */
 .scene {
+  --c1: var(--accent);
+  --c2: var(--moss);
   display: block;
   width: 100%;
   max-width: 17.5rem;
   height: auto;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--c1) 34%, var(--line));
   border-radius: var(--r-s);
-  background: var(--surface);
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--c2) 26%, transparent), transparent 62%),
+    linear-gradient(155deg, color-mix(in srgb, var(--c1) 30%, var(--surface)), color-mix(in srgb, var(--c1) 8%, var(--surface)) 70%);
   transition: border-color 0.4s var(--ease);
 }
+.scene[data-scene="point"] { --c1: var(--ochre); --c2: var(--teal); }
+.scene[data-scene="diff"] { --c1: var(--accent); --c2: var(--moss); }
+.scene[data-scene="failover"] { --c1: var(--moss); --c2: var(--ochre); }
+.scene[data-scene="fan"] { --c1: var(--teal); --c2: var(--ochre); }
+.scene[data-scene="notes"] { --c1: var(--plum); --c2: var(--teal); }
+.scene[data-scene="chat"] { --c1: var(--accent); --c2: var(--moss); }
+.scene[data-scene="advise"] { --c1: var(--ochre); --c2: var(--plum); }
+.scene[data-scene="forecast"] { --c1: var(--teal); --c2: var(--accent); }
 .entry:hover .scene,
 .entry:focus-within .scene {
-  border-color: var(--accent);
+  border-color: var(--c1);
 }
 .sc-t {
   fill: var(--muted);
@@ -1300,7 +1319,10 @@ html.motion .sign__node {
   stroke: color-mix(in srgb, var(--fault) 30%, transparent);
   stroke-width: 3;
 }
-.sc-win--read { fill: none; }
+.sc-win--read {
+  fill: none;
+  stroke: var(--c2);
+}
 .sc-series--thin { stroke-width: 0.9; }
 .sc-card {
   fill: var(--ground);
@@ -1314,14 +1336,15 @@ html.motion .sign__node {
 .sc-track { fill: color-mix(in srgb, var(--ink) 14%, transparent); }
 .sc-ink { fill: var(--ink); }
 .sc-acc,
-.sc-accfill { fill: var(--accent); }
+.sc-accfill { fill: var(--c1); }
+.sc-two { fill: var(--c2); }
 .sc-onacc { fill: var(--accent-ink); }
-.sc-pill { fill: color-mix(in srgb, var(--ink) 18%, transparent); }
-.sc-hl { fill: color-mix(in srgb, var(--accent) 24%, transparent); }
-.sc-done { fill: var(--moss); }
+.sc-pill { fill: color-mix(in srgb, var(--c2) 62%, transparent); }
+.sc-hl { fill: color-mix(in srgb, var(--c1) 30%, transparent); }
+.sc-done { fill: var(--c2); }
 .sc-on {
-  fill: var(--moss);
-  stroke: var(--surface);
+  fill: var(--c2);
+  stroke: var(--ground);
   stroke-width: 1.2;
 }
 .sc-down { fill: var(--fault); }
@@ -1343,6 +1366,10 @@ html.motion .sign__node {
   stroke-width: 0.8;
 }
 .sc-wire--strong { stroke: var(--muted); }
+.sc-wire--two {
+  stroke: var(--c2);
+  stroke-width: 1.1;
+}
 .sc-grid {
   stroke: var(--line);
   stroke-width: 0.6;
@@ -1353,7 +1380,7 @@ html.motion .sign__node {
   stroke-dasharray: 1.6 2.2;
 }
 .sc-scan {
-  stroke: var(--accent);
+  stroke: var(--c1);
   stroke-width: 1.1;
 }
 .sc-strike {
@@ -1361,11 +1388,11 @@ html.motion .sign__node {
   stroke-width: 0.9;
 }
 .sc-ring {
-  stroke: var(--accent);
+  stroke: var(--c1);
   stroke-width: 1.4;
 }
 .sc-tick {
-  stroke: var(--moss);
+  stroke: var(--c2);
   stroke-width: 1.5;
 }
 .sc-tick--on { stroke: var(--ground); }
@@ -1379,13 +1406,13 @@ html.motion .sign__node {
   stroke-width: 1.5;
 }
 .sc-series--next {
-  stroke: var(--accent);
+  stroke: var(--c2);
   stroke-dasharray: 3 2.6;
 }
-.sc-band { fill: color-mix(in srgb, var(--accent) 16%, transparent); }
+.sc-band { fill: color-mix(in srgb, var(--c2) 20%, transparent); }
 .sc-win {
-  fill: color-mix(in srgb, var(--accent) 9%, transparent);
-  stroke: var(--accent);
+  fill: color-mix(in srgb, var(--c1) 14%, transparent);
+  stroke: var(--c1);
   stroke-width: 0.8;
   stroke-dasharray: 2.4 2;
 }

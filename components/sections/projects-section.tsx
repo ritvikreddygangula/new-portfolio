@@ -17,7 +17,6 @@ export function ProjectsSection() {
             title={project.title}
             summary={project.description}
             marks={project.highlights}
-            defaultOpen={!!project.sim}
             feature={project.feature}
             aside={
               <>

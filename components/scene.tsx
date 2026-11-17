@@ -62,7 +62,7 @@ function Point() {
         <circle cx={118} cy={63} r={2} className="sc-accfill" />
       </g>
       {[8.5, 12, 15.5].map((r) => (
-        <path key={r} d={`M${118 + r * 0.72} ${63 - r * 0.7}a${r} ${r} 0 0 1 0 ${r * 1.4}`} className="sc-wire sc-wire--strong" data-s="wave" />
+        <path key={r} d={`M${118 + r * 0.72} ${63 - r * 0.7}a${r} ${r} 0 0 1 0 ${r * 1.4}`} className="sc-wire sc-wire--two" data-s="wave" />
       ))}
       <g data-s="heard">
         <rect x={8} y={79} width={144} height={17} rx={5} className="sc-card" />
@@ -237,7 +237,7 @@ function Notes() {
       <Label x={90} y={10}>summary</Label>
       <rect x={90} y={15} width={62} height={31} rx={4} className="sc-card" />
       {[48, 42, 28].map((w, i) => (
-        <Bar key={i} x={96} y={23 + i * 7} w={w} tone="ink" name="sum" />
+        <Bar key={i} x={96} y={23 + i * 7} w={w} tone={i ? "ink" : "two"} name="sum" />
       ))}
       <Label x={90} y={60}>action items</Label>
       {[66, 82].map((y, i) => (
@@ -276,7 +276,7 @@ function Advise() {
           <g key={i} data-s="rec">
             <rect x={74} y={y} width={78} height={24} rx={4} className="sc-card" />
             <Bar x={81} y={y + 7} w={i ? 38 - i * 4 : 44} tone="ink" />
-            <Bar x={81} y={y + 14} w={30 - i * 3} />
+            <Bar x={81} y={y + 14} w={30 - i * 3} tone={i ? "bar" : "two"} />
           </g>
         );
       })}
@@ -319,7 +319,7 @@ function Forecast() {
         <path d="M100 44L150 14V40Z" className="sc-band" />
         <path d="M100 44L112 40L124 34L136 31L150 26" className="sc-series sc-series--next" />
       </g>
-      <circle cx={150} cy={26} r={2.8} className="sc-accfill" data-s="end" />
+      <circle cx={150} cy={26} r={2.8} className="sc-two" data-s="end" />
     </>
   );
 }
@@ -451,7 +451,7 @@ export function Scene({ name, label }: { name: SceneName; label: string }) {
   }, [name]);
 
   return (
-    <svg ref={ref} className="scene" viewBox="0 0 160 104" role="img" aria-label={label}>
+    <svg ref={ref} className="scene" data-scene={name} viewBox="0 0 160 104" role="img" aria-label={label}>
       <g data-s="all">
         <Drawing />
       </g>
