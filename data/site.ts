@@ -151,6 +151,8 @@ export type Project = {
   demo?: string;
   // A recorded walkthrough.
   video?: string;
+  // A short clip shown in the detail view.
+  clip?: { src: string; poster: string };
   // A small looping picture of what the project does.
   scene: SceneName;
   sceneAlt: string;
@@ -196,6 +198,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/ritvikreddygangula/DeltaLedger-MCP",
     demo: "https://d30z0su1b3sesp.cloudfront.net/",
+    clip: { src: "/videos/deltaledger.mp4", poster: "/videos/deltaledger.jpg" },
     scene: "diff",
     sceneAlt: "Two filings side by side. Two changed passages are found: one becomes a cited finding, the unsupported one is dropped",
   },
@@ -213,6 +216,7 @@ export const projects: Project[] = [
       "Prometheus/Grafana dashboards plus automated crash and partition fault-injection tests",
     ],
     github: "https://github.com/ritvikreddygangula/Forge",
+    clip: { src: "/videos/forge.mp4", poster: "/videos/forge.jpg" },
     scene: "failover",
     sceneAlt: "Three coordinators send jobs to a row of workers. The leader fails, another coordinator takes over, and jobs keep landing",
     feature: true,

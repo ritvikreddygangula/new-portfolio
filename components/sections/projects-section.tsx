@@ -55,6 +55,22 @@ export function ProjectsSection() {
               ))}
             </ul>
             <p className="stack">{project.technologies.join(" / ")}</p>
+            {project.clip && (
+              <figure className="clip">
+                <video
+                  controls
+                  playsInline
+                  preload="none"
+                  poster={project.clip.poster}
+                  width={960}
+                  height={540}
+                  aria-label={`A short video about ${project.title}`}
+                >
+                  <source src={project.clip.src} type="video/mp4" />
+                </video>
+                <figcaption>A short video about {project.title}. Use the player's full screen button to enlarge it.</figcaption>
+              </figure>
+            )}
             {project.sim && <Sim />}
           </Entry>
         ))}
