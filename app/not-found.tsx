@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="lost__in">
         <p className="lost__code">404</p>
         <h1 id="lost-title" className="lost__title">
-          Nothing <em>here.</em>
+          Nothing <em>here</em>
         </h1>
         <p className="lost__text">Nothing lives at this address. Everything I have made is one page away.</p>
         <a className="btn btn--solid" href="/">

@@ -14,12 +14,12 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const fail = (text: string) => setStatus({ kind: "error", text });
-    if (!form.name.trim()) return fail("Please enter your name.");
-    if (!form.email.trim()) return fail("Please enter your email.");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return fail("Please enter a valid email address.");
-    if (!form.message.trim()) return fail("Please enter a message.");
+    if (!form.name.trim()) return fail("Add your name");
+    if (!form.email.trim()) return fail("Add your email");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return fail("That email address looks incomplete");
+    if (!form.message.trim()) return fail("Add a message");
 
-    setStatus({ kind: "sending", text: "Sending..." });
+    setStatus({ kind: "sending", text: "Sending…" });
     try {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -27,10 +27,10 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
         body: JSON.stringify(form),
       });
       if (!response.ok) throw new Error(String(response.status));
-      setStatus({ kind: "ok", text: "Message sent! I'll get back to you soon." });
+      setStatus({ kind: "ok", text: "Sent. I'll reply by email" });
       setForm({ name: "", email: "", message: "" });
     } catch {
-      fail("Failed to send message. Please try again.");
+      fail("It didn't go through. Try again, or email me directly");
     }
   };
 
@@ -60,12 +60,12 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
           rows={4}
           value={form.message}
           onChange={change}
-          placeholder="Tell me about your project or just say hello!"
+          placeholder="A role, a project, or a question about evals"
         />
       </div>
       <div className="form__foot">
         <button type="submit" className="btn btn--solid" disabled={status.kind === "sending"}>
-          <span>{status.kind === "sending" ? "Sending..." : "Send Message"}</span>
+          <span>{status.kind === "sending" ? "Sending…" : "Send message"}</span>
         </button>
         <p className="form__status" role="status" data-kind={status.kind}>
           {status.kind === "sending" ? "" : status.text}
