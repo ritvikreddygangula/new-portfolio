@@ -109,7 +109,7 @@ export const experiences: Experience[] = [
     url: "https://www.foodforest.ai/",
     logo: "/logos/food-forest-ai.png",
     location: "Philadelphia, PA",
-    period: "June – May 2025",
+    period: "May – Aug 2025",
     summary:
       "Automated data enrichment and quality validation pipelines using Python and GPT, improving dataset reliability across analytics workflows.",
     highlights: ["25+ hours saved per week", "~40% more accurate data"],
@@ -165,7 +165,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "TagAlong",
-    date: "November 2026",
+    date: "Nov 2026",
     description:
       "When a teacher points at the board and says \"this\", a visually impaired student hears the exact term in their earbud.",
     highlights: ["12s → 2s to read the board", "Near-zero latency whisper", "Built at HackPrinceton"],
@@ -186,7 +186,7 @@ export const projects: Project[] = [
   },
   {
     title: "DeltaLedger MCP",
-    date: "August 2026",
+    date: "Aug 2026",
     description:
       "A three-agent LangGraph pipeline that turns SEC EDGAR filings into classified, cited findings, served as an MCP server and REST API on AWS.",
     highlights: ["3-agent LangGraph pipeline", "90% eval gate in CI", "MCP server on AWS"],
@@ -205,7 +205,7 @@ export const projects: Project[] = [
   },
   {
     title: "Forge",
-    date: "January 2026",
+    date: "Jan 2026",
     description:
       "A distributed job orchestrator in Go with Raft-replicated coordinators, gRPC workers, and a Kafka-backed event log.",
     highlights: ["16.7 jobs/s", "145 ms leader failover", "0 acknowledged jobs lost"],
@@ -224,7 +224,7 @@ export const projects: Project[] = [
   },
   {
     title: "Deep Research Multi-Agent System",
-    date: "June 2025",
+    date: "Jun 2025",
     description:
       "A full-stack AI system that decomposes topics into parallel sub-questions and synthesizes source-backed research reports using a stateful agent workflow.",
     highlights: ["Parallel LangGraph agents", "Live agent graph UI", "Pinecone memory"],
@@ -241,9 +241,9 @@ export const projects: Project[] = [
   },
   {
     title: "Meeting Intelligence Platform",
-    date: "March 2026",
+    date: "Mar 2026",
     description:
-      "AI-powered platform for intelligent meeting transcript analysis with hierarchical NLP summarization and action item extraction.",
+      "Turns meeting transcripts into a hierarchical summary and a list of action items with assignees and deadlines.",
     highlights: ["BERT semantic chunking", "Action item extraction", "FastAPI + Next.js"],
     technologies: ["FastAPI", "Next.js", "Python", "SQLAlchemy", "BERT", "Hugging Face", "JWT", "TypeScript"],
     achievements: [
@@ -258,7 +258,7 @@ export const projects: Project[] = [
   },
   {
     title: "Chatify",
-    date: "December 2024",
+    date: "Dec 2024",
     description:
       "Real-time chat application with rooms, presence indicators, and multi-device conversation sync.",
     highlights: ["Real-time rooms", "JWT + Redis rate limits", "Dockerized"],
@@ -277,7 +277,7 @@ export const projects: Project[] = [
   {
     title: "AI Career Assistant",
     date: "May 2025",
-    description: "AI-powered career assistant providing personalized guidance and recommendations.",
+    description: "A career assistant built on LangChain and Hugging Face models that gives personalized guidance and recommendations.",
     highlights: ["LangChain", "Hugging Face models", "Deployed on Vercel"],
     technologies: ["LangChain", "Hugging Face", "Vercel", "React", "AI/ML"],
     achievements: ["Personalized recommendations", "Natural language processing", "Cloud deployment"],
@@ -287,8 +287,8 @@ export const projects: Project[] = [
   },
   {
     title: "Stock Price Forecasting",
-    date: "December 2024",
-    description: "LSTM-based machine learning model for accurate stock price forecasting.",
+    date: "Dec 2024",
+    description: "An LSTM model in TensorFlow and Keras that forecasts stock prices from their history.",
     highlights: ["LSTM model", "TensorFlow / Keras", "Time series"],
     technologies: ["TensorFlow", "Keras", "LSTM", "Pandas", "Matplotlib", "Python"],
     achievements: ["High prediction accuracy", "Time series analysis", "Data visualization"],
@@ -325,5 +325,5 @@ export const skillCategories = [
 export const contact = {
   heading: "Get in touch",
   intro:
-    "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.",
+    "Hiring for backend or AI engineering, or working on evals and retrieval yourself? Email reaches me fastest.",
 };
