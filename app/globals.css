@@ -19,7 +19,6 @@
   --line: color-mix(in srgb, var(--ink) 14%, transparent);
   --line-strong: color-mix(in srgb, var(--ink) 40%, transparent);
   --glass: color-mix(in srgb, var(--surface) 62%, transparent);
-  --glass-edge: rgba(255, 255, 255, 0.16);
   --shadow: rgba(0, 0, 0, 0.5);
 
   --f-serif: var(--font-boska), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
@@ -64,7 +63,6 @@
   --teal: #1f6a6c;
   --plum: #8c3d60;
   --glass: color-mix(in srgb, #fbf8f0 60%, transparent);
-  --glass-edge: rgba(255, 255, 255, 0.7);
   --shadow: rgba(60, 45, 20, 0.28);
   color-scheme: light;
 }
@@ -424,21 +422,11 @@ html.motion .sign__node {
   padding: 4px;
   border-radius: 999px;
   background: var(--glass);
-  -webkit-backdrop-filter: blur(22px) saturate(1.8);
-  backdrop-filter: blur(22px) saturate(1.8);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   box-shadow:
-    inset 0 1px 0 var(--glass-edge),
-    inset 0 0 0 1px color-mix(in srgb, var(--ink) 11%, transparent),
-    0 14px 34px -14px var(--shadow),
-    0 2px 6px -2px var(--shadow);
-}
-.island::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, color-mix(in srgb, #fff 9%, transparent), transparent 46%);
-  pointer-events: none;
+    inset 0 0 0 1px var(--line),
+    0 8px 24px -12px var(--shadow);
 }
 .island__lens {
   position: absolute;
@@ -447,10 +435,7 @@ html.motion .sign__node {
   left: 0;
   width: 0;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--ink) 13%, transparent);
-  box-shadow:
-    inset 0 1px 0 var(--glass-edge),
-    inset 0 0 0 1px color-mix(in srgb, var(--ink) 9%, transparent);
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
   opacity: 0;
   transition: translate 0.5s var(--ease), width 0.5s var(--ease), opacity 0.3s var(--ease-soft);
 }
@@ -467,7 +452,7 @@ html.motion .sign__node {
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: color-mix(in srgb, var(--ink) 74%, transparent);
+  color: var(--muted);
   transition: color 0.3s var(--ease-soft), scale 0.2s var(--ease-soft), translate 0.3s var(--ease);
 }
 .island__link[aria-current],
@@ -1335,7 +1320,7 @@ html.motion .sign__node {
 }
 
 /* Project scenes: a small looping picture of what each project does. Each has its own
-   pair of colours from the site's warm family, washed into the card. */
+   pair of colours from the site's warm family, used in the drawing; the card takes a faint tint. */
 .scene {
   --c1: var(--accent);
   --c2: var(--moss);
@@ -1343,11 +1328,9 @@ html.motion .sign__node {
   width: 100%;
   max-width: 17.5rem;
   height: auto;
-  border: 1px solid color-mix(in srgb, var(--c1) 34%, var(--line));
+  border: 1px solid var(--line);
   border-radius: var(--r-s);
-  background:
-    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--c2) 26%, transparent), transparent 62%),
-    linear-gradient(155deg, color-mix(in srgb, var(--c1) 30%, var(--surface)), color-mix(in srgb, var(--c1) 8%, var(--surface)) 70%);
+  background: color-mix(in srgb, var(--c1) 10%, var(--surface));
   transition: border-color 0.4s var(--ease);
 }
 .scene[data-scene="point"] { --c1: var(--ochre); --c2: var(--teal); }
