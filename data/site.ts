@@ -109,7 +109,7 @@ export const experiences: Experience[] = [
     url: "https://www.foodforest.ai/",
     logo: "/logos/food-forest-ai.png",
     location: "Philadelphia, PA",
-    period: "Jun – May 2025",
+    period: "May – Aug 2025",
     summary:
       "Automated data enrichment and quality validation pipelines using Python and GPT, improving dataset reliability across analytics workflows.",
     highlights: ["25+ hours saved per week", "~40% more accurate data"],
