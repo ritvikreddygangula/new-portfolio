@@ -16,7 +16,7 @@
   --ochre: #e0b05a;
   --teal: #7fb5b0;
   --plum: #d596b0;
-  --line: color-mix(in srgb, var(--ink) 14%, transparent);
+  --line: color-mix(in srgb, var(--ink) 10%, transparent);
   --line-strong: color-mix(in srgb, var(--ink) 40%, transparent);
   --glass: color-mix(in srgb, var(--surface) 62%, transparent);
   --shadow: rgba(0, 0, 0, 0.5);
